@@ -10,8 +10,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <main className="flex bg-[#EEEEEE]">
+        <section className="bg-[#B2B2B2] w-1/4 h-screen"></section>
+        <div className="m-auto">
+          <h1 className="text-[#444444] text-xl">Hello</h1>
+          <section className="bg-white resize w-[595px] h-[842px]"></section>
+        </div>
       </main>
     </div>
   );
