@@ -4,8 +4,10 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <link rel="icon" type="image/png" href="/assets/favicon.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200;8..144,300;8..144,400;8..144,500;8..144,600&family=Spectral:ital,wght@1,500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
       </Head>
