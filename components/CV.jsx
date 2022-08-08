@@ -88,7 +88,7 @@ const CV = ({ className }) => {
           </div>
           <div className="mt-2">
             <h4 className="font-medium text-md">Language</h4>
-            <p className={paragraphSize}>Turkish (Native), English (A1)</p>
+            <p className={paragraphSize}>Turkish (Native), English (A2)</p>
           </div>
         </section>
         {/* SKILLS END */}
