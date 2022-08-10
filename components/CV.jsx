@@ -7,6 +7,8 @@ import {
 } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import { RiInstagramLine } from "react-icons/ri";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const CV = ({ className }) => {
   const items = "flex items-center";
@@ -15,9 +17,28 @@ const CV = ({ className }) => {
   const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
   const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
+  const [cvData, setCvData] = useState([]);
+
+  const fetchData = async () => {
+    const res = await fetch("/api/cv");
+    const data = await res.json();
+    setCvData(data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log(cvData);
   return (
     <div className={className}>
       {/* HEADER START */}
+
+      {/* 
+      // Fetch Data from local API
+      <div>
+        {[cvData].map((item) => {
+          return <h1>{item.name}</h1>;
+        })}
+      </div> */}
       <section id="header">
         <div className="flex items-center">
           <div className="mr-4 flex ">
