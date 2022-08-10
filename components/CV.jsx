@@ -12,8 +12,8 @@ const CV = ({ className }) => {
   const items = "flex items-center";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-rose-400";
-  const paragraphSize = "text-[0.775rem] mt-1 text-gray-700 font-light";
-  const jobSize = "text-[0.775rem] text-gray-700 font-light";
+  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
+  const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
   return (
     <div className={className}>
@@ -57,7 +57,7 @@ const CV = ({ className }) => {
       {/* HEADER END */}
       {/* ABOUT TEXT START  */}
       <section id="about">
-        <div className="bg-gray-100/50 border text-[0.775rem] p-3 rounded-lg mt-6">
+        <div className="bg-gray-100/50 border p-3 rounded-lg mt-6">
           <p className={paragraphSize}>
             After graduating from the programming department, I worked remotely
             on graphic design for about 5 years. I have been working to be a

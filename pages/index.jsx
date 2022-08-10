@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import CV from "../components/CV";
+import Settings from "../components/Settings";
 
 export default function Home() {
   return (
@@ -12,7 +13,9 @@ export default function Home() {
       </Head>
 
       <main className="flex bg-[#EEEEEE]">
-        <section className="bg-[#E7E7E7] shadow-2xl w-[400px] h-screen"></section>
+        <section className="bg-[#E7E7E7] shadow-2xl  wx-[400px] h-screen">
+          <Settings />
+        </section>
         <div className="m-auto">
           {/* <h1 className="text-[#444444] mx-auto text-center text-xl">Hello</h1> */}
           <section className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]">

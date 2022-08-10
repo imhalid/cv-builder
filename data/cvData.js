@@ -35,6 +35,7 @@ export const cvData = {
   activeColor: "#5B21B6",
 };
 
+/*
 export const cvDataEmpty = {
   name: "",
   jobTitle: "",
@@ -68,3 +69,4 @@ export const cvDataEmpty = {
   displayProjects: false,
   activeColor: "#5B21B6",
 };
+*/
