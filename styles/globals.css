@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   html {
     font-family: "Roboto Flex", sans-serif;
     line-height: 1.5;
@@ -14,5 +19,52 @@
   h4 {
     font-family: "Spectral", serif;
     font-weight: 500;
+  }
+
+  :root {
+    --form-control-color: rebeccapurple;
+    --form-control-disabled: #959495;
+  }
+
+  input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+
+    font: inherit;
+    /* color: currentColor; */
+    background-color: #f2f2f2;
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 0.35em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: circle(50% at 50% 50%);
+    transform: scale(0);
+    transform-origin: center;
+    transition: 120ms transform ease-in-out;
+    /* Windows High Contrast Mode */
+    background-color: CanvasText;
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+
+  input[type="checkbox"]:focus {
+    outline: 1px solid rgb(209, 213, 219);
+    outline-offset: max(2px, 0.15em);
   }
 }

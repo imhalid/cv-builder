@@ -31,9 +31,8 @@ const CV = ({ className }) => {
   return (
     <div className={className}>
       {/* HEADER START */}
-
+      {/* Fetch Data from local API */}
       {/* 
-      // Fetch Data from local API
       <div>
         {[cvData].map((item) => {
           return <h1>{item.name}</h1>;
