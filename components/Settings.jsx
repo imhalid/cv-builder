@@ -19,50 +19,59 @@ const Settings = () => {
         />
       </div>
       <div className="flex flex-wrap">
-        <div class="flex items-center mt-4 mr-4">
+        <div className="flex items-center mt-4 mr-4">
           <input
             id="twitter"
             type="checkbox"
             value=""
-            class="focus:outline-none"
+            className="focus:outline-none"
           />
-          <label for="twitter" class="ml-2 text-gray-500 text-sm font-medium">
+          <label
+            htmlFor="twitter"
+            className="ml-2 text-gray-500 text-sm font-medium"
+          >
             Twitter
           </label>
         </div>
-        <div class="flex items-center mt-4 mr-4">
+        <div className="flex items-center mt-4 mr-4">
           <input
             id="portfolio"
             type="checkbox"
             value=""
-            class="focus:outline-none"
+            className="focus:outline-none"
           />
           <label
-            for="portfolio"
-            class="ml-2 text-gray-500  text-sm font-medium"
+            htmlFor="portfolio"
+            className="ml-2 text-gray-500  text-sm font-medium"
           >
             Portfolio
           </label>
         </div>
-        <div class="flex items-center mt-4 mr-4">
+        <div className="flex items-center mt-4 mr-4">
           <input
             id="mail"
             type="checkbox"
             value=""
-            class="focus:outline-none"
+            className="focus:outline-none"
           />
-          <label for="mail" class="ml-2 text-gray-500  text-sm font-medium">
+          <label
+            htmlFor="mail"
+            className="ml-2 text-gray-500  text-sm font-medium"
+          >
             Mail
           </label>
         </div>
-        <div class="flex items-center mt-4 mr-4">
+        <div className="flex items-center mt-4 mr-4">
           <input
             id="Github"
             type="checkbox"
             value=""
-            class="focus:outline-none"
+            className="focus:outline-none"
           />
-          <label for="Github" class="ml-2 text-gray-500  text-sm font-medium">
+          <label
+            htmlFor="Github"
+            className="ml-2 text-gray-500  text-sm font-medium"
+          >
             Github
           </label>
         </div>
