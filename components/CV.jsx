@@ -23,7 +23,7 @@ const CV = ({ className }) => {
 
       <div>
         {[cvData].map((item) => {
-          return <h1>{item.name}</h1>;
+          return <h1 key={item.name}>{item.name}</h1>;
         })}
       </div>
       <section id="header">

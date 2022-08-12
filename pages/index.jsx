@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex relative bg-[#F2F2F2] h-screen">
+      <main className="flex relative bg-[#444444] h-screen">
         <section className="bg-[#E7E7E7] outline-1 overflow-auto outline-gray-300 outline rounded-3xl m-10  w-[400px]">
           <Settings />
         </section>
