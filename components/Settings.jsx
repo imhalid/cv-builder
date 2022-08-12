@@ -1,4 +1,9 @@
-import React from "react";
+import { cvData } from "../data/cvData";
+
+const inputChange = (e) => {
+  cvData.name = e.target.value;
+  console.log(cvData.name);
+};
 
 const Settings = () => {
   return (
@@ -8,6 +13,8 @@ const Settings = () => {
         <label className="text-gray-500">Name & Surname</label>
         <input
           type="text"
+          onKeyUp={inputChange}
+          value={cvData.name}
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
         />
       </div>

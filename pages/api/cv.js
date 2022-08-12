@@ -3,7 +3,7 @@
 export default function handler(req, res) {
   res.status(200).json({
     name: "Halit islam içli",
-    jobTitle: "Frontend Developer",
+    jobTitle: "Frontend Developer1",
     location: "Turkey",
     email: "halidiislam@gmail.com",
     linkedin: "",
