@@ -1,5 +1,5 @@
 export const cvData = {
-  name: "",
+  name: "Test Name",
   jobTitle: "Frontend Developer",
   location: "Turkey",
   email: "halidiislam@gmail.com",
