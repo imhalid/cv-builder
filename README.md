@@ -10,3 +10,15 @@ This project helps you to prepare a good looking CV.
 - [ ] Save information in localstorage
 - [ ] Add PDF download option
 - [ ] Add backgound color option
+
+## Installation
+
+```bash
+yarn install
+```
+
+## Usage
+
+```bash
+yarn run dev
+```

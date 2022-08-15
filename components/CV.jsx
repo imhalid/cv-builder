@@ -18,7 +18,7 @@ const CV = ({ className }) => {
   const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
   const cv = useContext(CvContext);
-  console.log(cv);
+
   return (
     <div className={className}>
       {/* HEADER START */}

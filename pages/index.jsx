@@ -1,7 +1,7 @@
 import Head from "next/head";
 import CV from "../components/CV";
 import Settings from "../components/Settings";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
 
@@ -9,8 +9,9 @@ export default function Home() {
   const [cv, setCv] = useState(cvData);
 
   const updateCv = (key, value) => {
-    setCv({ ...cv, [key]: value });
-    localStorage.setItem("cv", JSON.stringify(cv));
+    const newCv = { ...cv, [key]: value };
+    setCv(newCv);
+    localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function Home() {
     if (cvLocal) {
       setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
     }
-  }, [cvData]);
+  }, []);
 
   return (
     <>
