@@ -1,28 +1,8 @@
-import { cvData } from "../data/cvData";
-import { useState, useEffect } from "react";
-import CV from "./CV";
+import { useContext } from "react";
+import { CvContext } from "../hooks/CvContext";
 
 const Settings = () => {
-  //Here are some features that need to change. maybe i need useContext to change the value of the state.
-
-  const [cv, setCv] = useState(cvData);
-  // if (typeof window !== "undefined") {
-  //   // Perform localStorage action
-  //   const item = localStorage.setItem("cv2", JSON.stringify(cvData));
-  // }
-  const updateCv = (key, value) => {
-    setCv({ ...cv, [key]: value });
-    localStorage.setItem("cv", JSON.stringify(cv));
-  };
-
-  useEffect(() => {
-    const cvLocal = JSON.parse(localStorage.getItem("cv"));
-    if (cvLocal) {
-      setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
-    }
-    console.log(cvLocal);
-  }, [cvData]);
-
+  const { cv, updateCv } = useContext(CvContext);
   return (
     <div className="p-7">
       <h1 className="text-2xl font-bold">CV Settings</h1>

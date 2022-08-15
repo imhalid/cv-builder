@@ -7,8 +7,8 @@ import {
 } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import { RiInstagramLine } from "react-icons/ri";
-import { cvData } from "../data/cvData";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CvContext } from "../hooks/CvContext";
 
 const CV = ({ className }) => {
   const items = "flex items-center";
@@ -17,24 +17,15 @@ const CV = ({ className }) => {
   const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
   const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
-  const [cv, setCv] = useState([]);
-
-  useEffect(() => {
-    const cv = JSON.parse(localStorage.getItem("cv"));
-    if (cv) {
-      setCv(cv);
-    } else {
-      setCv(cvData);
-    }
-  }, []);
-
+  const cv = useContext(CvContext);
+  console.log(cv);
   return (
     <div className={className}>
       {/* HEADER START */}
       {/* Fetch Data from local API */}
 
       <div>
-        {[cv].map((item, index) => {
+        {[cv.cv].map((item, index) => {
           return <h1 key={index}>{item.name}</h1>;
         })}
       </div>
