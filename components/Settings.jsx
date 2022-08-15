@@ -5,7 +5,7 @@ import CV from "./CV";
 const Settings = () => {
   //Here are some features that need to change. maybe i need useContext to change the value of the state.
 
-  const [cv, setCv] = useState([]);
+  const [cv, setCv] = useState(cvData);
   // if (typeof window !== "undefined") {
   //   // Perform localStorage action
   //   const item = localStorage.setItem("cv2", JSON.stringify(cvData));
@@ -16,13 +16,13 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    const cv = JSON.parse(localStorage.getItem("cv"));
-    if (cv) {
-      setCv(cv);
-    } else {
-      setCv(cvData);
+    const cvLocal = JSON.parse(localStorage.getItem("cv"));
+    if (cvLocal) {
+      setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
     }
-  }, []);
+    console.log(cvLocal);
+  }, [cvData]);
+
   return (
     <div className="p-7">
       <h1 className="text-2xl font-bold">CV Settings</h1>
@@ -32,7 +32,7 @@ const Settings = () => {
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
           value={cv.name}
-          onKeyUp={(e) => updateCv("name", e.target.value)}
+          onChange={(e) => updateCv("name", e.target.value)}
         />
       </div>
       <div className="mt-4">
