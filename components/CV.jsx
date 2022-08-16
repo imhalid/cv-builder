@@ -145,7 +145,9 @@ const CV = ({ className }) => {
                         </span>
                         <span className="flex items-center space-x-1">
                           <HiOutlineCalendar className="inline" />
-                          <p className={jobSize}>{experience.from}</p>
+                          <p className={jobSize}>
+                            {experience.from.toString()}
+                          </p>
                         </span>
                       </div>
                       <p className={paragraphSize}>{experience.summary}</p>

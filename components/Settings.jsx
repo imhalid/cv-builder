@@ -29,6 +29,8 @@ const Settings = () => {
         <input
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.jobTitle}
+          onChange={(e) => updateCv("jobTitle", e.target.value)}
         />
       </div>
       <div className="flex flex-wrap">
@@ -94,6 +96,8 @@ const Settings = () => {
         <input
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.twitter}
+          onChange={(e) => updateCv("twitter", e.target.value)}
         />
       </div>
       <div className="mt-4">
@@ -101,6 +105,8 @@ const Settings = () => {
         <input
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.website}
+          onChange={(e) => updateCv("website", e.target.value)}
         />
       </div>
       <div className="mt-4">
@@ -108,6 +114,8 @@ const Settings = () => {
         <input
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.github}
+          onChange={(e) => updateCv("github", e.target.value)}
         />
       </div>
       <div className="mt-4">
@@ -115,6 +123,8 @@ const Settings = () => {
         <input
           type="text"
           className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.email}
+          onChange={(e) => updateCv("email", e.target.value)}
         />
       </div>
     </div>
