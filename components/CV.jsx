@@ -58,14 +58,18 @@ const CV = ({ className }) => {
                 </div>
                 <div className={items}>
                   <HiOutlineLink className={itemsSVG} />
-                  <a href={item.website} target="_blank">
+                  <a href={item.website} target="_blank" rel="noreferrer">
                     {item.website}
                   </a>
                 </div>
                 <div className={items}>
                   <AiFillGithub className={itemsSVG} />
 
-                  <a href={`https://github.com/${item.github}`} target="_blank">
+                  <a
+                    href={`https://github.com/${item.github}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {item.github}
                   </a>
                 </div>
@@ -74,6 +78,7 @@ const CV = ({ className }) => {
                   <a
                     href={`https://twitter.com/${item.twitter}`}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     {item.twitter}
                   </a>
