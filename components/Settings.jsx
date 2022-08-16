@@ -15,6 +15,15 @@ const Settings = () => {
           onChange={(e) => updateCv("name", e.target.value)}
         />
       </div>
+      <div className="mt-10">
+        <label className="text-gray-500">Name & Surname</label>
+        <input
+          type="text"
+          className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+          value={cv.image}
+          onChange={(e) => updateCv("image", e.target.value)}
+        />
+      </div>
       <div className="mt-4">
         <label className="text-gray-500">Job</label>
         <input

@@ -1,5 +1,6 @@
 export const cvData = {
   name: "Test Name",
+  image: "https://avatars0.githubusercontent.com/u/17098281?s=460&v=4",
   jobTitle: "Frontend Developer",
   location: "Turkey",
   email: "halidiislam@gmail.com",
@@ -7,7 +8,7 @@ export const cvData = {
   twitter: "halidislm",
   github: "imhalid",
   website: "halid.dev",
-  aboutme:
+  about:
     "After graduating from the programming department, I worked remotely on graphic design for about 5 years. I have been working to be a Front End Developer for the last 4 months and I am looking for a job in this field. Because of my old job, I give importance to design and visuality in my work.",
 
   toolsAndTechSkills: ["Photoshop", "Final Cut Pro", "Figma", "Webflow"],
