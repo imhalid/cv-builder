@@ -1,6 +1,6 @@
 export const cvData = {
   name: "Test Name",
-  image: "https://avatars0.githubusercontent.com/u/17098281?s=460&v=4",
+  image: "",
   jobTitle: "Frontend Developer",
   location: "Turkey",
   email: "halidiislam@gmail.com",
@@ -30,7 +30,7 @@ export const cvData = {
       summary: `It is an impartial information sharing platform about Syria. My job task: Preparation of up-to-date maps according to the situation in the war zone. Preparing visual infographics about the obtained data and organizing these data. Adding articles and content to the site with Wordpress.`,
     },
   ],
-
+  displayImage: true,
   displayEducation: true,
   displayProjects: true,
   activeColor: "#5B21B6",

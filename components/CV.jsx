@@ -7,7 +7,6 @@ import {
 } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import { TbBrandTwitter } from "react-icons/tb";
-import { RiInstagramLine, RiTwitterLine } from "react-icons/ri";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 
@@ -28,15 +27,23 @@ const CV = ({ className }) => {
             <section id="header">
               {/* HEADER START */}
               <div className="flex items-center">
-                <div className="mr-4 flex ">
-                  <img
-                    className="rounded-full"
-                    src={item.image}
-                    width="72px"
-                    height="72px"
-                    alt="profilePicture"
-                  />
-                </div>
+                {item.displayImage ? (
+                  <div className="mr-4 flex ">
+                    <Image
+                      src={
+                        item.image ||
+                        "https://res.cloudinary.com/halid/image/upload/v1658781219/IMG_9215_nsrvp5.jpg"
+                      }
+                      className="rounded-full"
+                      width="72px"
+                      height="72px"
+                      alt="profilePicture"
+                      quality={100}
+                      objectFit="cover"
+                    />
+                  </div>
+                ) : null}
+
                 <div className="space-y-1">
                   <h1 className="text-3xl font-semibold">{item.name}</h1>
                   <h4 className=" text-gray-400 text-sm font-medium">
