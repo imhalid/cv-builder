@@ -12,12 +12,27 @@ const Settings = () => {
     toogleCheckbox,
     addProject,
     addExperience,
-    addTT,
+    addTag,
+    removeTag,
+    setEmptyCv,
+    setCV,
   } = useContext(CvContext);
 
   return (
     <div className="p-7">
       <h1 className="text-2xl font-bold">CV Settings</h1>
+      <button
+        className="bg-amber-500 py-1 px-4 rounded-xl text-white"
+        onClick={setEmptyCv}
+      >
+        Reset
+      </button>
+      <button
+        className="bg-red-500 ml-2 py-1 px-4 rounded-xl text-white"
+        onClick={setCV}
+      >
+        Fill Creator Data
+      </button>
       <details>
         <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer my-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
           <p className="text-[#306EA7] pl-5 font-bold">Personal Information</p>
@@ -179,30 +194,83 @@ const Settings = () => {
         <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer mb-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
           <p className="text-[#306EA7] pl-5 font-bold">Skills</p>
         </summary>
-        {cv.projects.map((project, index) => (
-          <div key={index} className="flex mb-6 flex-col">
-            <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
-              <div className=" items-center mt-4">
-                <label className="text-gray-500">Tools & Tech</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
-                  placeholder="Project name"
-                  onChange={(e) =>
-                    addTT("toolsAndTechSkills", e.target.value, index)
-                  }
-                />
-              </div>
+
+        <div className="flex mb-6 flex-col">
+          <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Tools & Tech</label>
+              <input
+                type="text"
+                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                placeholder="Project name"
+                onKeyDown={(e) =>
+                  addTag(e, "toolsAndTechSkills", e.target.value)
+                }
+              />
+              {cv.toolsAndTechSkills.map((tag, index) => (
+                <div
+                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
+                  key={index}
+                >
+                  <p className="mr-4">{tag}</p>
+                  <button
+                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    onClick={() => removeTag("toolsAndTechSkills", tag)}
+                  >
+                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Industry Knowledge</label>
+              <input
+                type="text"
+                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                placeholder="Project name"
+                onKeyDown={(e) =>
+                  addTag(e, "industryKnowledge", e.target.value)
+                }
+              />
+              {cv.industryKnowledge.map((tag, index) => (
+                <div
+                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
+                  key={index}
+                >
+                  <p className="mr-4">{tag}</p>
+                  <button
+                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    onClick={() => removeTag("industryKnowledge", tag)}
+                  >
+                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Languages</label>
+              <input
+                type="text"
+                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                placeholder="Project name"
+                onKeyDown={(e) => addTag(e, "languages", e.target.value)}
+              />
+              {cv.languages.map((tag, index) => (
+                <div
+                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
+                  key={index}
+                >
+                  <p className="mr-4">{tag}</p>
+                  <button
+                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    onClick={() => removeTag("languages", tag)}
+                  >
+                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-        <div className="w-64 py-2 rounded-xl mx-auto mb-7 bg-[#96D478] text-center">
-          <button
-            className="text-[#1A7918] font-bold"
-            onClick={() => addProject({ title: "", summary: "" })}
-          >
-            Add Project
-          </button>
         </div>
       </details>
 

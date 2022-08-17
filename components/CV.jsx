@@ -10,7 +10,7 @@ import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 
-const CV = ({ className }) => {
+const CV = ({ className, id }) => {
   const items = "flex items-center";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-rose-400";
@@ -18,8 +18,9 @@ const CV = ({ className }) => {
   const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
   const cv = useContext(CvContext);
+
   return (
-    <div className={className}>
+    <div id="cv">
       {[cv.cv].map((item, index) => {
         return (
           <div key={index}>

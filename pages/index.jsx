@@ -7,6 +7,53 @@ import { cvData } from "../data/cvData";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
+  const [scale, setScale] = useState(1);
+
+  const setCV = () => {
+    setCv(cvData);
+    localStorage.setItem("cv", JSON.stringify(cvData));
+  };
+
+  const setEmptyCv = () => {
+    console.log("setEmptyCv");
+    const emptyCv = {
+      name: "",
+      image: "",
+      jobTitle: "",
+      location: "",
+      email: "",
+      linkedin: "",
+      twitter: "",
+      github: "",
+      website: "",
+      about: "",
+      toolsAndTechSkills: [],
+      industryKnowledge: [],
+      languages: [],
+      projects: [
+        {
+          title: "",
+          summary: "",
+        },
+      ],
+      experiences: [
+        {
+          title: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          current: true,
+          summary: "",
+        },
+      ],
+      displayImage: false,
+      displayEducation: false,
+      displayProjects: false,
+      activeColor: "#5B21B6",
+    };
+    setCv(emptyCv);
+    localStorage.setItem("cv", JSON.stringify(emptyCv));
+  };
 
   const updateCv = (key, value) => {
     const newCv = { ...cv, [key]: value };
@@ -20,19 +67,28 @@ export default function Home() {
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
-  const addTT = (e, key, value) => {
-    if (e.key === "Enter") {
+  const addTag = (e, key, value) => {
+    if (e.key === "Enter" && e.target.value !== "") {
       const newCv = { ...cv, [key]: [...cv[key], value] };
+      const unique = newCv[key].filter((item, index) => {
+        return newCv[key].indexOf(item) === index;
+      });
+      newCv[key] = unique;
       setCv(newCv);
-      console.log(newCv);
       localStorage.setItem("cv", JSON.stringify(newCv));
+      e.target.value = "";
     }
+  };
+
+  const removeTag = (key, value) => {
+    const newCv = { ...cv, [key]: cv[key].filter((tag) => tag !== value) };
+    setCv(newCv);
+    localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
   const addExperience = (experience) => {
     const newCv = { ...cv, experiences: [...cv.experiences, experience] };
     setCv(newCv);
-    console.log(newCv);
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
@@ -50,6 +106,13 @@ export default function Home() {
     };
     reader.readAsDataURL(file);
     console.log(file);
+  };
+
+  const scaleUp = (e) => {
+    setScale(scale + 0.1);
+  };
+  const scaleDown = (e) => {
+    setScale(scale - 0.1);
   };
 
   useEffect(() => {
@@ -74,7 +137,10 @@ export default function Home() {
           toogleCheckbox,
           addProject,
           addExperience,
-          addTT,
+          addTag,
+          removeTag,
+          setEmptyCv,
+          setCV,
         }}
       >
         <main className="flex relative bg-[#444444] h-screen">
@@ -82,9 +148,20 @@ export default function Home() {
             <Settings />
           </section>
           <div className="m-auto">
-            <section className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]">
-              <CV className="" />
+            <section
+              style={{ transform: `scale(${scale})` }}
+              className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]"
+            >
+              <CV />
             </section>
+            <div className="mt-10">
+              <button className="text-white" onClick={scaleUp}>
+                ScaleUp
+              </button>
+              <button className="text-white" onClick={scaleDown}>
+                ScaleDown
+              </button>
+            </div>
           </div>
         </main>
       </CvContext.Provider>

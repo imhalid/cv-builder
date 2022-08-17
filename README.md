@@ -5,7 +5,7 @@ This project helps you to prepare a good looking CV.
 - [x] Create main design
 - [x] Changing information with inputs
 - [ ] Add colors options
-- [ ] Add zoom and out buttons
+- [x] Add zoom and out buttons
 - [x] Add image upload option
 - [x] Save information in localstorage
 - [ ] Add PDF download option
