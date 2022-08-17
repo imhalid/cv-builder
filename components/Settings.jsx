@@ -1,14 +1,77 @@
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
-import { BiImageAdd, BiCheck } from "react-icons/bi";
+import { BiImageAdd } from "react-icons/bi";
+import { TiDelete } from "react-icons/ti";
 import { BsPatchCheck } from "react-icons/bs";
 
 const Settings = () => {
-  const { cv, updateCv, uploadImage, toogleCheckbox } = useContext(CvContext);
+  const { cv, updateCv, uploadImage, toogleCheckbox, addProject } =
+    useContext(CvContext);
 
   return (
     <div className="p-7">
       <h1 className="text-2xl font-bold">CV Settings</h1>
+
+      {cv.projects.map((project, index) => (
+        <div key={index} className="flex mb-6 flex-col">
+          <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Project Title</label>
+              <input
+                type="text"
+                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                placeholder="Project name"
+                value={project.title}
+                onChange={(e) => {
+                  const newProject = { ...project, title: e.target.value };
+                  updateCv("projects", [
+                    ...cv.projects.slice(0, index),
+                    newProject,
+                    ...cv.projects.slice(index + 1),
+                  ]);
+                }}
+              />
+            </div>
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Project Summary</label>
+              <input
+                type="text"
+                placeholder="Project description"
+                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                value={project.summary}
+                onChange={(e) => {
+                  const newProject = { ...project, summary: e.target.value };
+                  updateCv("projects", [
+                    ...cv.projects.slice(0, index),
+                    newProject,
+                    ...cv.projects.slice(index + 1),
+                  ]);
+                }}
+              />
+            </div>
+            <button
+              className="absolute bg-rose-400 rounded-full p-1 top-0 right-0 m-4"
+              onClick={() => {
+                updateCv("projects", [
+                  ...cv.projects.slice(0, index),
+                  ...cv.projects.slice(index + 1),
+                ]);
+              }}
+            >
+              <TiDelete className="w-5 h-5 fill-white" />
+            </button>
+          </div>
+        </div>
+      ))}
+      <div className="w-64 py-2 rounded-xl mx-auto bg-[#96D478] text-center">
+        <button
+          className="text-[#1A7918] font-bold"
+          onClick={() => addProject({ name: "", description: "" })}
+        >
+          Add Project
+        </button>
+      </div>
+
       <div className="mt-10">
         <div className="flex items-center mt-4 mr-4">
           <input
@@ -29,7 +92,7 @@ const Settings = () => {
           <div>
             <label
               htmlFor="dropzone"
-              className="flex mt-1 flex-col justify-center items-center w-full py-8 bg-[#F2F2F2] border-2 border-gray-300 border-dashed cursor-pointer  rounded-xl  "
+              className="flex mt-1 flex-col justify-center items-center w-full py-8 bg-[#F2F2F2] border-2 border-gray-300 border-dashed cursor-pointer  rounded-xl"
             >
               <div className="flex flex-col items-center">
                 {cv.image ? (
@@ -65,7 +128,6 @@ const Settings = () => {
           onChange={(e) => updateCv("name", e.target.value)}
         />
       </div>
-
       <div className="mt-4">
         <label className="text-gray-500">Job</label>
         <input
