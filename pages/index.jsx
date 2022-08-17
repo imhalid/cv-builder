@@ -20,6 +20,22 @@ export default function Home() {
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
+  const addTT = (e, key, value) => {
+    if (e.key === "Enter") {
+      const newCv = { ...cv, [key]: [...cv[key], value] };
+      setCv(newCv);
+      console.log(newCv);
+      localStorage.setItem("cv", JSON.stringify(newCv));
+    }
+  };
+
+  const addExperience = (experience) => {
+    const newCv = { ...cv, experiences: [...cv.experiences, experience] };
+    setCv(newCv);
+    console.log(newCv);
+    localStorage.setItem("cv", JSON.stringify(newCv));
+  };
+
   const addProject = (project) => {
     const newCv = { ...cv, projects: [...cv.projects, project] };
     setCv(newCv);
@@ -51,14 +67,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <CvContext.Provider
-        value={{ cv, uploadImage, updateCv, toogleCheckbox, addProject }}
+        value={{
+          cv,
+          uploadImage,
+          updateCv,
+          toogleCheckbox,
+          addProject,
+          addExperience,
+          addTT,
+        }}
       >
         <main className="flex relative bg-[#444444] h-screen">
           <section className="bg-[#E7E7E7] outline-1 overflow-auto outline-gray-300 outline rounded-3xl m-10  w-[400px]">
             <Settings />
           </section>
           <div className="m-auto">
-            {/* <h1 className="text-[#444444] mx-auto text-center text-xl">Hello</h1> */}
             <section className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]">
               <CV className="" />
             </section>

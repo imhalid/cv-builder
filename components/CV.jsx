@@ -18,7 +18,6 @@ const CV = ({ className }) => {
   const jobSize = "text-[0.775rem] text-gray-500 font-light";
 
   const cv = useContext(CvContext);
-
   return (
     <div className={className}>
       {[cv.cv].map((item, index) => {
@@ -143,23 +142,32 @@ const CV = ({ className }) => {
             {/* EXPERIENCE START */}
             <section className="mt-6">
               <h3 className={titles}>Experience</h3>
-              {item.experience
+              {item.experiences
                 .map((experience, index) => {
                   return (
-                    <div key={index} className="mt-3">
-                      <div className="flex justify-between">
-                        <h4 className="font-medium text-md">
+                    <div key={index}>
+                      <div className="flex mt-3  justify-between">
+                        <h4 className="font-medium  text-md">
                           {experience.title}
                         </h4>
                         <span className="flex items-center space-x-1">
-                          <HiOutlineBriefcase className="inline" />
+                          {experience.company ? (
+                            <HiOutlineBriefcase className="inline" />
+                          ) : null}
+
                           <p className={jobSize}>{experience.company}</p>
                         </span>
                         <span className="flex items-center space-x-1">
-                          <HiOutlineCalendar className="inline" />
-                          <p className={jobSize}>
-                            {experience.from.toString()}
-                          </p>
+                          {experience.startDate || experience.endDate ? (
+                            <HiOutlineCalendar className="inline" />
+                          ) : null}
+
+                          <p className={jobSize}>{experience.startDate}</p>
+                          {experience.endDate ? (
+                            <span className={jobSize}> - </span>
+                          ) : null}
+
+                          <p className={jobSize}>{experience.endDate}</p>
                         </span>
                       </div>
                       <p className={paragraphSize}>{experience.summary}</p>

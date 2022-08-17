@@ -20,12 +20,12 @@ export const cvData = {
       summary: `My personal website, that I created with Next.js, Tailwind Css, Content Layer.`,
     },
   ],
-  experience: [
+  experiences: [
     {
       title: "Graphic Designer, Editor, Data analysis",
       company: "Suriye Gündemi",
-      from: new Date(2009, 1, 1),
-      to: new Date(2012, 1, 1),
+      startDate: "2016",
+      endDate: "2020",
       current: true,
       summary: `It is an impartial information sharing platform about Syria. My job task: Preparation of up-to-date maps according to the situation in the war zone. Preparing visual infographics about the obtained data and organizing these data. Adding articles and content to the site with Wordpress.`,
     },
