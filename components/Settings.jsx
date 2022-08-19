@@ -3,6 +3,7 @@ import { CvContext } from "../hooks/CvContext";
 import { BiImageAdd } from "react-icons/bi";
 import { RiCloseFill } from "react-icons/ri";
 import { BsPatchCheck } from "react-icons/bs";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Settings = () => {
   const {
@@ -18,20 +19,19 @@ const Settings = () => {
   } = useContext(CvContext);
 
   return (
-    <div className="p-7">
-      <h1 className="text-2xl font-bold">CV Settings</h1>
-      <button className="resetButton" onClick={setEmptyCv}>
-        Reset
-      </button>
-      <button className="creatorData" onClick={setCV}>
-        Fill Creator Data
-      </button>
-      <details>
-        <summary className="detailsStyle">
-          <p className="detailsTitle">Personal Information</p>
-        </summary>
+    <AnimatePresence>
+      <div className="p-7">
+        <h1 className="text-2xl font-bold">CV Settings</h1>
+        <button className="resetButton" onClick={setEmptyCv}>
+          Reset
+        </button>
+        <button className="creatorData" onClick={setCV}>
+          Fill Creator Data
+        </button>
+        {/* PERSONAL */}
         <div className="cardStyle ">
           <div>
+            <p className="projectAndExperienceTitle text-lg">About Yourself</p>
             <div className="flex items-center mt-4 mr-4">
               <input
                 id="display-image"
@@ -215,15 +215,13 @@ const Settings = () => {
             />
           </div>
         </div>
-      </details>
 
-      <details>
-        <summary className="detailsStyle">
-          <p className="detailsTitle">Skills</p>
-        </summary>
+        {/* PERSONAL END */}
+        {/* SKILL */}
 
-        <div className="flex mb-6 flex-col">
+        <div className="flex flex-col">
           <div className="cardStyle">
+            <p className="projectAndExperienceTitle text-lg">Skills</p>
             <div className=" items-center mt-4">
               <label className="text-gray-500">Tools & Tech</label>
               <input
@@ -235,7 +233,14 @@ const Settings = () => {
                 }
               />
               {cv.toolsAndTechSkills.map((tag, index) => (
-                <div className="tagStyle" key={index}>
+                <motion.div
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 1 }}
+                  className="tagStyle"
+                  key={index}
+                >
                   <p className="mr-5">{tag}</p>
                   <button
                     className="right-1 top-0 bottom-0 absolute"
@@ -243,7 +248,7 @@ const Settings = () => {
                   >
                     <RiCloseFill className="tagDeleteButton" />
                   </button>
-                </div>
+                </motion.div>
               ))}
             </div>
             <div className=" items-center mt-4">
@@ -290,15 +295,27 @@ const Settings = () => {
             </div>
           </div>
         </div>
-      </details>
 
-      <details>
-        <summary className="detailsStyle">
-          <p className="detailsTitle">Projects</p>
-        </summary>
-        {cv.projects.map((project, index) => (
-          <div key={index} className="flex mb-6 flex-col">
-            <div className="cardStyle">
+        {/* SKILL END */}
+        {/* PROJECT */}
+
+        <motion.div layout="size" className="cardStyle">
+          {cv.projects.map((project, index) => (
+            <div key={index} className="flex  mb-6 flex-col">
+              <div className="projectAndExperienceTitle">
+                <p>Project {index + 1}</p>
+                <button
+                  className="deleteButton"
+                  onClick={() => {
+                    updateCv("projects", [
+                      ...cv.projects.slice(0, index),
+                      ...cv.projects.slice(index + 1),
+                    ]);
+                  }}
+                >
+                  <RiCloseFill className="deleteButtonSVG" />
+                </button>
+              </div>
               <div className=" items-center mt-4">
                 <label className="text-gray-500">Project Title</label>
                 <input
@@ -316,7 +333,7 @@ const Settings = () => {
                   }}
                 />
               </div>
-              <div className=" items-center mt-4">
+              <div className=" items-center mt-4 mb-6">
                 <label className="text-gray-500">Project Summary</label>
                 <textarea
                   type="textarea"
@@ -334,34 +351,35 @@ const Settings = () => {
                   }}
                 />
               </div>
-              <button
-                className="deleteButton"
-                onClick={() => {
-                  updateCv("projects", [
-                    ...cv.projects.slice(0, index),
-                    ...cv.projects.slice(index + 1),
-                  ]);
-                }}
-              >
-                <RiCloseFill className="deleteButtonSVG" />
-              </button>
             </div>
+          ))}
+          <div className="addButton">
+            <button onClick={() => addProject({ title: "", summary: "" })}>
+              <RiCloseFill className="addButtonSVG" />
+            </button>
           </div>
-        ))}
-        <div className="addButton">
-          <button onClick={() => addProject({ title: "", summary: "" })}>
-            Add Project
-          </button>
-        </div>
-      </details>
-      <details>
-        <summary className="detailsStyle">
-          <p className="detailsTitle">Experiences</p>
-        </summary>
-        {cv.experiences.map((experience, index) => (
-          <div key={index} className="flex mb-6 flex-col">
-            <div className="cardStyle">
-              <p>{index + 1}</p>
+        </motion.div>
+
+        {/* PROJECT END */}
+        {/* EXPERIENCE */}
+        <motion.div layout="size" className="cardStyle">
+          {cv.experiences.map((experience, index) => (
+            <div key={index} className="flex mb-6 flex-col">
+              <div className="projectAndExperienceTitle">
+                <p>Experience {index + 1}</p>
+                <button
+                  className="deleteButton"
+                  onClick={() => {
+                    updateCv("experiences", [
+                      ...cv.experiences.slice(0, index),
+                      ...cv.experiences.slice(index + 1),
+                    ]);
+                  }}
+                >
+                  <RiCloseFill className="deleteButtonSVG" />
+                </button>
+              </div>
+
               <div className=" items-center mt-4">
                 <label className="text-gray-500">Position</label>
                 <input
@@ -442,7 +460,7 @@ const Settings = () => {
                   }}
                 />
               </div>
-              <div className="items-center mt-4">
+              <div className="items-center mt-4 mb-6">
                 <label className="text-gray-500">End Date</label>
                 <input
                   type="text"
@@ -461,37 +479,27 @@ const Settings = () => {
                   }}
                 />
               </div>
-              <button
-                className="deleteButton"
-                onClick={() => {
-                  updateCv("experiences", [
-                    ...cv.experiences.slice(0, index),
-                    ...cv.experiences.slice(index + 1),
-                  ]);
-                }}
-              >
-                <RiCloseFill className="deleteButtonSVG" />
-              </button>
             </div>
+          ))}
+          <div className="addButton">
+            <button
+              onClick={() =>
+                addExperience({
+                  title: "",
+                  company: "",
+                  summary: "",
+                  startDate: "",
+                  endDate: "",
+                })
+              }
+            >
+              <RiCloseFill className="addButtonSVG" />
+            </button>
           </div>
-        ))}
-        <div className="addButton">
-          <button
-            onClick={() =>
-              addExperience({
-                title: "",
-                company: "",
-                summary: "",
-                startDate: "",
-                endDate: "",
-              })
-            }
-          >
-            <RiCloseFill />
-          </button>
-        </div>
-      </details>
-    </div>
+        </motion.div>
+        {/* EXPERIENCE END */}
+      </div>
+    </AnimatePresence>
   );
 };
 

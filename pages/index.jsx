@@ -161,9 +161,9 @@ export default function Home() {
           setCV,
         }}
       >
-        <main className="print:p-0  overflow  h-screen">
-          <div className="flex align-middle relative bg-neutral-700 h-full">
-            <section className="bg-[#FAFBFC] print:hidden rounded-2xl overflow-auto w-[420px]">
+        <main className="print:p-0   overflow  h-screen">
+          <div className="flex align-middle  h-full">
+            <section className="settings  print:hidden rounded-2xl overflow-auto w-[450px]">
               <Settings />
             </section>
             <div
@@ -181,19 +181,19 @@ export default function Home() {
               >
                 <CV />
               </section>
-
-              <div className="mt-10">
-                <button className="text-white print:hidden" onClick={scaleUp}>
-                  ScaleUp
-                </button>
-                <button className="text-white print:hidden" onClick={scaleDown}>
-                  ScaleDown
-                </button>
-                <button className="print:hidden" onClick={ifScaleUpOrDown}>
-                  Print this out!
-                </button>
-              </div>
             </div>
+            <div className="top-0 right-0  mx-auto text-center bg-red-200 absolute">
+              <button className="text-white print:hidden" onClick={scaleUp}>
+                ScaleUp
+              </button>
+              <button className="text-white print:hidden" onClick={scaleDown}>
+                ScaleDown
+              </button>
+              <button className="print:hidden" onClick={ifScaleUpOrDown}>
+                Print this out!
+              </button>
+            </div>
+            <div className="meshGradient w-full opacity-25 absolute -z-10  h-screen"></div>
           </div>
         </main>
       </CvContext.Provider>

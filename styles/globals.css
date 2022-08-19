@@ -26,6 +26,30 @@
     --form-control-disabled: #f3f2f3;
   }
 
+  .meshGradient {
+    background-color: #26004d;
+    background-image: radial-gradient(
+        at 65% 16%,
+        hsla(207, 92%, 58%, 1) 0,
+        hsla(207, 92%, 58%, 0) 50%
+      ),
+      radial-gradient(
+        at 8% 20%,
+        hsla(249, 87%, 53%, 1) 0,
+        hsla(249, 87%, 53%, 0) 50%
+      ),
+      radial-gradient(
+        at 25% 30%,
+        hsla(204, 86%, 62%, 1) 0,
+        hsla(204, 86%, 62%, 0) 50%
+      ),
+      radial-gradient(
+        at 57% 71%,
+        hsla(36, 85%, 59%, 1) 0,
+        hsla(36, 85%, 59%, 0) 50%
+      );
+  }
+
   input[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
@@ -77,6 +101,15 @@
   details[open] > *:not(summary) {
     animation: details-show 150ms ease-in-out;
   }
+
+  .settings {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .settings::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .creatorData {
@@ -96,7 +129,7 @@
 }
 
 .cardStyle {
-  @apply flex flex-col mb-4 rounded-xl relative;
+  @apply flex flex-col mb-16 rounded-3xl bg-[#FAFBFC] shadow p-5 relative;
 }
 
 .inputStyle {
@@ -108,7 +141,11 @@
 }
 
 .addButton {
-  @apply w-16 h-16 py-2 flex justify-center text-[#1A7918] font-bold rounded-full leading-[0px] mx-auto mb-4 bg-[#96D478] text-center;
+  @apply w-12 h-12 flex justify-center text-[#1A7918] font-bold rounded-full mx-auto shadow-md outline hover:outline-2 hover:scale-90 transition-all bg-gradient-to-t to-[#96D478] from-[#8abd6f] text-center;
+}
+
+.addButtonSVG {
+  @apply w-10 h-10 rotate-45 drop-shadow-md;
 }
 
 .tagStyle {
@@ -120,9 +157,13 @@
 }
 
 .deleteButton {
-  @apply absolute ease-in  hover:bg-[#ececec] transition-all rounded-lg p-1 top-0 right-0;
+  @apply absolute top-[2px]  ease-in  hover:bg-gray-300/50 transition-all rounded-lg p-1  right-0;
 }
 
 .deleteButtonSVG {
-  @apply w-5 h-5 fill-gray-600;
+  @apply w-5 h-5 fill-gray-400;
+}
+
+.projectAndExperienceTitle {
+  @apply w-full  bg-gray-200 text-neutral-500 shadow-inner p-1 mb-1 rounded-lg text-center relative;
 }
