@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { BiImageAdd } from "react-icons/bi";
-import { TiDelete } from "react-icons/ti";
+import { RiCloseFill } from "react-icons/ri";
 import { BsPatchCheck } from "react-icons/bs";
 
 const Settings = () => {
@@ -9,7 +9,6 @@ const Settings = () => {
     cv,
     updateCv,
     uploadImage,
-    toogleCheckbox,
     addProject,
     addExperience,
     addTag,
@@ -21,37 +20,26 @@ const Settings = () => {
   return (
     <div className="p-7">
       <h1 className="text-2xl font-bold">CV Settings</h1>
-      <button
-        className="bg-amber-500 py-1 px-4 rounded-xl text-white"
-        onClick={setEmptyCv}
-      >
+      <button className="resetButton" onClick={setEmptyCv}>
         Reset
       </button>
-      <button
-        className="bg-red-500 ml-2 py-1 px-4 rounded-xl text-white"
-        onClick={setCV}
-      >
+      <button className="creatorData" onClick={setCV}>
         Fill Creator Data
       </button>
       <details>
-        <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer my-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
-          <p className="text-[#306EA7] pl-5 font-bold">Personal Information</p>
+        <summary className="detailsStyle">
+          <p className="detailsTitle">Personal Information</p>
         </summary>
-        <div className="flex flex-col mb-4  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+        <div className="cardStyle ">
           <div>
             <div className="flex items-center mt-4 mr-4">
               <input
                 id="display-image"
                 type="checkbox"
-                onChange={(e) =>
-                  toogleCheckbox("displayImage", e.target.checked)
-                }
+                onChange={(e) => updateCv("displayImage", e.target.checked)}
                 defaultChecked={cv.displayImage}
               />
-              <label
-                htmlFor="display-image"
-                className="ml-2 text-gray-500 font-medium"
-              >
+              <label htmlFor="display-image" className="ml-2 text-gray-500">
                 Display Image
               </label>
             </div>
@@ -59,7 +47,7 @@ const Settings = () => {
               <div>
                 <label
                   htmlFor="dropzone"
-                  className="flex mt-1 flex-col justify-center items-center w-full py-8 bg-[#F2F2F2] border-2 border-gray-300 border-dashed cursor-pointer  rounded-xl"
+                  className="flex mt-1 flex-col justify-center items-center w-full py-8 bg-white border-2 border-gray-300 border-dashed cursor-pointer  rounded-xl"
                 >
                   <div className="flex flex-col items-center">
                     {cv.image ? (
@@ -67,8 +55,6 @@ const Settings = () => {
                     ) : (
                       <BiImageAdd className="h-10 w-10 text-rose-500" />
                     )}
-                    {/* <BiImageAdd className="h-10 w-10 text-gray-600" /> */}
-
                     <p className="text-gray-500 mt-3">
                       Click to upload or drag and drop
                     </p>
@@ -90,7 +76,7 @@ const Settings = () => {
             <label className="text-gray-500">Name & Surname</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.name}
               onChange={(e) => updateCv("name", e.target.value)}
             />
@@ -99,7 +85,7 @@ const Settings = () => {
             <label className="text-gray-500">Job</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.jobTitle}
               onChange={(e) => updateCv("jobTitle", e.target.value)}
             />
@@ -108,7 +94,7 @@ const Settings = () => {
             <label className="text-gray-500">Location</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.location}
               onChange={(e) => updateCv("location", e.target.value)}
             />
@@ -155,7 +141,7 @@ const Settings = () => {
             <label className="text-gray-500">Twitter</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.twitter}
               onChange={(e) => updateCv("twitter", e.target.value)}
             />
@@ -164,7 +150,7 @@ const Settings = () => {
             <label className="text-gray-500">Portfolio</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.website}
               onChange={(e) => updateCv("website", e.target.value)}
             />
@@ -173,7 +159,7 @@ const Settings = () => {
             <label className="text-gray-500">Github</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.github}
               onChange={(e) => updateCv("github", e.target.value)}
             />
@@ -182,7 +168,7 @@ const Settings = () => {
             <label className="text-gray-500">Mail</label>
             <input
               type="text"
-              className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+              className="inputStyle"
               value={cv.email}
               onChange={(e) => updateCv("email", e.target.value)}
             />
@@ -191,33 +177,30 @@ const Settings = () => {
       </details>
 
       <details>
-        <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer mb-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
-          <p className="text-[#306EA7] pl-5 font-bold">Skills</p>
+        <summary className="detailsStyle">
+          <p className="detailsTitle">Skills</p>
         </summary>
 
         <div className="flex mb-6 flex-col">
-          <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+          <div className="cardStyle">
             <div className=" items-center mt-4">
               <label className="text-gray-500">Tools & Tech</label>
               <input
                 type="text"
-                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                className="skillInput"
                 placeholder="Project name"
                 onKeyDown={(e) =>
                   addTag(e, "toolsAndTechSkills", e.target.value)
                 }
               />
               {cv.toolsAndTechSkills.map((tag, index) => (
-                <div
-                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
-                  key={index}
-                >
-                  <p className="mr-4">{tag}</p>
+                <div className="tagStyle" key={index}>
+                  <p className="mr-5">{tag}</p>
                   <button
-                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    className="right-1 top-0 bottom-0 absolute"
                     onClick={() => removeTag("toolsAndTechSkills", tag)}
                   >
-                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                    <RiCloseFill className="tagDeleteButton" />
                   </button>
                 </div>
               ))}
@@ -226,23 +209,20 @@ const Settings = () => {
               <label className="text-gray-500">Industry Knowledge</label>
               <input
                 type="text"
-                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                className="skillInput"
                 placeholder="Project name"
                 onKeyDown={(e) =>
                   addTag(e, "industryKnowledge", e.target.value)
                 }
               />
               {cv.industryKnowledge.map((tag, index) => (
-                <div
-                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
-                  key={index}
-                >
-                  <p className="mr-4">{tag}</p>
+                <div className="tagStyle" key={index}>
+                  <p className="mr-5">{tag}</p>
                   <button
-                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    className="right-1 top-0 bottom-0 absolute"
                     onClick={() => removeTag("industryKnowledge", tag)}
                   >
-                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                    <RiCloseFill className="tagDeleteButton" />
                   </button>
                 </div>
               ))}
@@ -251,21 +231,18 @@ const Settings = () => {
               <label className="text-gray-500">Languages</label>
               <input
                 type="text"
-                className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                className="skillInput"
                 placeholder="Project name"
                 onKeyDown={(e) => addTag(e, "languages", e.target.value)}
               />
               {cv.languages.map((tag, index) => (
-                <div
-                  className="inline-flex group text-sm items-center align-middle bg-blue-300 overflow-hidden text-blue-900 py-1 px-2 m-1 rounded-lg relative"
-                  key={index}
-                >
-                  <p className="mr-4">{tag}</p>
+                <div className="tagStyle" key={index}>
+                  <p className="mr-5">{tag}</p>
                   <button
-                    className="bg-blue-800/30 right-0 top-0 bottom-0 absolute"
+                    className=" right-1 top-0 bottom-0 absolute"
                     onClick={() => removeTag("languages", tag)}
                   >
-                    <TiDelete className="w-5  inline h-5 group-hover:rotate-180 transition-all  fill-white" />
+                    <RiCloseFill className="tagDeleteButton" />
                   </button>
                 </div>
               ))}
@@ -275,17 +252,17 @@ const Settings = () => {
       </details>
 
       <details>
-        <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer mb-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
-          <p className="text-[#306EA7] pl-5 font-bold">Projects</p>
+        <summary className="detailsStyle">
+          <p className="detailsTitle">Projects</p>
         </summary>
         {cv.projects.map((project, index) => (
           <div key={index} className="flex mb-6 flex-col">
-            <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+            <div className="cardStyle">
               <div className=" items-center mt-4">
                 <label className="text-gray-500">Project Title</label>
                 <input
                   type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   placeholder="Project name"
                   value={project.title}
                   onChange={(e) => {
@@ -304,7 +281,7 @@ const Settings = () => {
                   type="textarea"
                   rows={3}
                   placeholder="Project description"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   value={project.summary}
                   onChange={(e) => {
                     const newProject = { ...project, summary: e.target.value };
@@ -317,7 +294,7 @@ const Settings = () => {
                 />
               </div>
               <button
-                className="absolute bg-gray-400/50 group hover:bg-rose-500 transition-all rounded-full p-1 top-0 right-0 m-4"
+                className="deleteButton"
                 onClick={() => {
                   updateCv("projects", [
                     ...cv.projects.slice(0, index),
@@ -325,32 +302,29 @@ const Settings = () => {
                   ]);
                 }}
               >
-                <TiDelete className="w-5 h-5 group-hover:rotate-180 transition-all  fill-white" />
+                <RiCloseFill className="deleteButtonSVG" />
               </button>
             </div>
           </div>
         ))}
-        <div className="w-64 py-2 rounded-xl mx-auto mb-7 bg-[#96D478] text-center">
-          <button
-            className="text-[#1A7918] font-bold"
-            onClick={() => addProject({ title: "", summary: "" })}
-          >
+        <div className="addButton">
+          <button onClick={() => addProject({ title: "", summary: "" })}>
             Add Project
           </button>
         </div>
       </details>
       <details>
-        <summary className="py-2 border border-blue-300 -mx-4 cursor-pointer mb-4 rounded-xl flex transition-all  bg-[#A3CCF2]">
-          <p className="text-[#306EA7] pl-5 font-bold">Experiences</p>
+        <summary className="detailsStyle">
+          <p className="detailsTitle">Experiences</p>
         </summary>
         {cv.experiences.map((experience, index) => (
           <div key={index} className="flex mb-6 flex-col">
-            <div className="flex flex-col  -mx-4 rounded-xl p-4 bg-gray-300/50 relative">
+            <div className="cardStyle">
               <div className=" items-center mt-4">
                 <label className="text-gray-500">Position</label>
                 <input
                   type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   placeholder="Your position"
                   value={experience.title}
                   onChange={(e) => {
@@ -370,7 +344,7 @@ const Settings = () => {
                 <label className="text-gray-500">Company</label>
                 <input
                   type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   placeholder="Company Name"
                   value={experience.company}
                   onChange={(e) => {
@@ -392,7 +366,7 @@ const Settings = () => {
                   type="textarea"
                   rows={7}
                   placeholder="Brief information of 3-4 sentences about what you do in the company."
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   value={experience.summary}
                   onChange={(e) => {
                     const newExperience = {
@@ -411,7 +385,7 @@ const Settings = () => {
                 <label className="text-gray-500">Start Date</label>
                 <input
                   type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   value={experience.startDate}
                   onChange={(e) => {
                     const newExperience = {
@@ -426,11 +400,11 @@ const Settings = () => {
                   }}
                 />
               </div>
-              <div className=" items-center mt-4">
+              <div className="items-center mt-4">
                 <label className="text-gray-500">End Date</label>
                 <input
                   type="text"
-                  className="w-full mt-1 bg-[#F2F2F2] rounded-xl p-2 border border-gray-300"
+                  className="inputStyle"
                   value={experience.endDate}
                   onChange={(e) => {
                     const newExperience = {
@@ -446,7 +420,7 @@ const Settings = () => {
                 />
               </div>
               <button
-                className="absolute bg-gray-400/50 group hover:bg-rose-500 transition-all rounded-full p-1 top-0 right-0 m-4"
+                className="deleteButton"
                 onClick={() => {
                   updateCv("experiences", [
                     ...cv.experiences.slice(0, index),
@@ -454,14 +428,13 @@ const Settings = () => {
                   ]);
                 }}
               >
-                <TiDelete className="w-5 h-5 group-hover:rotate-180 transition-all  fill-white" />
+                <RiCloseFill className="deleteButtonSVG" />
               </button>
             </div>
           </div>
         ))}
-        <div className="w-64 py-2 rounded-xl mx-auto mb-4 bg-[#96D478] text-center">
+        <div className="addButton">
           <button
-            className="text-[#1A7918] font-bold"
             onClick={() =>
               addExperience({
                 title: "",

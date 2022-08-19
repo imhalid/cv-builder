@@ -61,12 +61,7 @@ export default function Home() {
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
-  const toogleCheckbox = (key, value) => {
-    const newCv = { ...cv, [key]: value };
-    setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
-  };
-
+  //addTag to array, if same tag is already in array, remove it
   const addTag = (e, key, value) => {
     if (e.key === "Enter" && e.target.value !== "") {
       const newCv = { ...cv, [key]: [...cv[key], value] };
@@ -80,6 +75,7 @@ export default function Home() {
     }
   };
 
+  //when click on delete button, remove the tag from the array
   const removeTag = (key, value) => {
     const newCv = { ...cv, [key]: cv[key].filter((tag) => tag !== value) };
     setCv(newCv);
@@ -98,6 +94,7 @@ export default function Home() {
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
 
+  //when dag and drop or click and upload image in the settings page, update the cv image, and save it in the local storage
   const uploadImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -108,14 +105,15 @@ export default function Home() {
     console.log(file);
   };
 
-  const scaleUp = (e) => {
+  const scaleUp = () => {
     setScale(scale + 0.1);
   };
-  const scaleDown = (e) => {
+  const scaleDown = () => {
     setScale(scale - 0.1);
   };
 
   useEffect(() => {
+    //create cvLocal in localStorage if it doesn't exist
     const cvLocal = JSON.parse(localStorage.getItem("cv"));
     if (cvLocal) {
       setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
@@ -134,7 +132,6 @@ export default function Home() {
           cv,
           uploadImage,
           updateCv,
-          toogleCheckbox,
           addProject,
           addExperience,
           addTag,
@@ -143,24 +140,26 @@ export default function Home() {
           setCV,
         }}
       >
-        <main className="flex relative bg-[#444444] h-screen">
-          <section className="bg-[#E7E7E7] outline-1 overflow-auto outline-gray-300 outline rounded-3xl m-10  w-[400px]">
-            <Settings />
-          </section>
-          <div className="m-auto">
-            <section
-              style={{ transform: `scale(${scale})` }}
-              className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]"
-            >
-              <CV />
+        <main className=" bg-slate-300 p-4 overflow rounded-lg h-screen">
+          <div className="flex relative bg-neutral-700 overflow-auto rounded-2xl h-full">
+            <section className="bg-[#FAFBFC] rounded-2xl overflow-auto w-[420px]">
+              <Settings />
             </section>
-            <div className="mt-10">
-              <button className="text-white" onClick={scaleUp}>
-                ScaleUp
-              </button>
-              <button className="text-white" onClick={scaleDown}>
-                ScaleDown
-              </button>
+            <div className="m-auto">
+              <section
+                style={{ transform: `scale(${scale})` }}
+                className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]"
+              >
+                <CV />
+              </section>
+              <div className="mt-10">
+                <button className="text-white" onClick={scaleUp}>
+                  ScaleUp
+                </button>
+                <button className="text-white" onClick={scaleDown}>
+                  ScaleDown
+                </button>
+              </div>
             </div>
           </div>
         </main>
