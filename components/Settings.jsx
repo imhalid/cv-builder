@@ -101,7 +101,12 @@ const Settings = () => {
           </div>
           <div className="flex flex-wrap">
             <div className="flex items-center mt-4 mr-4">
-              <input id="twitter" type="checkbox" value="" />
+              <input
+                id="twitter"
+                type="checkbox"
+                defaultChecked={cv.displayTwitter}
+                onChange={(e) => updateCv("displayTwitter", e.target.checked)}
+              />
               <label
                 htmlFor="twitter"
                 className="ml-2 text-gray-500 text-sm font-medium"
@@ -110,7 +115,12 @@ const Settings = () => {
               </label>
             </div>
             <div className="flex items-center mt-4 mr-4">
-              <input id="portfolio" type="checkbox" value="" />
+              <input
+                id="portfolio"
+                type="checkbox"
+                defaultChecked={cv.displayWebSite}
+                onChange={(e) => updateCv("displayWebSite", e.target.checked)}
+              />
               <label
                 htmlFor="portfolio"
                 className="ml-2 text-gray-500  text-sm font-medium"
@@ -119,7 +129,12 @@ const Settings = () => {
               </label>
             </div>
             <div className="flex items-center mt-4 mr-4">
-              <input id="mail" type="checkbox" value="" />
+              <input
+                id="mail"
+                type="checkbox"
+                defaultChecked={cv.displayMail}
+                onChange={(e) => updateCv("displayMail", e.target.checked)}
+              />
               <label
                 htmlFor="mail"
                 className="ml-2 text-gray-500  text-sm font-medium"
@@ -128,7 +143,12 @@ const Settings = () => {
               </label>
             </div>
             <div className="flex items-center mt-4 mr-4">
-              <input id="Github" type="checkbox" value="" />
+              <input
+                id="Github"
+                type="checkbox"
+                defaultChecked={cv.displayGithub}
+                onChange={(e) => updateCv("displayGithub", e.target.checked)}
+              />
               <label
                 htmlFor="Github"
                 className="ml-2 text-gray-500  text-sm font-medium"
@@ -137,40 +157,61 @@ const Settings = () => {
               </label>
             </div>
           </div>
+          {cv.displayTwitter ? (
+            <div className="mt-4">
+              <label className="text-gray-500">Twitter</label>
+              <input
+                type="text"
+                className="inputStyle"
+                value={cv.twitter}
+                onChange={(e) => updateCv("twitter", e.target.value)}
+              />
+            </div>
+          ) : null}
+
+          {cv.displayWebSite ? (
+            <div className="mt-4">
+              <label className="text-gray-500">Portfolio</label>
+              <input
+                type="text"
+                className="inputStyle"
+                value={cv.website}
+                onChange={(e) => updateCv("website", e.target.value)}
+              />
+            </div>
+          ) : null}
+          {cv.displayGithub ? (
+            <div className="mt-4">
+              <label className="text-gray-500">Github</label>
+              <input
+                type="text"
+                className="inputStyle"
+                value={cv.github}
+                onChange={(e) => updateCv("github", e.target.value)}
+              />
+            </div>
+          ) : null}
+
+          {cv.displayMail ? (
+            <div className="mt-4">
+              <label className="text-gray-500">Mail</label>
+              <input
+                type="text"
+                className="inputStyle"
+                value={cv.email}
+                onChange={(e) => updateCv("email", e.target.value)}
+              />
+            </div>
+          ) : null}
+
           <div className="mt-4">
-            <label className="text-gray-500">Twitter</label>
-            <input
+            <label className="text-gray-500">About</label>
+            <textarea
               type="text"
+              rows={7}
               className="inputStyle"
-              value={cv.twitter}
-              onChange={(e) => updateCv("twitter", e.target.value)}
-            />
-          </div>
-          <div className="mt-4">
-            <label className="text-gray-500">Portfolio</label>
-            <input
-              type="text"
-              className="inputStyle"
-              value={cv.website}
-              onChange={(e) => updateCv("website", e.target.value)}
-            />
-          </div>
-          <div className="mt-4">
-            <label className="text-gray-500">Github</label>
-            <input
-              type="text"
-              className="inputStyle"
-              value={cv.github}
-              onChange={(e) => updateCv("github", e.target.value)}
-            />
-          </div>
-          <div className="mt-4">
-            <label className="text-gray-500">Mail</label>
-            <input
-              type="text"
-              className="inputStyle"
-              value={cv.email}
-              onChange={(e) => updateCv("email", e.target.value)}
+              value={cv.about}
+              onChange={(e) => updateCv("about", e.target.value)}
             />
           </div>
         </div>
@@ -187,7 +228,7 @@ const Settings = () => {
               <label className="text-gray-500">Tools & Tech</label>
               <input
                 type="text"
-                className="skillInput"
+                className="inputStyle mb-2"
                 placeholder="Project name"
                 onKeyDown={(e) =>
                   addTag(e, "toolsAndTechSkills", e.target.value)
@@ -209,7 +250,7 @@ const Settings = () => {
               <label className="text-gray-500">Industry Knowledge</label>
               <input
                 type="text"
-                className="skillInput"
+                className="inputStyle mb-2"
                 placeholder="Project name"
                 onKeyDown={(e) =>
                   addTag(e, "industryKnowledge", e.target.value)
@@ -231,7 +272,7 @@ const Settings = () => {
               <label className="text-gray-500">Languages</label>
               <input
                 type="text"
-                className="skillInput"
+                className="inputStyle mb-2"
                 placeholder="Project name"
                 onKeyDown={(e) => addTag(e, "languages", e.target.value)}
               />
@@ -320,6 +361,7 @@ const Settings = () => {
         {cv.experiences.map((experience, index) => (
           <div key={index} className="flex mb-6 flex-col">
             <div className="cardStyle">
+              <p>{index + 1}</p>
               <div className=" items-center mt-4">
                 <label className="text-gray-500">Position</label>
                 <input
@@ -445,7 +487,7 @@ const Settings = () => {
               })
             }
           >
-            Add Experience
+            <RiCloseFill />
           </button>
         </div>
       </details>

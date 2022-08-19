@@ -48,8 +48,10 @@ export default function Home() {
         },
       ],
       displayImage: false,
-      displayEducation: false,
-      displayProjects: false,
+      displayMail: false,
+      displayWebSite: false,
+      displayGithub: false,
+      displayTwitter: false,
       activeColor: "#5B21B6",
     };
     setCv(emptyCv);
@@ -111,6 +113,7 @@ export default function Home() {
   };
   const scaleDown = () => {
     setScale(scale - 0.1);
+    console.log(scale);
   };
 
   useEffect(() => {
@@ -121,14 +124,22 @@ export default function Home() {
     }
   }, []);
 
-  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     copyStyles: true,
     pageStyle:
-      "body {  transform: scale(2); transform-origin: top left; margin: auto; background-color: red; -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
+      "body { transform-origin: top left; margin: auto; transform: scale(1); -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
     removeAfterPrint: false,
   });
+
+  const ifScaleUpOrDown = async () => {
+    if (scale > 1 || scale < 1) {
+      await setScale(1);
+    }
+    return handlePrint();
+  };
+
+  const componentRef = useRef();
 
   return (
     <>
@@ -150,18 +161,23 @@ export default function Home() {
           setCV,
         }}
       >
-        <main className=" bg-slate-300 p-4 print:p-0  overflow rounded-lg h-screen">
-          <div className="flex align-middle relative bg-neutral-700 overflow-auto rounded-2xl h-full">
+        <main className="print:p-0  overflow  h-screen">
+          <div className="flex align-middle relative bg-neutral-700 h-full">
             <section className="bg-[#FAFBFC] print:hidden rounded-2xl overflow-auto w-[420px]">
               <Settings />
             </section>
-            <div className="m-auto print:scale-[1.35]">
+            <div
+              ref={componentRef}
+              className="m-auto transition-all print:scale-[1.35]"
+              style={{
+                transform: `scale(1)`,
+              }}
+            >
               <section
-                ref={componentRef}
+                className="bg-white rounded-md transition-all p-8  w-[594px] h-[840px] "
                 style={{
                   transform: `scale(${scale})`,
                 }}
-                className="bg-white rounded-md transition-all  hover:shadow-xl p-8  w-[594px] h-[840px] "
               >
                 <CV />
               </section>
@@ -173,7 +189,7 @@ export default function Home() {
                 <button className="text-white print:hidden" onClick={scaleDown}>
                   ScaleDown
                 </button>
-                <button className="print:hidden" onClick={handlePrint}>
+                <button className="print:hidden" onClick={ifScaleUpOrDown}>
                   Print this out!
                 </button>
               </div>
