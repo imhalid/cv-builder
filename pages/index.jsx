@@ -127,6 +127,7 @@ export default function Home() {
     copyStyles: true,
     pageStyle:
       "body {  transform: scale(2); transform-origin: top left; margin: auto; background-color: red; -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
+    removeAfterPrint: false,
   });
 
   return (
