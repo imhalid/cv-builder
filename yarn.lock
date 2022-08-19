@@ -1762,6 +1762,13 @@ react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-to-print@^2.14.7:
+  version "2.14.7"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.14.7.tgz#d288de0e573e6e63e203a48d4bad7a1759d18688"
+  integrity sha512-lWVVAs9Co25uyE0toxcWeFsmaZObwUozXrJD9WMpDPclpBgk+WIzxlt3Q3omL/BCBG/cpf0XNvhayUWa+99YGw==
+  dependencies:
+    prop-types "^15.8.1"
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

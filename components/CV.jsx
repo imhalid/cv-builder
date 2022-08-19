@@ -20,7 +20,7 @@ const CV = ({ className, id }) => {
   const cv = useContext(CvContext);
 
   return (
-    <div id="cv">
+    <div className="w-full h-fulll" id="cv">
       {[cv.cv].map((item, index) => {
         return (
           <div key={index}>

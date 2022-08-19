@@ -126,3 +126,10 @@
 .deleteButtonSVG {
   @apply w-5 h-5 fill-gray-600;
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 16mm 16mm 16mm;
+  }
+}

@@ -1,9 +1,10 @@
 import Head from "next/head";
 import CV from "../components/CV";
 import Settings from "../components/Settings";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
+import { useReactToPrint } from "react-to-print";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
@@ -120,6 +121,14 @@ export default function Home() {
     }
   }, []);
 
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    copyStyles: true,
+    pageStyle:
+      "body {  transform: scale(2); transform-origin: top left; margin: auto; background-color: red; -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
+  });
+
   return (
     <>
       <Head>
@@ -140,24 +149,31 @@ export default function Home() {
           setCV,
         }}
       >
-        <main className=" bg-slate-300 p-4 overflow rounded-lg h-screen">
-          <div className="flex relative bg-neutral-700 overflow-auto rounded-2xl h-full">
-            <section className="bg-[#FAFBFC] rounded-2xl overflow-auto w-[420px]">
+        <main className=" bg-slate-300 p-4 print:p-0  overflow rounded-lg h-screen">
+          <div className="flex align-middle relative bg-neutral-700 overflow-auto rounded-2xl h-full">
+            <section className="bg-[#FAFBFC] print:hidden rounded-2xl overflow-auto w-[420px]">
               <Settings />
             </section>
-            <div className="m-auto">
+            <div className="m-auto print:scale-[1.35]">
               <section
-                style={{ transform: `scale(${scale})` }}
-                className="bg-white rounded-md scale-100 transition-all hover:scale-110 hover:shadow-xl shadow-sm p-8 resize w-[595px] h-[842px]"
+                ref={componentRef}
+                style={{
+                  transform: `scale(${scale})`,
+                }}
+                className="bg-white rounded-md transition-all  hover:shadow-xl p-8  w-[594px] h-[840px] "
               >
                 <CV />
               </section>
+
               <div className="mt-10">
-                <button className="text-white" onClick={scaleUp}>
+                <button className="text-white print:hidden" onClick={scaleUp}>
                   ScaleUp
                 </button>
-                <button className="text-white" onClick={scaleDown}>
+                <button className="text-white print:hidden" onClick={scaleDown}>
                   ScaleDown
+                </button>
+                <button className="print:hidden" onClick={handlePrint}>
+                  Print this out!
                 </button>
               </div>
             </div>
