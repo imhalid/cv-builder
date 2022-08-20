@@ -29,15 +29,15 @@ const Settings = () => {
             <h1 className="text-2xl font-bold">CV Creator</h1>
             <div className="mt-5">
               <p>
-                While doing this project, I was inspired by{" "}
+                While doing this project, I was inspired by
                 <a
                   className="font-bold text-rose-500 underline"
                   href="https://cvfy.xyz/en/"
                 >
                   the project
-                </a>{" "}
+                </a>
                 that Claudia did 2 years ago. And most importantly, I wanted to
-                try myself to see if I could do a project that I saw.{" "}
+                try myself to see if I could do a project that I saw.
                 <span className=" text-black underline p-1 rounded-md">
                   And I think I've succeeded.
                 </span>
@@ -49,7 +49,7 @@ const Settings = () => {
                   <li>► Not suitable for mobile version.</li>
                   <li>
                     ► The <span className="font-bold ">Reset</span> button and
-                    the <span className="font-bold ">Fill Creator Data</span>{" "}
+                    the <span className="font-bold ">Fill Creator Data</span>
                     button will clear all the changes you have made and you
                     cannot undo them.
                   </li>
