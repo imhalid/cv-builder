@@ -28,11 +28,7 @@ const Settings = () => {
           <motion.div layout className="cardStyle">
             <h1 className="text-2xl font-bold">CV Creator</h1>
             <div className="mt-5">
-              <p
-              // style={{
-              //   backgroundColor: `${color}`,
-              // }}
-              >
+              <p>
                 While doing this project, I was inspired by{" "}
                 <a
                   className="font-bold text-rose-500 underline"
@@ -74,15 +70,15 @@ const Settings = () => {
                   </button>
                 </a>
                 <a
-                  className="resetButton transition-all  flex justify-center bg-gray-500 hover:shadow-lg hover:shadow-amber-300 group hover:bg-amber-500 h-10 overflow-hidden relative"
+                  className="resetButton transition-all  flex justify-center bg-gray-500 hover:shadow-lg hover:shadow-neutral-300 group hover:bg-neutral-700 h-10 overflow-hidden relative"
                   href="https://github.com/imhalid/cv-for-job"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <button>
-                    <div className="h-1 transition-all bg-gray-400 group-hover:bg-amber-400 blur-[2px] absolute top-0 w-full left-0"></div>
+                    <div className="h-1 transition-all bg-gray-400 group-hover:bg-neutral-400 blur-[2px] absolute top-0 w-full left-0"></div>
                     <FaGithubAlt className="pb-1 w-9 h-9 text-white " />
-                    <div className="h-1 transition-all bg-gray-600 group-hover:bg-amber-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
+                    <div className="h-1 transition-all bg-gray-600 group-hover:bg-neutral-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
                   </button>
                 </a>
               </div>
