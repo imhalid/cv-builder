@@ -110,14 +110,21 @@
   .settings::-webkit-scrollbar {
     display: none;
   }
+  .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 120px 120px 120px;
+    border-color: transparent transparent #121212 transparent;
+  }
 }
 
 .creatorData {
-  @apply bg-red-500 ml-2 py-1 px-4 rounded-lg text-white;
+  @apply border-rose-500 border-2 ml-2 py-1 px-4 rounded-lg text-rose-500;
 }
 
 .resetButton {
-  @apply bg-amber-500 py-1 px-4 rounded-lg text-white;
+  @apply transition-all hover:scale-105  py-1 px-4 rounded-lg text-white;
 }
 
 .detailsStyle {
@@ -166,4 +173,8 @@
 
 .projectAndExperienceTitle {
   @apply w-full  bg-gray-200 text-neutral-500 shadow-inner p-1 mb-1 rounded-lg text-center relative;
+}
+
+.buttonHover {
+  @apply hover:text-neutral-700 hover:scale-105 hover:drop-shadow-md transition-all;
 }

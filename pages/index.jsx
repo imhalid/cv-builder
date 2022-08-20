@@ -5,6 +5,8 @@ import { useState, useEffect, useRef } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
+import { BsZoomIn, BsZoomOut } from "react-icons/bs";
+import { GoCloudDownload } from "react-icons/go";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
@@ -108,10 +110,14 @@ export default function Home() {
   };
 
   const scaleUp = () => {
-    setScale(scale + 0.1);
+    if (scale < 1.6) {
+      setScale(scale + 0.1);
+    }
   };
   const scaleDown = () => {
-    setScale(scale - 0.1);
+    if (scale > 0.4) {
+      setScale(scale - 0.1);
+    }
     console.log(scale);
   };
 
@@ -160,14 +166,15 @@ export default function Home() {
           setCV,
         }}
       >
-        <main className="print:p-0   overflow  h-screen">
-          <div className="flex align-middle  h-full">
-            <section className="settings  print:hidden rounded-2xl overflow-auto w-[450px]">
-              <Settings />
-            </section>
+        <main className=" relative  overflow  h-screen">
+          <div
+            className="m-auto w-fit h-fit absolute  left-[26.5rem] right-0 bottom-0 flex top-0 "
+            style={{
+              transform: `scale(1)`,
+            }}
+          >
             <div
               ref={componentRef}
-              className="m-auto transition-all print:scale-[1.35]"
               style={{
                 transform: `scale(1)`,
               }}
@@ -181,17 +188,26 @@ export default function Home() {
                 <CV />
               </section>
             </div>
-            <div className="top-0 right-0  mx-auto text-center bg-red-200 absolute">
-              <button className="text-white print:hidden" onClick={scaleUp}>
-                ScaleUp
-              </button>
-              <button className="text-white print:hidden" onClick={scaleDown}>
-                ScaleDown
-              </button>
-              <button className="print:hidden" onClick={ifScaleUpOrDown}>
-                Print this out!
-              </button>
-            </div>
+          </div>
+          {/* Page setting Butons */}
+          <div className="z-10 bottom-9 text-neutral-500 flex items-center w-fit left-[26.5rem] right-0 mx-auto text-center backdrop-blur-2xl bg-white/50 border border-black/10 px-5 py-3 space-x-5 transition-all rounded-full absolute">
+            <button className="buttonHover" onClick={scaleUp}>
+              <BsZoomIn className="h-8 w-8" />
+            </button>
+            <button className="buttonHover" onClick={scaleDown}>
+              <BsZoomOut className="h-8 w-8" />
+            </button>
+            <button className="buttonHover" onClick={ifScaleUpOrDown}>
+              <GoCloudDownload className="h-8 w-8" />
+            </button>
+          </div>
+          {/* Page setting Butons */}
+          <div className="flex align-middle  h-full">
+            <section className="settings rounded-2xl w-full overflow-auto">
+              {/* <div className="absolute left-7 h-24 bg-gradient-to-t from-white w-[394px] z-30 bottom-0"></div> */}
+              <Settings />
+            </section>
+
             <div className="meshGradient w-full opacity-25 absolute -z-10  h-screen"></div>
           </div>
         </main>

@@ -4,6 +4,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { RiCloseFill } from "react-icons/ri";
 import { BsPatchCheck } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaGithubAlt } from "react-icons/fa";
 
 const Settings = () => {
   const {
@@ -18,16 +19,97 @@ const Settings = () => {
     setCV,
   } = useContext(CvContext);
 
+  // const color = "#faa";
+
   return (
     <AnimatePresence>
-      <motion.div layout className="p-7">
-        <h1 className="text-2xl font-bold">CV Settings</h1>
-        <button className="resetButton" onClick={setEmptyCv}>
-          Reset
-        </button>
-        <button className="creatorData" onClick={setCV}>
-          Fill Creator Data
-        </button>
+      <motion.div layout className="p-7 relative w-[450px]">
+        <AnimatePresence>
+          <motion.div layout className="cardStyle">
+            <h1 className="text-2xl font-bold">CV Creator</h1>
+            <div className="mt-5">
+              <p
+              // style={{
+              //   backgroundColor: `${color}`,
+              // }}
+              >
+                While doing this project, I was inspired by{" "}
+                <a
+                  className="font-bold text-rose-500 underline"
+                  href="https://cvfy.xyz/en/"
+                >
+                  the project
+                </a>{" "}
+                that Claudia did 2 years ago. And most importantly, I wanted to
+                try myself to see if I could do a project that I saw.{" "}
+                <span className=" text-black underline p-1 rounded-md">
+                  And I think I've succeeded.
+                </span>
+              </p>
+
+              <div className="bg-rose-100 px-2 mt-4 mb-2 py-1 rounded-md">
+                <h1 className="text-rose-600 font-bold">WARNING</h1>
+                <ol className="list-none mt-2 text-rose-900 space-y-2">
+                  <li>► Not suitable for mobile version.</li>
+                  <li>
+                    ► The <span className="font-bold ">Reset</span> button and
+                    the <span className="font-bold ">Fill Creator Data</span>{" "}
+                    button will clear all the changes you have made and you
+                    cannot undo them.
+                  </li>
+                  <li>► Contact me if you encounter any problems.</li>
+                </ol>
+              </div>
+            </div>
+            <div className="flex flex-col mt-4">
+              <div className="flex space-x-2">
+                <a
+                  className="resetButton transition-all flex flex-1 justify-center bg-gray-500 hover:shadow-lg hover:shadow-blue-300 group hover:bg-blue-500 h-10 overflow-hidden relative"
+                  href="mailto:imhalid@icloud.com"
+                >
+                  <button>
+                    <div className="h-1 transition-all bg-gray-400 group-hover:bg-blue-400 blur-[2px] absolute top-0 w-full left-0"></div>
+                    Contact Me
+                    <div className="h-1 transition-all bg-gray-600 group-hover:bg-blue-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
+                  </button>
+                </a>
+                <a
+                  className="resetButton transition-all  flex justify-center bg-gray-500 hover:shadow-lg hover:shadow-amber-300 group hover:bg-amber-500 h-10 overflow-hidden relative"
+                  href="https://github.com/imhalid/cv-for-job"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <button>
+                    <div className="h-1 transition-all bg-gray-400 group-hover:bg-amber-400 blur-[2px] absolute top-0 w-full left-0"></div>
+                    <FaGithubAlt className="pb-1 w-9 h-9 text-white " />
+                    <div className="h-1 transition-all bg-gray-600 group-hover:bg-amber-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
+                  </button>
+                </a>
+              </div>
+
+              <div className="flex space-x-2 mt-2">
+                <button
+                  className="resetButton transition-all h-10  bg-zinc-500 group hover:shadow-lg  hover:shadow-rose-300 hover:bg-rose-500 overflow-hidden relative flex-1"
+                  onClick={setEmptyCv}
+                >
+                  <div className="h-1 transition-all bg-zinc-400 group-hover:bg-rose-400 blur-[2px] absolute top-0 w-full left-0"></div>
+                  Reset
+                  <div className="h-1 transition-all bg-zinc-600 group-hover:bg-rose-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
+                </button>
+
+                <button
+                  className="resetButton transition-all h-10  bg-zinc-500 group hover:shadow-lg  hover:shadow-violet-300 hover:bg-violet-500 overflow-hidden relative flex-1"
+                  onClick={setCV}
+                >
+                  <div className="h-1 transition-all bg-zinc-400 group-hover:bg-violet-400 blur-[2px] absolute top-0 w-full left-0"></div>
+                  Fill Sample Data
+                  <div className="h-1 transition-all bg-zinc-600 group-hover:bg-violet-600 blur-[2px] absolute bottom-0 w-full left-0"></div>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
         {/* PERSONAL */}
         <AnimatePresence>
           <motion.div layout className="cardStyle ">
@@ -111,19 +193,32 @@ const Settings = () => {
                 onChange={(e) => updateCv("location", e.target.value)}
               />
             </motion.div>
+            <motion.div layout className="mt-4">
+              <label className="text-gray-500">About</label>
+              <textarea
+                type="text"
+                rows={7}
+                className="inputStyle"
+                value={cv.about}
+                onChange={(e) => updateCv("about", e.target.value)}
+              />
+            </motion.div>
+            <motion.p layout className="projectAndExperienceTitle mt-5 text-lg">
+              Social
+            </motion.p>
             <motion.div layout className="flex flex-wrap">
               <div className="flex items-center mt-4 mr-4">
                 <input
-                  id="twitter"
+                  id="mail"
                   type="checkbox"
-                  defaultChecked={cv.displayTwitter}
-                  onChange={(e) => updateCv("displayTwitter", e.target.checked)}
+                  defaultChecked={cv.displayMail}
+                  onChange={(e) => updateCv("displayMail", e.target.checked)}
                 />
                 <label
-                  htmlFor="twitter"
-                  className="ml-2 text-gray-500 text-sm font-medium"
+                  htmlFor="mail"
+                  className="ml-2 text-gray-500  text-sm font-medium"
                 >
-                  Twitter
+                  Mail
                 </label>
               </div>
               <div className="flex items-center mt-4 mr-4">
@@ -142,20 +237,6 @@ const Settings = () => {
               </div>
               <div className="flex items-center mt-4 mr-4">
                 <input
-                  id="mail"
-                  type="checkbox"
-                  defaultChecked={cv.displayMail}
-                  onChange={(e) => updateCv("displayMail", e.target.checked)}
-                />
-                <label
-                  htmlFor="mail"
-                  className="ml-2 text-gray-500  text-sm font-medium"
-                >
-                  Mail
-                </label>
-              </div>
-              <div className="flex items-center mt-4 mr-4">
-                <input
                   id="Github"
                   type="checkbox"
                   defaultChecked={cv.displayGithub}
@@ -168,25 +249,21 @@ const Settings = () => {
                   Github
                 </label>
               </div>
-            </motion.div>
-
-            {cv.displayTwitter ? (
-              <motion.div
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="mt-4"
-              >
-                <label className="text-gray-500">Twitter</label>
+              <div className="flex items-center mt-4 mr-4">
                 <input
-                  type="text"
-                  className="inputStyle"
-                  value={cv.twitter}
-                  onChange={(e) => updateCv("twitter", e.target.value)}
+                  id="twitter"
+                  type="checkbox"
+                  defaultChecked={cv.displayTwitter}
+                  onChange={(e) => updateCv("displayTwitter", e.target.checked)}
                 />
-              </motion.div>
-            ) : null}
+                <label
+                  htmlFor="twitter"
+                  className="ml-2 text-gray-500 text-sm font-medium"
+                >
+                  Twitter
+                </label>
+              </div>
+            </motion.div>
 
             {cv.displayWebSite ? (
               <motion.div
@@ -202,24 +279,6 @@ const Settings = () => {
                   className="inputStyle"
                   value={cv.website}
                   onChange={(e) => updateCv("website", e.target.value)}
-                />
-              </motion.div>
-            ) : null}
-
-            {cv.displayGithub ? (
-              <motion.div
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="mt-4"
-              >
-                <label className="text-gray-500">Github</label>
-                <input
-                  type="text"
-                  className="inputStyle"
-                  value={cv.github}
-                  onChange={(e) => updateCv("github", e.target.value)}
                 />
               </motion.div>
             ) : null}
@@ -242,16 +301,41 @@ const Settings = () => {
               </motion.div>
             ) : null}
 
-            <div className="mt-4">
-              <label className="text-gray-500">About</label>
-              <textarea
-                type="text"
-                rows={7}
-                className="inputStyle"
-                value={cv.about}
-                onChange={(e) => updateCv("about", e.target.value)}
-              />
-            </div>
+            {cv.displayGithub ? (
+              <motion.div
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="mt-4"
+              >
+                <label className="text-gray-500">Github</label>
+                <input
+                  type="text"
+                  className="inputStyle"
+                  value={cv.github}
+                  onChange={(e) => updateCv("github", e.target.value)}
+                />
+              </motion.div>
+            ) : null}
+
+            {cv.displayTwitter ? (
+              <motion.div
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="mt-4"
+              >
+                <label className="text-gray-500">Twitter</label>
+                <input
+                  type="text"
+                  className="inputStyle"
+                  value={cv.twitter}
+                  onChange={(e) => updateCv("twitter", e.target.value)}
+                />
+              </motion.div>
+            ) : null}
           </motion.div>
         </AnimatePresence>
         {/* PERSONAL END */}
@@ -300,7 +384,13 @@ const Settings = () => {
                 }
               />
               {cv.industryKnowledge.map((tag, index) => (
-                <div className="tagStyle" key={index}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                  className="tagStyle"
+                  key={index}
+                >
                   <p className="mr-5">{tag}</p>
                   <button
                     className="right-1 top-0 bottom-0 absolute"
@@ -308,7 +398,7 @@ const Settings = () => {
                   >
                     <RiCloseFill className="tagDeleteButton" />
                   </button>
-                </div>
+                </motion.div>
               ))}
             </div>
             <div className=" items-center mt-4">
@@ -320,7 +410,13 @@ const Settings = () => {
                 onKeyDown={(e) => addTag(e, "languages", e.target.value)}
               />
               {cv.languages.map((tag, index) => (
-                <div className="tagStyle" key={index}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                  className="tagStyle"
+                  key={index}
+                >
                   <p className="mr-5">{tag}</p>
                   <button
                     className=" right-1 top-0 bottom-0 absolute"
@@ -328,7 +424,7 @@ const Settings = () => {
                   >
                     <RiCloseFill className="tagDeleteButton" />
                   </button>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -401,11 +497,11 @@ const Settings = () => {
                 </div>
               </motion.div>
             ))}
-            <div className="addButton">
+            <motion.div layout className="addButton">
               <button onClick={() => addProject({ title: "", summary: "" })}>
                 <RiCloseFill className="addButtonSVG" />
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 
@@ -414,7 +510,14 @@ const Settings = () => {
         <AnimatePresence>
           <motion.div layout className="cardStyle">
             {cv.experiences.map((experience, index) => (
-              <motion.div layout key={index} className="flex mb-6 flex-col">
+              <motion.div
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                key={index}
+                className="flex mb-6 flex-col"
+              >
                 <div className="projectAndExperienceTitle">
                   <p>Experience {index + 1}</p>
                   <button

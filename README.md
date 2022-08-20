@@ -8,7 +8,7 @@ This project helps you to prepare a good looking CV.
 - [x] Add zoom and out buttons
 - [x] Add image upload option
 - [x] Save information in localstorage
-- [ ] Add PDF download option
+- [x] Add PDF download option
 - [ ] Add backgound color option
 
 ## Installation
