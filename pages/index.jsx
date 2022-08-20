@@ -16,7 +16,6 @@ export default function Home() {
   };
 
   const setEmptyCv = () => {
-    console.log("setEmptyCv");
     const emptyCv = {
       name: "",
       image: "",
