@@ -1,6 +1,6 @@
 This project helps you to prepare a good looking CV.
 
-![Cover](/cover.jpg)
+![Cover](https://github.com/imhalid/cv-for-job/blob/master/public/cover.jpg?raw=true)
 
 - [x] Create main design
 - [x] Changing information with inputs
