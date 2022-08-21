@@ -166,11 +166,11 @@ export default function Home() {
           ifScaleUpOrDown,
         }}
       >
-        <main className=" relative  overflow  h-screen">
-          <div className="m-auto w-fit h-fit absolute  left-[26.5rem] right-0 bottom-0 flex top-0 ">
+        <main className="flex flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
+          <div className="m-auto md:w-fit md:h-fit relative md:absolute  md:left-[26.5rem] md:right-0 md:bottom-0 md:flex md:top-0 ">
             <div ref={componentRef}>
               <section
-                className="bg-white rounded-md transition-all p-8  w-[594px] h-[840px] "
+                className="bg-white md:rounded-md transition-all p-8 w-full md:w-[594px] md:h-[840px] "
                 style={{
                   transform: `scale(${scale})`,
                 }}
@@ -184,7 +184,7 @@ export default function Home() {
             <section className="settings rounded-2xl w-full overflow-auto">
               <Settings />
             </section>
-            <div className="meshGradient w-full opacity-20 absolute -z-10  h-screen"></div>
+            <div className="meshGradient h-full w-full opacity-20 fixed md:absolute -z-10  md:h-screen"></div>
           </div>
         </main>
       </CvContext.Provider>

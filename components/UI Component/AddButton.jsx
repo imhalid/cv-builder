@@ -6,7 +6,7 @@ const AddButton = ({ onClick }) => {
     <AnimatePresence>
       <motion.div
         layout
-        className="w-fit  text-white transition-all scale-100 hover:scale-105 mx-auto  "
+        className="w-fit text-white transition-all scale-100 hover:scale-105 mx-auto  "
       >
         <motion.button
           layout
