@@ -1,6 +1,6 @@
 This project helps you to prepare a good looking CV.
 
-> I'm still busy adding new features, if you have any suggestions feel free to send a pull request.
+![Cover](/cover.jpg)
 
 - [x] Create main design
 - [x] Changing information with inputs

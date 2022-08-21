@@ -19,6 +19,14 @@ const CV = () => {
 
   const cv = useContext(CvContext);
 
+  const websiteWithoutHttps = (website) => {
+    if (website.includes("https://")) {
+      return website;
+    } else {
+      return website.replace("", "https://");
+    }
+  };
+
   return (
     <div className="w-full h-fulll" id="cv">
       {[cv.cv].map((item, index) => {
@@ -60,7 +68,11 @@ const CV = () => {
                 {item.website ? (
                   <div className={items}>
                     <HiOutlineLink className={itemsSVG} />
-                    <a href={item.website} target="_blank" rel="noreferrer">
+                    <a
+                      href={websiteWithoutHttps(item.website)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {item.website}
                     </a>
                   </div>

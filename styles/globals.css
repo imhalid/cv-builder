@@ -136,7 +136,7 @@
 }
 
 .cardStyle {
-  @apply flex flex-col mb-16 rounded-3xl bg-[#FAFBFC] shadow p-5 relative;
+  @apply flex flex-col mb-10 rounded-3xl bg-[#FAFBFC] shadow p-5 relative;
 }
 
 .inputStyle {
@@ -148,11 +148,7 @@
 }
 
 .addButton {
-  @apply w-12 h-12 flex justify-center text-[#1A7918] font-bold rounded-full mx-auto shadow-md outline hover:outline-2 hover:scale-90 transition-all bg-gradient-to-t to-[#96D478] from-[#8abd6f] text-center;
-}
-
-.addButtonSVG {
-  @apply w-10 h-10 rotate-45 drop-shadow-md;
+  @apply w-12 h-12 flex justify-center transition-all hover:scale-105  py-1 px-4 rounded-lg text-white;
 }
 
 .tagStyle {
