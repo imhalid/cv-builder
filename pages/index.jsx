@@ -1,7 +1,7 @@
 import Head from "next/head";
 import CV from "../components/CV";
 import Settings from "../components/Settings";
-import PageButtons from "../components/pageButtons";
+import PageButtons from "../components/PageButtons";
 import { useState, useEffect, useRef } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
