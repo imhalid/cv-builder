@@ -126,9 +126,7 @@ const CV = () => {
                       Tools & Technologies
                     </h4>
                     <p className={paragraphSize}>
-                      {item.toolsAndTechSkills.map((skill, index) => {
-                        return <span key={index}>{skill}, </span>;
-                      })}
+                      {item.toolsAndTechSkills.join(", ")}
                     </p>
                   </div>
                 ) : null}
@@ -136,20 +134,14 @@ const CV = () => {
                   <div className="mt-2">
                     <h4 className="font-medium  text-md">Industry Knowledge</h4>
                     <p className={paragraphSize}>
-                      {item.industryKnowledge.map((knowledge, index) => {
-                        return <span key={index}>{knowledge}, </span>;
-                      })}
+                      {item.industryKnowledge.join(", ")}
                     </p>
                   </div>
                 ) : null}
                 {item.languages > [0] ? (
                   <div className="mt-2">
                     <h4 className="font-medium text-md">Language</h4>
-                    <p className={paragraphSize}>
-                      {item.languages.map((language, index) => {
-                        return <span key={index}>{language}, </span>;
-                      })}
-                    </p>
+                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
                   </div>
                 ) : null}
               </section>
