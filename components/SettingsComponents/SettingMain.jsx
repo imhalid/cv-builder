@@ -9,7 +9,7 @@ const SettingMain = () => {
   return (
     <AnimatePresence>
       <motion.div layout className="cardStyle">
-        <h1 className="text-2xl font-bold">CV Creator</h1>
+        <h1 className="text-2xl font-bold">CV Builder</h1>
         <div className="mt-5">
           <p>
             While doing this project, I was inspired by{" "}
