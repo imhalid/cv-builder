@@ -1,6 +1,6 @@
 This project helps you to prepare a good looking CV.
 
-![Cover](https://github.com/imhalid/cv-builder/blob/master/public/cover.png?raw=true)
+![Cover](https://github.com/imhalid/cv-builder/blob/master/public/cover2.png?raw=true)
 
 - [x] Create main design
 - [x] Changing information with inputs
