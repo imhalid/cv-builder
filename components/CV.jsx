@@ -59,13 +59,13 @@ const CV = () => {
                 </div>
               </div>
               <div className="flex font-light text-xs mt-4 space-x-3">
-                {item.email ? (
+                {item.email && item.displayMail ? (
                   <div className={items}>
                     <HiOutlineMail className={itemsSVG} />
                     <a href={`mailto:${item.email}`}>{item.email}</a>
                   </div>
                 ) : null}
-                {item.website ? (
+                {item.website && item.displayWebSite ? (
                   <div className={items}>
                     <HiOutlineLink className={itemsSVG} />
                     <a
@@ -77,7 +77,7 @@ const CV = () => {
                     </a>
                   </div>
                 ) : null}
-                {item.github ? (
+                {item.github && item.displayGithub ? (
                   <div className={items}>
                     <AiFillGithub className={itemsSVG} />
 
@@ -90,7 +90,7 @@ const CV = () => {
                     </a>
                   </div>
                 ) : null}
-                {item.twitter ? (
+                {item.twitter && item.displayTwitter ? (
                   <div className={items}>
                     <TbBrandTwitter className={itemsSVG} />
                     <a
