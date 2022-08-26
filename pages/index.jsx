@@ -37,6 +37,7 @@ export default function Home() {
       projects: [
         {
           title: "",
+          link: "",
           summary: "",
         },
       ],

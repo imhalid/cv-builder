@@ -46,7 +46,7 @@ const About = () => {
               <input
                 id="dropzone"
                 type="file"
-                accept="image/*"
+                accept="image/jpeg, image/png"
                 className="hidden"
                 onChange={uploadImage}
               />
