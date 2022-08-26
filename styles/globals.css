@@ -136,7 +136,7 @@
 }
 
 .cardStyle {
-  @apply flex flex-col mb-10 rounded-3xl bg-[#FAFBFC] shadow p-5 relative;
+  @apply flex flex-col mb-10 rounded-3xl bg-[#FAFBFC] shadow z-10 p-5 relative;
 }
 
 .inputStyle {
@@ -152,11 +152,11 @@
 }
 
 .tagStyle {
-  @apply inline-flex text-blue-900 text-sm items-center align-middle bg-blue-200/70 overflow-hidden py-1 px-2 m-1 rounded-lg relative;
+  @apply inline-flex  text-sm items-center align-middle  overflow-hidden py-1 px-2 m-1 rounded-lg relative;
 }
 
 .tagDeleteButton {
-  @apply fill-blue-500 hover:fill-blue-700 hover:bg-blue-300/50 rounded-md inline h-5 w-5 transition-all;
+  @apply rounded-md inline h-5 w-5 transition-all;
 }
 
 .deleteButton {

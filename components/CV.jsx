@@ -120,30 +120,24 @@ const CV = () => {
               <section id="skills" className="w-1/2">
                 <h3 className={titles}>Skills</h3>
 
-                {item.toolsAndTechSkills > [0] ? (
-                  <div className="mt-2">
-                    <h4 className="font-medium text-md">
-                      Tools & Technologies
-                    </h4>
-                    <p className={paragraphSize}>
-                      {item.toolsAndTechSkills.join(", ")}
-                    </p>
-                  </div>
-                ) : null}
-                {item.industryKnowledge > [0] ? (
-                  <div className="mt-2">
-                    <h4 className="font-medium  text-md">Industry Knowledge</h4>
-                    <p className={paragraphSize}>
-                      {item.industryKnowledge.join(", ")}
-                    </p>
-                  </div>
-                ) : null}
-                {item.languages > [0] ? (
-                  <div className="mt-2">
-                    <h4 className="font-medium text-md">Language</h4>
-                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
-                  </div>
-                ) : null}
+                <div className="mt-2">
+                  <h4 className="font-medium text-md">{item.skillTitle1}</h4>
+                  <p className={paragraphSize}>
+                    {item.toolsAndTechSkills.join(", ")}
+                  </p>
+                </div>
+
+                <div className="mt-2">
+                  <h4 className="font-medium  text-md">{item.skillTitle2}</h4>
+                  <p className={paragraphSize}>
+                    {item.industryKnowledge.join(", ")}
+                  </p>
+                </div>
+
+                <div className="mt-2">
+                  <h4 className="font-medium text-md">{item.skillTitle3}</h4>
+                  <p className={paragraphSize}>{item.languages.join(", ")}</p>
+                </div>
               </section>
               {/* SKILLS END */}
               {/* PROJECTS START */}

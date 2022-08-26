@@ -31,6 +31,9 @@ export default function Home() {
       toolsAndTechSkills: [],
       industryKnowledge: [],
       languages: [],
+      skillTitle1: "",
+      skillTitle2: "",
+      skillTitle3: "",
       projects: [
         {
           title: "",
@@ -43,7 +46,6 @@ export default function Home() {
           company: "",
           startDate: "",
           endDate: "",
-          current: true,
           summary: "",
         },
       ],
@@ -75,6 +77,12 @@ export default function Home() {
       setCv(newCv);
       localStorage.setItem("cv", JSON.stringify(newCv));
       e.target.value = "";
+    }
+
+    if (e.key === "Backspace" && e.target.value === "") {
+      const newCv = { ...cv, [key]: cv[key].slice(0, -1) };
+      setCv(newCv);
+      localStorage.setItem("cv", JSON.stringify(newCv));
     }
   };
 

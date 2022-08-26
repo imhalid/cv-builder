@@ -12,10 +12,11 @@ const Inputs = ({ title, value, keyChange, placeholder }) => {
       exit={{ opacity: 0 }}
       className="mt-4"
     >
-      <label className="text-gray-500">{title}</label>
-      <input
+      <motion.label className="text-gray-500">{title}</motion.label>
+      <motion.input
+        layout
         type="text"
-        className="inputStyle"
+        className="inputStyle relative z-50"
         placeholder={placeholder}
         value={value}
         onChange={(e) => updateCv(keyChange, e.target.value)}

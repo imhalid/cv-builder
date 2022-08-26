@@ -14,13 +14,18 @@ export const cvData = {
   toolsAndTechSkills: ["Photoshop", "Final Cut Pro", "Figma", "Webflow"],
   industryKnowledge: ["Javascript", "CSS", "HTML", "Next.js", "React"],
   languages: ["Turkish(Native)", "English(A2)"],
+  skillTitle1: "Tools and Tech Skills",
+  skillTitle2: "Industry Knowledge",
+  skillTitle3: "Languages",
   projects: [
     {
       title: "halid.dev",
+      link: "https://halid.dev",
       summary: `My personal website, that I created with Next.js, Tailwind Css, Content Layer.`,
     },
     {
       title: "Weather App",
+      link: "https://halid.dev",
       summary: `In this work, a small project where I visualize the data from the API.`,
     },
   ],
