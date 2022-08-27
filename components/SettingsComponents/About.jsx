@@ -103,6 +103,21 @@ const About = () => {
             value={cv.displayTwitter}
             keyChange="displayTwitter"
           />
+          <CheckBox
+            title="LinkedIn"
+            value={cv.displayLinkedIn}
+            keyChange="displayLinkedIn"
+          />
+          <CheckBox
+            title="Instagram"
+            value={cv.displayInstagram}
+            keyChange="displayInstagram"
+          />
+          <CheckBox
+            title="Facebook"
+            value={cv.displayFacebook}
+            keyChange="displayFacebook"
+          />
         </motion.div>
         {cv.displayMail ? (
           <Inputs
@@ -137,6 +152,30 @@ const About = () => {
             value={cv.twitter}
             placeholder="Only Username without @"
             keyChange="twitter"
+          />
+        ) : null}
+        {cv.displayLinkedIn ? (
+          <Inputs
+            title="LinkedIn"
+            value={cv.LinkedIn}
+            placeholder="Only Username"
+            keyChange="linkedIn"
+          />
+        ) : null}
+        {cv.displayInstagram ? (
+          <Inputs
+            title="Instagram"
+            value={cv.Instagram}
+            placeholder="Only Username"
+            keyChange="instagram"
+          />
+        ) : null}
+        {cv.displayFacebook ? (
+          <Inputs
+            title="Facebook"
+            value={cv.Facebook}
+            placeholder="Only Username"
+            keyChange="facebook"
           />
         ) : null}
       </motion.div>

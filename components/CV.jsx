@@ -17,7 +17,7 @@ import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 
 const CV = () => {
-  const items = "flex items-center";
+  const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-rose-400";
   const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
@@ -75,7 +75,7 @@ const CV = () => {
                   </h4>
                 </div>
               </div>
-              <div className="flex font-light text-xs mt-4 space-x-3">
+              <div className="flex flex-wrap font-light text-xs mt-1 items-center align-middle  ">
                 {item.email && item.displayMail ? (
                   <div className={items}>
                     <HiOutlineMail className={itemsSVG} />
@@ -116,6 +116,42 @@ const CV = () => {
                       rel="noreferrer"
                     >
                       {item.twitter}
+                    </a>
+                  </div>
+                ) : null}
+                {item.linkedIn && item.displayLinkedIn ? (
+                  <div className={items}>
+                    <AiOutlineLinkedin className={itemsSVG} />
+                    <a
+                      href={`https://www.linkedin.com/in/${item.linkedIn}/`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.linkedIn}
+                    </a>
+                  </div>
+                ) : null}
+                {item.instagram && item.displayInstagram ? (
+                  <div className={items}>
+                    <AiOutlineInstagram className={itemsSVG} />
+                    <a
+                      href={`https://www.instagram.com/${item.instagram}/`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.instagram}
+                    </a>
+                  </div>
+                ) : null}
+                {item.facebook && item.displayFacebook ? (
+                  <div className={items}>
+                    <AiOutlineFacebook className={itemsSVG} />
+                    <a
+                      href={`https://www.facebook.com/${item.facebook}/`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.facebook}
                     </a>
                   </div>
                 ) : null}
