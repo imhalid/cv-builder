@@ -4,6 +4,7 @@ import {
   HiOutlineBriefcase,
   HiOutlineLink,
   HiOutlineCalendar,
+  HiExternalLink,
 } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import { TbBrandTwitter } from "react-icons/tb";
@@ -146,7 +147,14 @@ const CV = () => {
                 {item.projects.map((project, index) => {
                   return (
                     <div key={index} className="mt-2">
-                      <h4 className="font-medium text-md">{project.title}</h4>
+                      <h4 className="font-medium text-md">
+                        {project.title}
+                        {project.link ? (
+                          <a href={project.link} target="_blank">
+                            <HiExternalLink className="ml-1 inline" />
+                          </a>
+                        ) : null}
+                      </h4>
                       <p className={paragraphSize}>{project.summary}</p>
                     </div>
                   );

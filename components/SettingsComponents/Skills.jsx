@@ -11,7 +11,9 @@ const Skills = () => {
   return (
     <AnimatePresence>
       <motion.div layout className="cardStyle z-10 relative">
-        <p className="projectAndExperienceTitle text-lg">Skills</p>
+        <motion.p layout className="projectAndExperienceTitle text-lg">
+          Skills
+        </motion.p>
 
         <motion.div layout="size" className="">
           <Inputs

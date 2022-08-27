@@ -49,6 +49,23 @@ const Projects = () => {
                 }}
               />
             </div>
+            <div className=" items-center mt-4">
+              <label className="text-gray-500">Project Link</label>
+              <input
+                type="text"
+                className="inputStyle"
+                placeholder="Project link"
+                value={project.link}
+                onChange={(e) => {
+                  const newProject = { ...project, link: e.target.value };
+                  updateCv("projects", [
+                    ...cv.projects.slice(0, index),
+                    newProject,
+                    ...cv.projects.slice(index + 1),
+                  ]);
+                }}
+              />
+            </div>
             <div className=" items-center mt-4 mb-6">
               <label className="text-gray-500">Project Summary</label>
               <textarea

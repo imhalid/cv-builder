@@ -25,7 +25,7 @@ export const cvData = {
     },
     {
       title: "Weather App",
-      link: "https://halid.dev",
+      link: "https://weather-imhalid.vercel.app/",
       summary: `In this work, a small project where I visualize the data from the API.`,
     },
   ],
