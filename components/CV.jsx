@@ -6,7 +6,12 @@ import {
   HiOutlineCalendar,
   HiExternalLink,
 } from "react-icons/hi";
-import { AiFillGithub } from "react-icons/ai";
+import {
+  AiFillGithub,
+  AiOutlineLinkedin,
+  AiOutlineInstagram,
+  AiOutlineFacebook,
+} from "react-icons/ai";
 import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
@@ -25,6 +30,17 @@ const CV = () => {
       return website;
     } else {
       return website.replace("", "https://");
+    }
+  };
+
+  const deleteHttpsAndwww = (website) => {
+    if (website.includes("https://")) {
+      return website
+        .replace("https://www.", "")
+        .replace("www.", "")
+        .replace("https://", "");
+    } else {
+      return website;
     }
   };
 
@@ -74,7 +90,7 @@ const CV = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {item.website}
+                      {deleteHttpsAndwww(item.website)}
                     </a>
                   </div>
                 ) : null}
@@ -150,7 +166,11 @@ const CV = () => {
                       <h4 className="font-medium text-md">
                         {project.title}
                         {project.link ? (
-                          <a href={project.link} target="_blank">
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <HiExternalLink className="ml-1 inline" />
                           </a>
                         ) : null}

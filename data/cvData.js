@@ -5,6 +5,8 @@ export const cvData = {
   location: "Ankara, Turkey",
   email: "imhalid@icloud.com",
   linkedin: "",
+  instagram: "",
+  facebook: "",
   twitter: "halidislm",
   github: "imhalid",
   website: "halid.dev",
