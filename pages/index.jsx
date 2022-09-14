@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
+import CV2 from "../components/CV2";
+import CvSelector from "../components/CvSelector";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
@@ -59,6 +61,12 @@ export default function Home() {
     };
     setCv(emptyCv);
     localStorage.setItem("cv", JSON.stringify(emptyCv));
+  };
+
+  const [template, setTemplate] = useState(1);
+
+  const selectTemplate = (e) => {
+    setTemplate(e.target.value);
   };
 
   const updateCv = (key, value) => {
@@ -150,6 +158,17 @@ export default function Home() {
     return handlePrint();
   };
 
+  const templateSwitch = () => {
+    switch (template) {
+      case "1":
+        return <CV />;
+      case "2":
+        return <CV2 />;
+      default:
+        return <CV />;
+    }
+  };
+
   const componentRef = useRef();
 
   return (
@@ -176,18 +195,21 @@ export default function Home() {
           scaleUp,
           scaleDown,
           ifScaleUpOrDown,
+          selectTemplate,
         }}
       >
         <main className="flex flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
           <div className="m-auto md:w-fit md:h-fit relative md:absolute  md:left-[26.5rem] md:right-0 md:bottom-0 md:flex md:top-0 ">
-            <div ref={componentRef}>
+            <div>
+              <CvSelector />
               <section
+                ref={componentRef}
                 className="bg-white md:rounded-md transition-all p-8 w-full md:w-[594px] md:h-[840px] "
                 style={{
                   transform: `scale(${scale})`,
                 }}
               >
-                <CV />
+                {templateSwitch()}
               </section>
             </div>
           </div>

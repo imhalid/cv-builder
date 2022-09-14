@@ -45,10 +45,10 @@ const CV = () => {
   };
 
   return (
-    <div className="w-full h-fulll" id="cv">
+    <div className="w-full h-full" id="cv">
       {[cv.cv].map((item, index) => {
         return (
-          <div key={index}>
+          <>
             <section id="header">
               {/* HEADER START */}
               <div className="flex items-center">
@@ -259,7 +259,7 @@ const CV = () => {
                 .reverse()}
             </section>
             {/* EXPERIENCE END */}
-          </div>
+          </>
         );
       })}
     </div>
