@@ -47,7 +47,7 @@ const CV2 = () => {
   return (
     <div className="w-full h-full flex" id="cv">
       <div className="relative w-[30%] pr-5  mr-2 h-full">
-        <div className="border-l h-[840px] -top-8 right-0 border-black absolute" />
+        <div className="border-l h-[840px] -top-8 right-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
             <>
@@ -178,7 +178,7 @@ const CV2 = () => {
         })}
       </div>
       <div className="relative h-full pl-6 ml-2  ">
-        <div className="border-l-2 h-[840px] -top-8 left-0 border-black absolute" />
+        <div className="border-l h-[840px] -top-8 left-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
             <>
@@ -189,7 +189,7 @@ const CV2 = () => {
                     {/* <p className="absolute text-sm tracking-widest -left-[57px] rotate-90 top-1/2 rounded-md px-2 bg-white ">
                       ABOUT
                     </p> */}
-                    <div className="absolute  text-sm tracking-widest -left-[26px] border-dashed border-l-r h-full border border-black rounded-md px-[2px] bg-white " />
+                    {/* <div className="absolute  text-sm tracking-widest -left-[26px] border-dashed ring-4 ring-white border-l-r h-full border border-black rounded-md px-[2px] bg-white " /> */}
                     {item.displayImage ? (
                       <div className="mr-3 flex float-left">
                         <Image
@@ -216,11 +216,15 @@ const CV2 = () => {
               {/* EXPERIENCE START */}
               <section className="mt-6 relative">
                 <h3 className={titles}>Experience</h3>
-                <div className="absolute text-sm tracking-widest -left-[31px] rotate-90 top-[7px] rounded-full h-4 w-4 ring-4 ring-white bg-black " />
+                <div className="absolute -left-[29px] top-[7px]">
+                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
+                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
+                </div>
+
                 {item.experiences.map((experience, index) => {
                   return (
                     <div className="relative " key={index}>
-                      <div className="absolute ring-2 ring-white -left-[25px]  h-[93%] top-1 rounded-md px-[2px] bg-black " />
+                      <div className="absolute ring-4 ring-white -left-[24px]  h-[93%] top-1 rounded-md px-[1px] bg-black " />
                       <div className="flex mt-3 flex-col  justify-between">
                         <h4 className="font-medium  text-md">
                           {experience.title}
@@ -249,11 +253,14 @@ const CV2 = () => {
               {/* PROJECTS START */}
               <section id="projects" className="relative">
                 <h3 className={titles}>Projects</h3>
-                <div className="absolute text-sm tracking-widest -left-[31px] rotate-90 top-[7px] rounded-full h-4 w-4 ring-4 ring-white bg-black " />
+                <div className="absolute -left-[29px] top-[7px]">
+                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
+                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
+                </div>
                 {item.projects.map((project, index) => {
                   return (
                     <div key={index} className="mt-2 relative">
-                      <div className="absolute ring-2 ring-black -left-[25px]  h-[50px] top-1 rounded-md px-[2px] bg-white " />
+                      <div className="absolute border ring-4 ring-white border-black  -left-[25px]  h-[50px] top-1 rounded-md px-[1px] bg-white " />
                       <h4 className="font-medium text-md">
                         {project.title}
                         {project.link ? (
