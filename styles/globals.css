@@ -16,11 +16,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h4 {
-    font-family: "Spectral", serif;
-    font-weight: 500;
-  }
-
   :root {
     --form-control-color: rebeccapurple;
     --form-control-disabled: #f3f2f3;
