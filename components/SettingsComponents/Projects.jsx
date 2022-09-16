@@ -90,7 +90,9 @@ const Projects = () => {
           </motion.div>
         ))}
 
-        <AddButton onClick={() => addProject({ title: "", summary: "" })} />
+        <AddButton
+          onClick={() => addProject({ title: "", link: "", summary: "" })}
+        />
       </motion.div>
     </AnimatePresence>
   );

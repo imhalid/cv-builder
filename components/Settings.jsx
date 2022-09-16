@@ -4,6 +4,7 @@ import About from "./SettingsComponents/About";
 import Skills from "./SettingsComponents/Skills";
 import Projects from "./SettingsComponents/Projects";
 import Experiences from "./SettingsComponents/Experiences";
+import Education from "./SettingsComponents/Education";
 
 const Settings = () => {
   return (
@@ -12,6 +13,7 @@ const Settings = () => {
         <SettingMain />
         <About />
         <Skills />
+        <Education />
         <Projects />
         <Experiences />
       </motion.div>

@@ -43,6 +43,13 @@ export default function Home() {
           summary: "",
         },
       ],
+      education: [
+        {
+          title: "",
+          school: "",
+          date: "",
+        },
+      ],
       experiences: [
         {
           title: "",
@@ -110,6 +117,12 @@ export default function Home() {
 
   const addProject = (project) => {
     const newCv = { ...cv, projects: [...cv.projects, project] };
+    setCv(newCv);
+    localStorage.setItem("cv", JSON.stringify(newCv));
+  };
+
+  const addEducation = (education) => {
+    const newCv = { ...cv, education: [...cv.education, education] };
     setCv(newCv);
     localStorage.setItem("cv", JSON.stringify(newCv));
   };
@@ -196,6 +209,7 @@ export default function Home() {
           scaleDown,
           ifScaleUpOrDown,
           selectTemplate,
+          addEducation,
         }}
       >
         <main className="flex flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">

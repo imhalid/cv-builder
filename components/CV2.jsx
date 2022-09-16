@@ -170,8 +170,25 @@ const CV2 = () => {
               </section>
               {/* EDUCATION */}
               <section id="education" className="mt-5">
-                <h4 className="text-sm ">Education</h4>
-                <p className={paragraphSize}>Null</p>
+                <h4 className="text-sm mb-1">Education</h4>
+
+                {item.education.map((item, index) => {
+                  return (
+                    <div className="" key={index}>
+                      <h4 className="text-[0.755rem] mt-1 font-medium">
+                        {item.title}
+                      </h4>
+                      <p className="text-[0.705rem] mt-1 text-gray-600">
+                        {item.school}
+                      </p>
+                      <p className="text-[0.705rem] text-gray-500">
+                        {item.startDate} - {item.endDate}
+                      </p>
+                    </div>
+                  );
+                })}
+
+                <p className={paragraphSize}>{}</p>
               </section>
             </>
           );

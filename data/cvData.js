@@ -31,6 +31,20 @@ export const cvData = {
       summary: `In this work, a small project where I visualize the data from the API.`,
     },
   ],
+  education: [
+    {
+      title: "Web Design and Programming",
+      school: "Anadolu University",
+      startDate: "2022",
+      endDate: "Now",
+    },
+    {
+      title: "Computer Programming",
+      school: "Adnan Menderes University",
+      startDate: "2017",
+      endDate: "2019",
+    },
+  ],
   experiences: [
     {
       title: "Graphic Designer, Editor, Data Analysis",

@@ -49,7 +49,7 @@ const CV = () => {
       {[cv.cv].map((item, index) => {
         return (
           <>
-            <section id="header">
+            <section key={index} id="header">
               {/* HEADER START */}
               <div className="flex items-center">
                 {item.displayImage ? (
