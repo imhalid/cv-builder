@@ -11,6 +11,9 @@ const CvSelector = () => {
       <button className="buttonHover" value={2} onClick={selectTemplate}>
         Template 2
       </button>
+      <button className="buttonHover" value={3} onClick={selectTemplate}>
+        Template 2
+      </button>
     </div>
   );
 };

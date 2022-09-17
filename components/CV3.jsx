@@ -1,12 +1,5 @@
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
-import {
-  HiOutlineMail,
-  HiOutlineBriefcase,
-  HiOutlineLink,
-  HiOutlineCalendar,
-  HiExternalLink,
-} from "react-icons/hi";
+import { HiOutlineMail, HiOutlineLink, HiExternalLink } from "react-icons/hi";
 import {
   AiFillGithub,
   AiOutlineLinkedin,
@@ -17,7 +10,7 @@ import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 
-const CV2 = () => {
+const CV3 = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-xl";
@@ -47,79 +40,30 @@ const CV2 = () => {
 
   return (
     <div className="w-full h-full flex" id="cv">
-      <div className="relative w-[30%] pr-5 flex flex-col  mr-2 h-full">
-        <div className="border-l h-[840px] -top-8 right-0 border-black/30 absolute" />
+      <div className=" w-[30%] pr-4 flex flex-col  mr-1 h-full">
         {[cv.cv].map((item, index) => {
           return (
             <>
-              <div className="space-y-1">
-                <h1 className="text-3xl font-semibold w-10/12">{item.name}</h1>
-                <h4 className=" text-gray-400 text-sm font-medium">
-                  {item.jobTitle}
-                </h4>
-                <h4 className=" text-gray-400 text-sm font-medium">
-                  {item.location}
-                </h4>
-              </div>
-
-              <section id="skills_and_projects" className="flex mt-3">
-                {/* SKILLS START */}
-                <section id="skills" className="">
-                  <div className="mt-3">
-                    <h4 className="text-sm ">{item.skillTitle1}</h4>
-                    <p className={paragraphSize}>
-                      {item.toolsAndTechSkills.join(", ")}
-                    </p>
-                  </div>
-
-                  <div className="mt-3">
-                    <h4 className="text-sm">{item.skillTitle2}</h4>
-                    <p className={paragraphSize}>
-                      {item.industryKnowledge.join(", ")}
-                    </p>
-                  </div>
-
-                  <div className="mt-3">
-                    <h4 className="text-sm ">{item.skillTitle3}</h4>
-                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
-                  </div>
-                </section>
-                {/* SKILLS END */}
-              </section>
-              {/* EDUCATION */}
-              <section id="education" className="mt-5">
-                <h4 className="text-sm mb-1">Education</h4>
-
-                {item.education.map((item, index) => {
-                  return (
-                    <div className="" key={index}>
-                      <h4 className="text-[0.755rem] mt-1 font-medium">
-                        {item.title}
-                      </h4>
-                      <p className="text-[0.705rem] mt-1 text-gray-600">
-                        {item.school}
-                      </p>
-                      <p className="text-[0.705rem] text-gray-500">
-                        {item.startDate} - {item.endDate}
-                      </p>
-                    </div>
-                  );
-                })}
-
-                <p className={paragraphSize}>{}</p>
-              </section>
+              {item.displayImage ? (
+                <div className="mr-3 flex float-left">
+                  <Image
+                    src={item.image || "/favicon.png"}
+                    className="rounded-full"
+                    width="100px"
+                    height="100px"
+                    alt="profilePicture"
+                    quality={100}
+                    objectFit="cover"
+                  />
+                </div>
+              ) : null}
               {/* SOCIAL */}
-              <section id="social" className="mt-auto">
-                <div className="flex   flex-col flex-wrap font-light text-xs  items-left align-middle  ">
+              <section id="social" className="mt-5">
+                <div className="flex  flex-col flex-wrap font-light text-xs mt-1 items-left align-middle  ">
                   {item.email && item.displayMail ? (
                     <div className={items}>
                       <HiOutlineMail className={itemsSVG} />
-                      <a
-                        href={`mailto:${item.email}`}
-                        className="z-10 bg-white"
-                      >
-                        {item.email}
-                      </a>
+                      <a href={`mailto:${item.email}`}>{item.email}</a>
                     </div>
                   ) : null}
                   {item.website && item.displayWebSite ? (
@@ -129,7 +73,6 @@ const CV2 = () => {
                         href={websiteWithoutHttps(item.website)}
                         target="_blank"
                         rel="noreferrer"
-                        className="z-10 bg-white"
                       >
                         {deleteHttpsAndwww(item.website)}
                       </a>
@@ -199,54 +142,83 @@ const CV2 = () => {
                 </div>
               </section>
               {/* SOCIAL END */}
+              <section id="skills_and_projects" className="flex mt-3">
+                {/* SKILLS START */}
+                <section id="skills" className="">
+                  <div className="mt-3">
+                    <h4 className="text-sm ">{item.skillTitle1}</h4>
+                    <p className={paragraphSize}>
+                      {item.toolsAndTechSkills.join(", ")}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <h4 className="text-sm">{item.skillTitle2}</h4>
+                    <p className={paragraphSize}>
+                      {item.industryKnowledge.join(", ")}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <h4 className="text-sm ">{item.skillTitle3}</h4>
+                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
+                  </div>
+                </section>
+                {/* SKILLS END */}
+              </section>
+              {/* EDUCATION */}
+              <section id="education" className="mt-5">
+                <h4 className="text-sm mb-1">Education</h4>
+
+                {item.education.map((item, index) => {
+                  return (
+                    <div className="" key={index}>
+                      <h4 className="text-[0.755rem] mt-1 font-medium">
+                        {item.title}
+                      </h4>
+                      <p className="text-[0.705rem] mt-1 text-gray-600">
+                        {item.school}
+                      </p>
+                      <p className="text-[0.705rem] text-gray-500">
+                        {item.startDate} - {item.endDate}
+                      </p>
+                    </div>
+                  );
+                })}
+
+                <p className={paragraphSize}>{}</p>
+              </section>
             </>
           );
         })}
       </div>
-      <div className="relative h-full pl-6 ml-2  ">
-        <div className="border-l h-[840px] -top-8 left-0 border-black/30 absolute" />
+      <div className="relative h-full  ">
         {[cv.cv].map((item, index) => {
           return (
             <>
               {/* ABOUT TEXT START  */}
               {item.about ? (
                 <section id="about">
-                  <div className="relative">
-                    {item.displayImage ? (
-                      <div className="mr-3 flex float-left">
-                        <Image
-                          src={item.image || "/favicon.png"}
-                          className="rounded-sm"
-                          width="72px"
-                          height="72px"
-                          alt="profilePicture"
-                          quality={100}
-                          objectFit="cover"
-                        />
-                      </div>
-                    ) : null}
-                    <article>
-                      <h1 className="inline">About Me</h1>
-                      <ReactMarkdown className="text-[0.705rem] mt-1 text-gray-700">
-                        {item.about}
-                      </ReactMarkdown>
-                    </article>
-                  </div>
+                  <h1 className="text-3xl font-semibold">{item.name}</h1>
+                  <h4 className=" text-gray-400 pb-1 text-sm font-medium">
+                    {item.jobTitle}
+                    {item.location ? " - " : null}
+                    {item.location}
+                  </h4>
+
+                  <p className="text-[0.705rem] mt-1 text-gray-700 font-light ">
+                    {item.about}
+                  </p>
                 </section>
               ) : null}
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
               <section className="mt-6 relative">
                 <h3 className={titles}>Experience</h3>
-                <div className="absolute -left-[29px] top-[7px]">
-                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
-                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
-                </div>
 
                 {item.experiences.map((experience, index) => {
                   return (
                     <div className="relative " key={index}>
-                      <div className="absolute ring-4 ring-white -left-[24px]  h-[93%] top-1 rounded-md px-[1px] bg-black " />
                       <div className="flex mt-3 flex-col  justify-between">
                         <h4 className="font-medium  text-md">
                           {experience.title}
@@ -264,9 +236,9 @@ const CV2 = () => {
                           </span>
                         </div>
                       </div>
-                      <ReactMarkdown className="text-[0.705rem] list-disc mb-2 mt-2 text-gray-700">
+                      <p className="text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
                         {experience.summary}
-                      </ReactMarkdown>
+                      </p>
                     </div>
                   );
                 })}
@@ -275,14 +247,10 @@ const CV2 = () => {
               {/* PROJECTS START */}
               <section id="projects" className="relative">
                 <h3 className={titles}>Projects</h3>
-                <div className="absolute -left-[29px] top-[7px]">
-                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
-                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
-                </div>
+
                 {item.projects.map((project, index) => {
                   return (
                     <div key={index} className="mt-2 relative">
-                      <div className="absolute border ring-4 ring-white border-black  -left-[25px]  h-[50px] top-1 rounded-md px-[1px] bg-white " />
                       <h4 className="font-medium text-md">
                         {project.title}
                         {project.link ? (
@@ -309,4 +277,4 @@ const CV2 = () => {
   );
 };
 
-export default CV2;
+export default CV3;

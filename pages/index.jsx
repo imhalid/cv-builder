@@ -7,6 +7,7 @@ import { CvContext } from "../hooks/CvContext";
 import { cvData } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
 import CV2 from "../components/CV2";
+import CV3 from "../components/CV3";
 import CvSelector from "../components/CvSelector";
 
 export default function Home() {
@@ -174,11 +175,13 @@ export default function Home() {
   const templateSwitch = () => {
     switch (template) {
       case "1":
-        return <CV />;
-      case "2":
         return <CV2 />;
-      default:
+      case "2":
+        return <CV3 />;
+      case "3":
         return <CV />;
+      default:
+        return <CV2 />;
     }
   };
 

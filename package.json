@@ -15,6 +15,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-markdown": "^8.0.3",
     "react-to-print": "^2.14.7"
   },
   "devDependencies": {

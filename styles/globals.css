@@ -8,6 +8,25 @@
     margin: 0;
     padding: 0;
   }
+  ul {
+    list-style: disc;
+  }
+
+  .markerBullet {
+    counter-increment: my-bullet;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 10%;
+    background-color: #00aaa0;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  ::marker {
+    content: counter(my-bullet);
+    display: inline-block;
+    margin-right: 103px;
+  }
   html {
     font-family: "Roboto Flex", sans-serif;
     line-height: 1.5;
