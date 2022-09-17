@@ -8,25 +8,31 @@
     margin: 0;
     padding: 0;
   }
-  ul {
-    list-style: disc;
+
+  .myList li::before {
+    counter-increment: list-item;
+    content: counter(list-item);
+    font-size: 0rem;
+    width: 6px;
+    height: 6px;
+    margin-top: 4px;
+    rotate: 45deg;
+    background: Gainsboro;
+    border: solid 1px black;
+    left: -10px;
+    border-radius: 40%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
   }
 
-  .markerBullet {
-    counter-increment: my-bullet;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 10%;
-    background-color: #00aaa0;
-    display: inline-block;
-    margin-right: 1rem;
+  code,
+  kbd,
+  samp,
+  pre {
+    white-space: break-spaces;
   }
 
-  ::marker {
-    content: counter(my-bullet);
-    display: inline-block;
-    margin-right: 103px;
-  }
   html {
     font-family: "Roboto Flex", sans-serif;
     line-height: 1.5;

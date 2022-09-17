@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { HiOutlineMail, HiOutlineLink, HiExternalLink } from "react-icons/hi";
 import {
   AiFillGithub,
@@ -206,9 +207,9 @@ const CV3 = () => {
                     {item.location}
                   </h4>
 
-                  <p className="text-[0.705rem] mt-1 text-gray-700 font-light ">
+                  <ReactMarkdown className="myList break-all text-[0.705rem] mt-1 text-gray-700 font-light ">
                     {item.about}
-                  </p>
+                  </ReactMarkdown>
                 </section>
               ) : null}
               {/* ABOUT TEXT END */}
@@ -236,9 +237,9 @@ const CV3 = () => {
                           </span>
                         </div>
                       </div>
-                      <p className="text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
+                      <ReactMarkdown className="myList text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
                         {experience.summary}
-                      </p>
+                      </ReactMarkdown>
                     </div>
                   );
                 })}

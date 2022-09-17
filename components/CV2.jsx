@@ -264,7 +264,7 @@ const CV2 = () => {
                           </span>
                         </div>
                       </div>
-                      <ReactMarkdown className="text-[0.705rem] list-disc mb-2 mt-2 text-gray-700">
+                      <ReactMarkdown className="myList text-[0.705rem] mb-2 mt-2 text-gray-700">
                         {experience.summary}
                       </ReactMarkdown>
                     </div>

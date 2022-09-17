@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import {
   HiOutlineMail,
   HiOutlineBriefcase,
@@ -20,8 +21,8 @@ const CV = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-rose-400";
-  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
-  const jobSize = "text-[0.775rem] text-gray-500 font-light";
+  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 ";
+  const jobSize = "text-[0.775rem] text-gray-500 ";
 
   const cv = useContext(CvContext);
 
@@ -162,7 +163,9 @@ const CV = () => {
             {item.about ? (
               <section id="about">
                 <div className="bg-gray-100/50 border p-3 rounded-lg mt-6">
-                  <p className={paragraphSize}>{item.about}</p>
+                  <ReactMarkdown className={paragraphSize}>
+                    {item.about}
+                  </ReactMarkdown>
                 </div>
               </section>
             ) : null}
@@ -250,9 +253,9 @@ const CV = () => {
                           <p className={jobSize}>{experience.endDate}</p>
                         </span>
                       </div>
-                      <p className="text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
+                      <ReactMarkdown className="myList relative text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
                         {experience.summary}
-                      </p>
+                      </ReactMarkdown>
                     </div>
                   );
                 })
