@@ -1,12 +1,6 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import {
-  HiOutlineMail,
-  HiOutlineBriefcase,
-  HiOutlineLink,
-  HiOutlineCalendar,
-  HiExternalLink,
-} from "react-icons/hi";
+import { HiOutlineMail, HiOutlineLink, HiExternalLink } from "react-icons/hi";
 import {
   AiFillGithub,
   AiOutlineLinkedin,

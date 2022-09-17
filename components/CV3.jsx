@@ -207,7 +207,7 @@ const CV3 = () => {
                     {item.location}
                   </h4>
 
-                  <ReactMarkdown className="myList break-all text-[0.705rem] mt-1 text-gray-700 font-light ">
+                  <ReactMarkdown className="myList text-[0.705rem] mt-1 text-gray-700 font-light ">
                     {item.about}
                   </ReactMarkdown>
                 </section>

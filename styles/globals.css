@@ -180,7 +180,7 @@
 }
 
 .deleteButton {
-  @apply absolute top-[2px]  ease-in  hover:bg-gray-300/50 transition-all rounded-lg p-1  right-0;
+  @apply absolute top-[2px]  ease-in bg-gray-200/50  hover:bg-gray-300/50 transition-all rounded-lg p-1  right-0;
 }
 
 .deleteButtonSVG {

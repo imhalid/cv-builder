@@ -231,6 +231,7 @@ export default function Home() {
             </div>
           </div>
           <PageButtons />
+
           <div className="flex align-middle  h-full">
             <section className="settings rounded-2xl w-full overflow-auto">
               <Settings />
