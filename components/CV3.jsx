@@ -46,7 +46,7 @@ const CV3 = () => {
           return (
             <div key={index}>
               {item.displayImage ? (
-                <div className="mr-3 flex float-left">
+                <div className="mr-3 flex">
                   <Image
                     src={item.image || "/favicon.png"}
                     className="rounded-full"
@@ -186,7 +186,6 @@ const CV3 = () => {
                     </div>
                   );
                 })}
-
                 <p className={paragraphSize}>{}</p>
               </section>
             </div>
