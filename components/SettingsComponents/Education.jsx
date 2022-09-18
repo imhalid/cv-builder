@@ -70,11 +70,11 @@ const Education = () => {
                       </button>
                     </div>
                     <div className="items-center mt-4 transition-all ">
-                      <label className="text-gray-500">Education Title</label>
+                      <label className="text-gray-500">Field of study</label>
                       <input
                         type="text"
                         className="inputStyle"
-                        placeholder="Project name"
+                        placeholder="Ex: Computer Science"
                         value={education.title}
                         onChange={(e) => {
                           const newEducation = {
@@ -90,13 +90,11 @@ const Education = () => {
                       />
                     </div>
                     <div className=" items-center mt-4">
-                      <label className="text-gray-500">
-                        Education Universty
-                      </label>
+                      <label className="text-gray-500">School</label>
                       <input
                         type="text"
                         className="inputStyle"
-                        placeholder="Project link"
+                        placeholder="School Name"
                         value={education.school}
                         onChange={(e) => {
                           const newEducation = {
@@ -112,11 +110,11 @@ const Education = () => {
                       />
                     </div>
                     <div className=" items-center mt-4">
-                      <label className="text-gray-500">Start Date</label>
+                      <label className="text-gray-500">Start date</label>
                       <input
                         type="text"
                         className="inputStyle"
-                        placeholder="When did you start this job?"
+                        placeholder="When did you start school?"
                         value={education.startDate}
                         onChange={(e) => {
                           const newEducation = {
@@ -132,10 +130,10 @@ const Education = () => {
                       />
                     </div>
                     <div className="items-center mt-4 mb-6">
-                      <label className="text-gray-500">End Date</label>
+                      <label className="text-gray-500">End date</label>
                       <input
                         type="text"
-                        placeholder="Did you quit this job or is it still going?"
+                        placeholder="When did you graduate from school?"
                         className="inputStyle"
                         value={education.endDate}
                         onChange={(e) => {

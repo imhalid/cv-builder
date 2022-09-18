@@ -5,6 +5,7 @@ import CoffeBtn from "../UI Component/CoffeBtn";
 import GithubBtn from "../UI Component/GithubBtn";
 import SetEmpty from "../UI Component/SetEmpty";
 import SetSample from "../UI Component/SetSample";
+import TemplateSwitcher from "../UI Component/TemplateSwitcher";
 
 const SettingMain = () => {
   return (
@@ -47,7 +48,7 @@ const SettingMain = () => {
           <motion.div
             layout
             className="w-44 h-1 mx-auto mt-2 bg-gray-200 rounded-full"
-          ></motion.div>
+          />
           <div className="flex space-x-2 mt-2">
             <ContactBtn />
 
@@ -55,6 +56,15 @@ const SettingMain = () => {
           </div>
           <div className="mt-2">
             <CoffeBtn />
+          </div>
+
+          <div className="mt-5">
+            <h1 className="text-xl font-bold">Templates</h1>
+            <div className="flex flex-row space-x-4 mt-2">
+              <TemplateSwitcher value={1} />
+              <TemplateSwitcher value={2} />
+              <TemplateSwitcher value={3} />
+            </div>
           </div>
         </div>
       </motion.div>

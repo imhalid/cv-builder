@@ -8,7 +8,6 @@ import { cvData } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
 import CV2 from "../components/CV2";
 import CV3 from "../components/CV3";
-import CvSelector from "../components/CvSelector";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
@@ -159,10 +158,12 @@ export default function Home() {
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    copyStyles: true,
+
     pageStyle:
       "body { transform-origin: top left; margin: auto; transform: scale(1); -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
-    removeAfterPrint: false,
+
+    documentTitle: cv.name,
+    onAfterPrint: () => console.log("printed"),
   });
 
   const ifScaleUpOrDown = async () => {
@@ -215,13 +216,12 @@ export default function Home() {
           addEducation,
         }}
       >
-        <main className="flex flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
+        <main className="flex m-auto md:w-auto w-fit flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
           <div className="m-auto md:w-fit md:h-fit relative md:absolute  md:left-[26.5rem] md:right-0 md:bottom-0 md:flex md:top-0 ">
             <div>
-              <CvSelector />
               <section
                 ref={componentRef}
-                className="bg-white md:rounded-md transition-all p-8 w-full md:w-[594px] md:h-[840px] "
+                className="bg-white md:rounded-md transition-all  p-8 h-[840px] w-[594px] md:w-[594px] md:h-[840px] "
                 style={{
                   transform: `scale(${scale})`,
                 }}
@@ -232,11 +232,11 @@ export default function Home() {
           </div>
           <PageButtons />
 
-          <div className="flex align-middle  h-full">
+          <div className="flex align-middle h-full">
             <section className="settings rounded-2xl w-full overflow-auto">
               <Settings />
             </section>
-            <div className="meshGradient h-full w-full opacity-20 fixed md:absolute -z-10  md:h-screen"></div>
+            <div className="meshGradient opacity-0 h-full w-full md:opacity-20 fixed md:absolute -z-10  md:h-screen"></div>
           </div>
         </main>
       </CvContext.Provider>

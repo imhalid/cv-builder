@@ -131,7 +131,7 @@ const Experiences = () => {
                       />
                     </div>
                     <div className=" items-center mt-4">
-                      <label className="text-gray-500">Start Date</label>
+                      <label className="text-gray-500">Start date</label>
                       <input
                         type="text"
                         className="inputStyle"
@@ -151,7 +151,7 @@ const Experiences = () => {
                       />
                     </div>
                     <div className="items-center mt-4 mb-6">
-                      <label className="text-gray-500">End Date</label>
+                      <label className="text-gray-500">End date</label>
                       <input
                         type="text"
                         placeholder="Did you quit this job or is it still going?"

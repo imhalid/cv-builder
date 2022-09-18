@@ -15,8 +15,8 @@ const CV2 = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-xl";
-  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
-  const jobSize = "text-[0.775rem] text-gray-500 font-light";
+  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 ";
+  const jobSize = "text-[0.775rem] text-gray-500 ";
 
   const cv = useContext(CvContext);
 
@@ -45,7 +45,7 @@ const CV2 = () => {
         <div className="border-l h-[840px] -top-8 right-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <div className="space-y-1">
                 <h1 className="text-3xl font-semibold w-10/12">{item.name}</h1>
                 <h4 className=" text-gray-400 text-sm font-medium">
@@ -86,7 +86,7 @@ const CV2 = () => {
 
                 {item.education.map((item, index) => {
                   return (
-                    <div className="" key={index}>
+                    <div key={index}>
                       <h4 className="text-[0.755rem] mt-1 font-medium">
                         {item.title}
                       </h4>
@@ -104,7 +104,7 @@ const CV2 = () => {
               </section>
               {/* SOCIAL */}
               <section id="social" className="mt-auto">
-                <div className="flex   flex-col flex-wrap font-light text-xs  items-left align-middle  ">
+                <div className="flex flex-col flex-wrap text-xs  items-left align-middle">
                   {item.email && item.displayMail ? (
                     <div className={items}>
                       <HiOutlineMail className={itemsSVG} />
@@ -193,15 +193,15 @@ const CV2 = () => {
                 </div>
               </section>
               {/* SOCIAL END */}
-            </>
+            </div>
           );
         })}
       </div>
-      <div className="relative h-full pl-6 ml-2  ">
+      <div className="relative h-full pl-6 ml-2">
         <div className="border-l h-[840px] -top-8 left-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
-            <>
+            <div key={index}>
               {/* ABOUT TEXT START  */}
               {item.about ? (
                 <section id="about">
@@ -295,7 +295,7 @@ const CV2 = () => {
                 })}
               </section>
               {/* PROJECTS END */}
-            </>
+            </div>
           );
         })}
       </div>

@@ -26,6 +26,11 @@ export const cvData = {
       summary: `My personal website, that I created with Next.js, Tailwind Css, Content Layer.`,
     },
     {
+      title: "CV Builder",
+      link: "https://cv-builder.halid.dev/",
+      summary: `With this project you can create real time CV. You can see the changes you have made live. Built with Tailwind and contextAPI.`,
+    },
+    {
       title: "Weather App",
       link: "https://weather-imhalid.vercel.app/",
       summary: `In this work, a small project where I visualize the data from the API.`,

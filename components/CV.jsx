@@ -49,8 +49,8 @@ const CV = () => {
     <div className="w-full h-full" id="cv">
       {[cv.cv].map((item, index) => {
         return (
-          <>
-            <section key={index} id="header">
+          <div key={index}>
+            <section id="header">
               {/* HEADER START */}
               <div className="flex items-center">
                 {item.displayImage ? (
@@ -76,7 +76,7 @@ const CV = () => {
                   </h4>
                 </div>
               </div>
-              <div className="flex flex-wrap font-light text-xs mt-1 items-center align-middle  ">
+              <div className="flex flex-wrap text-xs mt-1 items-center align-middle  ">
                 {item.email && item.displayMail ? (
                   <div className={items}>
                     <HiOutlineMail className={itemsSVG} />
@@ -253,7 +253,7 @@ const CV = () => {
                           <p className={jobSize}>{experience.endDate}</p>
                         </span>
                       </div>
-                      <ReactMarkdown className="myList relative text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
+                      <ReactMarkdown className="myList relative text-[0.705rem] mb-2 mt-2 text-gray-700 ">
                         {experience.summary}
                       </ReactMarkdown>
                     </div>
@@ -262,7 +262,7 @@ const CV = () => {
                 .reverse()}
             </section>
             {/* EXPERIENCE END */}
-          </>
+          </div>
         );
       })}
     </div>

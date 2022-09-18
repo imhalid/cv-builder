@@ -15,8 +15,8 @@ const CV3 = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
   const titles = "text-sm font-medium uppercase text-xl";
-  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 font-light";
-  const jobSize = "text-[0.775rem] text-gray-500 font-light";
+  const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 ";
+  const jobSize = "text-[0.775rem] text-gray-500 ";
 
   const cv = useContext(CvContext);
 
@@ -44,7 +44,7 @@ const CV3 = () => {
       <div className=" w-[30%] pr-4 flex flex-col  mr-1 h-full">
         {[cv.cv].map((item, index) => {
           return (
-            <>
+            <div key={index}>
               {item.displayImage ? (
                 <div className="mr-3 flex float-left">
                   <Image
@@ -60,7 +60,7 @@ const CV3 = () => {
               ) : null}
               {/* SOCIAL */}
               <section id="social" className="mt-5">
-                <div className="flex  flex-col flex-wrap font-light text-xs mt-1 items-left align-middle  ">
+                <div className="flex  flex-col flex-wrap  text-xs mt-1 items-left align-middle  ">
                   {item.email && item.displayMail ? (
                     <div className={items}>
                       <HiOutlineMail className={itemsSVG} />
@@ -189,14 +189,14 @@ const CV3 = () => {
 
                 <p className={paragraphSize}>{}</p>
               </section>
-            </>
+            </div>
           );
         })}
       </div>
       <div className="relative h-full  ">
         {[cv.cv].map((item, index) => {
           return (
-            <>
+            <div key={index}>
               {/* ABOUT TEXT START  */}
               {item.about ? (
                 <section id="about">
@@ -207,7 +207,7 @@ const CV3 = () => {
                     {item.location}
                   </h4>
 
-                  <ReactMarkdown className="myList text-[0.705rem] mt-1 text-gray-700 font-light ">
+                  <ReactMarkdown className="myList text-[0.705rem] mt-1 text-gray-700  ">
                     {item.about}
                   </ReactMarkdown>
                 </section>
@@ -237,7 +237,7 @@ const CV3 = () => {
                           </span>
                         </div>
                       </div>
-                      <ReactMarkdown className="myList text-[0.705rem] mb-2 mt-2 text-gray-700 font-light">
+                      <ReactMarkdown className="myList text-[0.705rem] mb-2 mt-2 text-gray-700 ">
                         {experience.summary}
                       </ReactMarkdown>
                     </div>
@@ -270,7 +270,7 @@ const CV3 = () => {
                 })}
               </section>
               {/* PROJECTS END */}
-            </>
+            </div>
           );
         })}
       </div>
