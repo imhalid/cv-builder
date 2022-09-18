@@ -48,7 +48,7 @@ const CV3 = () => {
               {item.displayImage ? (
                 <div className="mr-3 flex">
                   <Image
-                    src={item.image || "/favicon.png"}
+                    src={item.image || "/Gradient.jpg"}
                     className="rounded-full"
                     width="100px"
                     height="100px"

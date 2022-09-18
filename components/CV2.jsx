@@ -207,10 +207,10 @@ const CV2 = () => {
                 <section id="about">
                   <div className="relative">
                     {item.displayImage ? (
-                      <div className="mr-3 flex float-left">
+                      <div className="mr-2 flex float-left">
                         <Image
-                          src={item.image || "/favicon.png"}
-                          className="rounded-sm"
+                          src={item.image || "/Gradient.jpg"}
+                          className="rounded-md"
                           width="72px"
                           height="72px"
                           alt="profilePicture"

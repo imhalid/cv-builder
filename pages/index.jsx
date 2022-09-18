@@ -236,7 +236,7 @@ export default function Home() {
             <section className="settings rounded-2xl w-full overflow-auto">
               <Settings />
             </section>
-            <div className="meshGradient opacity-0 h-full w-full md:opacity-20 fixed md:absolute -z-10  md:h-screen"></div>
+            <div className="md:meshGradient left-0 bg-slate-300 h-full w-full md:opacity-20 fixed md:absolute -z-10  md:h-screen"></div>
           </div>
         </main>
       </CvContext.Provider>

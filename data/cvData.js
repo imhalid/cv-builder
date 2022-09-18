@@ -58,10 +58,9 @@ export const cvData = {
       endDate: "2020",
       current: true,
       summary: `It is an impartial information sharing platform about Syria. My job task:
-      
-      - Preparation of up-to-date maps according to the situation in the war zone. 
-      - Preparing visual infographics about the obtained data and organizing these data. 
-      - Adding articles and content to the site with Wordpress.`,
+       Preparation of up-to-date maps according to the situation in the war zone. 
+       Preparing visual infographics about the obtained data and organizing these data. 
+       Adding articles and content to the site with Wordpress.`,
     },
     {
       title: "Content Creator, Videographer",

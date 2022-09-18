@@ -37,6 +37,7 @@
     font-family: "Roboto Flex", sans-serif;
     line-height: 1.5;
     color: #212529;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -47,27 +48,18 @@
   }
 
   .meshGradient {
-    background-color: #26004d;
+    background-color: #fd99ff;
     background-image: radial-gradient(
-        at 65% 16%,
-        hsla(207, 92%, 58%, 1) 0,
-        hsla(207, 92%, 58%, 0) 50%
+        at 4% 21%,
+        hsla(283, 73%, 79%, 1) 0px,
+        transparent 50%
       ),
-      radial-gradient(
-        at 8% 20%,
-        hsla(249, 87%, 53%, 1) 0,
-        hsla(249, 87%, 53%, 0) 50%
-      ),
-      radial-gradient(
-        at 25% 30%,
-        hsla(204, 86%, 62%, 1) 0,
-        hsla(204, 86%, 62%, 0) 50%
-      ),
-      radial-gradient(
-        at 57% 71%,
-        hsla(36, 85%, 59%, 1) 0,
-        hsla(36, 85%, 59%, 0) 50%
-      );
+      radial-gradient(at 32% 91%, hsla(297, 97%, 74%, 1) 0px, transparent 50%),
+      radial-gradient(at 11% 20%, hsla(83, 93%, 75%, 1) 0px, transparent 50%),
+      radial-gradient(at 98% 98%, hsla(205, 83%, 69%, 1) 0px, transparent 50%),
+      radial-gradient(at 98% 3%, hsla(211, 64%, 73%, 1) 0px, transparent 50%),
+      radial-gradient(at 78% 11%, hsla(235, 74%, 78%, 1) 0px, transparent 50%),
+      radial-gradient(at 78% 65%, hsla(27, 77%, 71%, 1) 0px, transparent 50%);
   }
 
   input[type="checkbox"] {

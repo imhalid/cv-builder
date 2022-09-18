@@ -56,7 +56,7 @@ const CV = () => {
                 {item.displayImage ? (
                   <div className="mr-4 flex ">
                     <Image
-                      src={item.image || "/favicon.png"}
+                      src={item.image || "/Gradient.jpg"}
                       className="rounded-full"
                       width="72px"
                       height="72px"
