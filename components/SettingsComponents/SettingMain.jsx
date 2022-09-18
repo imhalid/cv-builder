@@ -23,7 +23,6 @@ const SettingMain = () => {
           <div className="bg-sky-50 border-2 border-sky-700/50 px-2 mt-4 mb-2 pt-4 py-2 rounded-xl">
             <h1 className="text-sky-900 text-xl font-bold">Before using</h1>
             <ol className="list-none mt-2 text-sky-900 space-y-2">
-              <li>● Not suitable for mobile version.</li>
               <li>
                 ● The <strong>Reset</strong> button and the
                 <strong> Fill Sample Data </strong>
