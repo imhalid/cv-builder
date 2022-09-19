@@ -8,6 +8,11 @@ import { cvData } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
 import CV2 from "../components/CV2";
 import CV3 from "../components/CV3";
+import {
+  FILE_NOT_SELECTED,
+  FILE_READ_ERROR,
+  UNSUPPORTED_FILE_TYPE,
+} from "../constants/message-result.constants";
 
 export default function Home() {
   const [cv, setCv] = useState(cvData);
@@ -129,12 +134,24 @@ export default function Home() {
 
   //when dag and drop or click and upload image in the settings page, update the cv image, and save it in the local storage
   const uploadImage = (e) => {
+    // For XSS attack from HTML injection
+    const allowedFiles = ["image/png", "image/jpg", "image/jpeg"];
     const file = e.target.files[0];
+    if (!file) {
+      throw new Error(FILE_NOT_SELECTED);
+    }
     const reader = new FileReader();
+    const isAllowed = allowedFiles.some((type) => file.type === type);
+    if (!isAllowed) {
+      throw new Error(UNSUPPORTED_FILE_TYPE);
+    }
+    reader.readAsDataURL(file);
+    reader.onerror = (e) => {
+      throw new Error(FILE_READ_ERROR, e);
+    };
     reader.onload = (e) => {
       updateCv("image", e.target.result);
     };
-    reader.readAsDataURL(file);
   };
 
   const scaleUp = () => {
@@ -166,11 +183,13 @@ export default function Home() {
     onAfterPrint: () => console.log("printed"),
   });
 
-  const ifScaleUpOrDown = async () => {
+  const ifScaleUpOrDown = () => {
     if (scale > 1 || scale < 1) {
-      await setScale(1);
+      setScale(1);
     }
-    return handlePrint();
+    return setTimeout(() => {
+      handlePrint();
+    }, 500);
   };
 
   const templateSwitch = () => {
