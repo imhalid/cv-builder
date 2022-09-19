@@ -9,10 +9,14 @@ export const websiteLinkCreator = (url) => {
   const withWWW = url.startsWith("www.");
   if (!withHTTP && withWWW) return parsedURL.concat("https://", url);
   if (!withHTTP && !withWWW) return parsedURL.concat("https://", url);
-  return url;
+  return "Invalid Link";
 };
 
 export const resolvedWebsiteLink = (link) => {
-  const url = new URL(link);
-  return url.hostname;
+  let url;
+  if (link.match(URL_REGEX)) {
+    url = new URL(link);
+    return url.hostname;
+  }
+  return "Invalid Link";
 };
