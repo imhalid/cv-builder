@@ -13,14 +13,14 @@ import {
   FILE_READ_ERROR,
   UNSUPPORTED_FILE_TYPE,
 } from "../constants/message-result.constants";
-
+import LS from "../utils/browser.utils";
 export default function Home() {
   const [cv, setCv] = useState(cvData);
   const [scale, setScale] = useState(1);
 
   const setCV = () => {
     setCv(cvData);
-    localStorage.setItem("cv", JSON.stringify(cvData));
+    LS.set({ key: "cv", payload: cvData });
   };
 
   const setEmptyCv = () => {
@@ -72,7 +72,7 @@ export default function Home() {
       activeColor: "#5B21B6",
     };
     setCv(emptyCv);
-    localStorage.setItem("cv", JSON.stringify(emptyCv));
+    LS.set({ key: "cv", payload: emptyCv });
   };
 
   const [template, setTemplate] = useState(1);
@@ -84,7 +84,7 @@ export default function Home() {
   const updateCv = (key, value) => {
     const newCv = { ...cv, [key]: value };
     setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
+    LS.set({ key: "cv", payload: newCv });
   };
 
   //addTag to array, if same tag is already in array, remove it
@@ -96,14 +96,14 @@ export default function Home() {
       });
       newCv[key] = unique;
       setCv(newCv);
-      localStorage.setItem("cv", JSON.stringify(newCv));
+      LS.set({ key: "cv", payload: newCv });
       e.target.value = "";
     }
 
     if (e.key === "Backspace" && e.target.value === "") {
       const newCv = { ...cv, [key]: cv[key].slice(0, -1) };
       setCv(newCv);
-      localStorage.setItem("cv", JSON.stringify(newCv));
+      LS.set({ key: "cv", payload: newCv });
     }
   };
 
@@ -111,25 +111,25 @@ export default function Home() {
   const removeTag = (key, value) => {
     const newCv = { ...cv, [key]: cv[key].filter((tag) => tag !== value) };
     setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
+    LS.set({ key: "cv", payload: newCv });
   };
 
   const addExperience = (experience) => {
     const newCv = { ...cv, experiences: [...cv.experiences, experience] };
     setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
+    LS.set({ key: "cv", payload: newCv });
   };
 
   const addProject = (project) => {
     const newCv = { ...cv, projects: [...cv.projects, project] };
     setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
+    LS.set({ key: "cv", payload: newCv });
   };
 
   const addEducation = (education) => {
     const newCv = { ...cv, education: [...cv.education, education] };
     setCv(newCv);
-    localStorage.setItem("cv", JSON.stringify(newCv));
+    LS.set({ key: "cv", payload: newCv });
   };
 
   //when dag and drop or click and upload image in the settings page, update the cv image, and save it in the local storage
@@ -167,7 +167,7 @@ export default function Home() {
 
   useEffect(() => {
     //create cvLocal in localStorage if it doesn't exist
-    const cvLocal = JSON.parse(localStorage.getItem("cv"));
+    const cvLocal = LS.get("cv");
     if (cvLocal) {
       setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
     }
