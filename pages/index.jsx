@@ -187,7 +187,9 @@ export default function Home() {
     if (scale > 1 || scale < 1) {
       setScale(1);
     }
-    return handlePrint();
+    return setTimeout(() => {
+      handlePrint();
+    }, 500);
   };
 
   const templateSwitch = () => {
