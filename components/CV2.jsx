@@ -22,7 +22,7 @@ const CV2 = () => {
 
   return (
     <div className="w-full h-full flex" id="cv">
-      <div className="relative w-[30%] pr-5 flex flex-col  mr-2 h-full">
+      <div className="relative  pr-5 flex flex-col mr-2 h-full w-[30%]">
         <div className="border-l h-[840px] -top-8 right-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
@@ -178,7 +178,7 @@ const CV2 = () => {
           );
         })}
       </div>
-      <div className="relative h-full pl-6 ml-2">
+      <div className="relative flex-1 h-full pl-6 ml-2">
         <div className="border-l h-[840px] -top-8 left-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
