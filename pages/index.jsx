@@ -147,7 +147,7 @@ export default function Home() {
     }
     reader.readAsDataURL(file);
     reader.onerror = (e) => {
-      throw new Error(FILE_READ_ERROR);
+      throw new Error(FILE_READ_ERROR, e);
     };
     reader.onload = (e) => {
       updateCv("image", e.target.result);
