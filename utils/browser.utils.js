@@ -9,7 +9,7 @@ class LS {
     if (isOnBrowser()) {
       this.ls = window.localStorage;
     } else {
-      // throw new Error("Window is not defined");
+      throw new Error("Window is not defined");
     }
   }
   get(key) {
