@@ -1,6 +1,6 @@
 This project helps you to prepare a good looking CV.
 
-![Cover](https://github.com/imhalid/cv-builder/blob/master/public/cover2.png?raw=true)
+![Cover](https://user-images.githubusercontent.com/40598819/191097929-3f8b35ba-00e5-4627-8fe1-2e89a6d4055d.png)
 
 - [x] Create main design
 - [x] Changing information with inputs
@@ -20,5 +20,6 @@ yarn install
 ## Usage
 
 ```bash
+
 yarn run dev
 ```
