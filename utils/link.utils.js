@@ -9,6 +9,7 @@ export const websiteLinkCreator = (url) => {
   const withWWW = url.startsWith("www.");
   if (!withHTTP && withWWW) return parsedURL.concat("https://", url);
   if (!withHTTP && !withWWW) return parsedURL.concat("https://", url);
+  return url;
 };
 
 export const resolvedWebsiteLink = (link) => {
