@@ -168,7 +168,7 @@ export default function Home() {
 
   const ifScaleUpOrDown = async () => {
     if (scale > 1 || scale < 1) {
-      await setScale(1);
+      setScale(1);
     }
     return handlePrint();
   };
