@@ -166,7 +166,7 @@ export default function Home() {
     onAfterPrint: () => console.log("printed"),
   });
 
-  const ifScaleUpOrDown = async () => {
+  const ifScaleUpOrDown = () => {
     if (scale > 1 || scale < 1) {
       setScale(1);
     }
