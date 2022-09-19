@@ -10,7 +10,7 @@ import {
 import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
-
+import { websiteLinkCreator } from "../utils/link.utils";
 const CV3 = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
@@ -19,15 +19,6 @@ const CV3 = () => {
   const jobSize = "text-[0.775rem] text-gray-500 ";
 
   const cv = useContext(CvContext);
-
-  const websiteWithoutHttps = (website) => {
-    if (website.includes("https://")) {
-      return website;
-    } else {
-      return website.replace("", "https://");
-    }
-  };
-
   const deleteHttpsAndwww = (website) => {
     if (website.includes("https://")) {
       return website
@@ -71,7 +62,7 @@ const CV3 = () => {
                     <div className={items}>
                       <HiOutlineLink className={itemsSVG} />
                       <a
-                        href={websiteWithoutHttps(item.website)}
+                        href={websiteLinkCreator(item.website)}
                         target="_blank"
                         rel="noreferrer"
                       >
