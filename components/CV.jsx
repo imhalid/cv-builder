@@ -26,17 +26,6 @@ const CV = () => {
 
   const cv = useContext(CvContext);
 
-  const deleteHttpsAndwww = (website) => {
-    if (website.includes("https://")) {
-      return website
-        .replace("https://www.", "")
-        .replace("www.", "")
-        .replace("https://", "");
-    } else {
-      return website;
-    }
-  };
-
   return (
     <div className="w-full h-full" id="cv">
       {[cv.cv].map((item, index) => {
@@ -83,7 +72,7 @@ const CV = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {deleteHttpsAndwww(item.website)}
+                      {resolvedWebsiteLink(websiteLinkCreator(item.website))}
                     </a>
                   </div>
                 ) : null}

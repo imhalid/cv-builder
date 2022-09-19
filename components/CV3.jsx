@@ -19,16 +19,6 @@ const CV3 = () => {
   const jobSize = "text-[0.775rem] text-gray-500 ";
 
   const cv = useContext(CvContext);
-  const deleteHttpsAndwww = (website) => {
-    if (website.includes("https://")) {
-      return website
-        .replace("https://www.", "")
-        .replace("www.", "")
-        .replace("https://", "");
-    } else {
-      return website;
-    }
-  };
 
   return (
     <div className="w-full h-full flex" id="cv">
@@ -66,7 +56,7 @@ const CV3 = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {deleteHttpsAndwww(item.website)}
+                        {resolvedWebsiteLink(websiteLinkCreator(item.website))}
                       </a>
                     </div>
                   ) : null}
