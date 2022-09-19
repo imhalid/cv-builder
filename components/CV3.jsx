@@ -10,7 +10,7 @@ import {
 import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
-import { websiteLinkCreator } from "../utils/link.utils";
+import { websiteLinkCreator, resolvedWebsiteLink } from "../utils/link.utils";
 const CV3 = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
