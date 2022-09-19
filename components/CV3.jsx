@@ -173,25 +173,24 @@ const CV3 = () => {
           );
         })}
       </div>
-      <div className="relative h-full  ">
+      <div className="relative w-[70%] h-full  ">
         {[cv.cv].map((item, index) => {
           return (
             <div key={index}>
               {/* ABOUT TEXT START  */}
-              {item.about ? (
-                <section id="about">
-                  <h1 className="text-3xl font-semibold">{item.name}</h1>
-                  <h4 className=" text-gray-400 pb-1 text-sm font-medium">
-                    {item.jobTitle}
-                    {item.location ? " - " : null}
-                    {item.location}
-                  </h4>
+              <section id="about">
+                <h1 className="text-3xl font-semibold">{item.name}</h1>
+                <h4 className=" text-gray-400 pb-1 text-sm font-medium">
+                  {item.jobTitle}
+                  {item.location ? " - " : null}
+                  {item.location}
+                </h4>
 
-                  <ReactMarkdown className="myList text-[0.705rem] mt-1 text-gray-700  ">
-                    {item.about}
-                  </ReactMarkdown>
-                </section>
-              ) : null}
+                <ReactMarkdown className="myList text-[0.705rem] mt-1 text-gray-700  ">
+                  {item.about}
+                </ReactMarkdown>
+              </section>
+
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
               <section className="mt-6 relative">
@@ -200,7 +199,7 @@ const CV3 = () => {
                 {item.experiences.map((experience, index) => {
                   return (
                     <div className="relative " key={index}>
-                      <div className="flex mt-3 flex-col  justify-between">
+                      <div className="flex mt-3 flex-col justify-between">
                         <h4 className="font-medium  text-md">
                           {experience.title}
                         </h4>

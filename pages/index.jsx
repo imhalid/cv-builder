@@ -189,7 +189,7 @@ export default function Home() {
     }
     return setTimeout(() => {
       handlePrint();
-    }, 500);
+    }, 100);
   };
 
   const templateSwitch = () => {
