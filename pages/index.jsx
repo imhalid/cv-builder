@@ -89,7 +89,7 @@ export default function Home() {
 
   //addTag to array, if same tag is already in array, remove it
   const addTag = (e, key, value) => {
-    if (e.key === "Enter" && e.target.value !== "") {
+    if (e.key === "Enter" && e.target.value.trim() !== "") {
       const newCv = { ...cv, [key]: [...cv[key], value] };
       const unique = newCv[key].filter((item, index) => {
         return newCv[key].indexOf(item) === index;
