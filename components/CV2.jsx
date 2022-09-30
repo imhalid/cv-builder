@@ -36,55 +36,8 @@ const CV2 = () => {
                   {item.location}
                 </h4>
               </div>
-
-              <section id="skills_and_projects" className="flex mt-3">
-                {/* SKILLS START */}
-                <section id="skills" className="">
-                  <div className="mt-3">
-                    <h4 className="text-sm ">{item.skillTitle1}</h4>
-                    <p className={paragraphSize}>
-                      {item.toolsAndTechSkills.join(", ")}
-                    </p>
-                  </div>
-
-                  <div className="mt-3">
-                    <h4 className="text-sm">{item.skillTitle2}</h4>
-                    <p className={paragraphSize}>
-                      {item.industryKnowledge.join(", ")}
-                    </p>
-                  </div>
-
-                  <div className="mt-3">
-                    <h4 className="text-sm ">{item.skillTitle3}</h4>
-                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
-                  </div>
-                </section>
-                {/* SKILLS END */}
-              </section>
-              {/* EDUCATION */}
-              <section id="education" className="mt-5">
-                <h4 className="text-sm mb-1">Education</h4>
-
-                {item.education.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <h4 className="text-[0.755rem] mt-1 font-medium">
-                        {item.title}
-                      </h4>
-                      <p className="text-[0.705rem] mt-1 text-gray-600">
-                        {item.school}
-                      </p>
-                      <p className="text-[0.705rem] text-gray-500">
-                        {item.startDate} - {item.endDate}
-                      </p>
-                    </div>
-                  );
-                })}
-
-                <p className={paragraphSize}>{}</p>
-              </section>
               {/* SOCIAL */}
-              <section id="social" className="mt-auto">
+              <section id="social" className="mt-5">
                 <div className="flex flex-col flex-wrap text-xs  items-left align-middle">
                   {item.email && item.displayMail ? (
                     <div className={items}>
@@ -174,6 +127,52 @@ const CV2 = () => {
                 </div>
               </section>
               {/* SOCIAL END */}
+              {/* SKILLS START */}
+              <section id="skills_and_projects" className="flex mt-3">
+                <section id="skills" className="">
+                  <div className="mt-3">
+                    <h4 className="text-sm ">{item.skillTitle1}</h4>
+                    <p className={paragraphSize}>
+                      {item.toolsAndTechSkills.join(", ")}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <h4 className="text-sm">{item.skillTitle2}</h4>
+                    <p className={paragraphSize}>
+                      {item.industryKnowledge.join(", ")}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <h4 className="text-sm ">{item.skillTitle3}</h4>
+                    <p className={paragraphSize}>{item.languages.join(", ")}</p>
+                  </div>
+                </section>
+              </section>
+              {/* SKILLS END */}
+              {/* EDUCATION */}
+              <section id="education" className="mt-5">
+                <h4 className="text-sm mb-1">Education</h4>
+
+                {item.education.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <h4 className="text-[0.755rem] mt-1 font-medium">
+                        {item.title}
+                      </h4>
+                      <p className="text-[0.705rem] mt-1 text-gray-600">
+                        {item.school}
+                      </p>
+                      <p className="text-[0.705rem] text-gray-500">
+                        {item.startDate} - {item.endDate}
+                      </p>
+                    </div>
+                  );
+                })}
+
+                <p className={paragraphSize}>{}</p>
+              </section>
             </div>
           );
         })}
@@ -259,16 +258,12 @@ const CV2 = () => {
                     <div key={index} className="mt-2 relative">
                       <div className="absolute border ring-4 ring-white border-black  -left-[25px]  h-[50px] top-1 rounded-md px-[1px] bg-white " />
                       <h4 className="font-medium text-md">
-                        {project.title}
-                        {project.link ? (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
+                        <a href={project.link} target="_blank" rel="noreferrer">
+                          {project.title}
+                          {project.link ? (
                             <HiExternalLink className="ml-1 inline" />
-                          </a>
-                        ) : null}
+                          ) : null}
+                        </a>
                       </h4>
                       <p className={paragraphSize}>{project.summary}</p>
                     </div>

@@ -184,16 +184,12 @@ const CV = () => {
                   return (
                     <div key={index} className="mt-2">
                       <h4 className="font-medium text-md">
-                        {project.title}
-                        {project.link ? (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
+                        <a href={project.link} target="_blank" rel="noreferrer">
+                          {project.title}
+                          {project.link ? (
                             <HiExternalLink className="ml-1 inline" />
-                          </a>
-                        ) : null}
+                          ) : null}
+                        </a>
                       </h4>
                       <p className={paragraphSize}>{project.summary}</p>
                     </div>
