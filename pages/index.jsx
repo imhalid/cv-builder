@@ -237,7 +237,7 @@ export default function Home() {
       >
         <main className="flex m-auto md:w-auto w-fit flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
           <div className="m-auto md:w-fit md:h-fit relative md:absolute  md:left-[26.5rem] md:right-0 md:bottom-0 md:flex md:top-0 ">
-            <div>
+            <div className="overflow-scroll max-h-screen py-7">
               <section
                 ref={componentRef}
                 className="bg-white md:rounded-md transition-all  p-8 h-[840px] w-[594px] md:w-[594px] md:h-[840px] "
