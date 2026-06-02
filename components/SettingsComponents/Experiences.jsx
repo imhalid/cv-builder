@@ -4,10 +4,29 @@ import { RiCloseFill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiChevronRight } from "react-icons/hi";
 import AddButton from "../UI Component/AddButton";
+import ItemActions from "../UI Component/ItemActions";
 
 const Experiences = () => {
   const { cv, updateCv, addExperience } = useContext(CvContext);
   const [isOpen, setIsOpen] = useState(false);
+  const moveExperience = (from, to) => {
+    const experiences = [...cv.experiences];
+    const [experience] = experiences.splice(from, 1);
+    experiences.splice(to, 0, experience);
+    updateCv("experiences", experiences);
+  };
+  const duplicateExperience = (index) => {
+    const experience = cv.experiences[index];
+    updateCv("experiences", [
+      ...cv.experiences.slice(0, index + 1),
+      {
+        ...experience,
+        title: experience.title ? `${experience.title} Copy` : "",
+      },
+      ...cv.experiences.slice(index + 1),
+    ]);
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -55,9 +74,16 @@ const Experiences = () => {
                   className="flex first:mt-3  mb-4  flex-col"
                 >
                   <div className="bg-gradient-to-tr from-transparent to-gray-100 rounded-xl border px-2 py-1">
-                    <div className="relative">
+                    <div className="flex items-start justify-between gap-3 pt-2">
+                      <ItemActions
+                        index={index}
+                        total={cv.experiences.length}
+                        onMoveUp={() => moveExperience(index, index - 1)}
+                        onMoveDown={() => moveExperience(index, index + 1)}
+                        onDuplicate={() => duplicateExperience(index)}
+                      />
                       <button
-                        className="deleteButton"
+                        className="rounded-md bg-gray-200/50 p-1 transition-all hover:bg-gray-300/50"
                         onClick={() => {
                           updateCv("experiences", [
                             ...cv.experiences.slice(0, index),

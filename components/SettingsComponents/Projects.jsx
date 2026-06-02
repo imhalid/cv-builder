@@ -4,10 +4,26 @@ import { RiCloseFill } from "react-icons/ri";
 import { HiChevronRight } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import AddButton from "../UI Component/AddButton";
+import ItemActions from "../UI Component/ItemActions";
 
 const Projects = () => {
   const { cv, updateCv, addProject } = useContext(CvContext);
   const [isOpen, setIsOpen] = useState(false);
+  const moveProject = (from, to) => {
+    const projects = [...cv.projects];
+    const [project] = projects.splice(from, 1);
+    projects.splice(to, 0, project);
+    updateCv("projects", projects);
+  };
+  const duplicateProject = (index) => {
+    const project = cv.projects[index];
+    updateCv("projects", [
+      ...cv.projects.slice(0, index + 1),
+      { ...project, title: project.title ? `${project.title} Copy` : "" },
+      ...cv.projects.slice(index + 1),
+    ]);
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -55,9 +71,16 @@ const Projects = () => {
                   className="flex first:mt-3  mb-4 flex-col"
                 >
                   <div className="bg-gradient-to-tr from-transparent to-gray-100 rounded-xl border px-2 py-1">
-                    <div className="relative">
+                    <div className="flex items-start justify-between gap-3 pt-2">
+                      <ItemActions
+                        index={index}
+                        total={cv.projects.length}
+                        onMoveUp={() => moveProject(index, index - 1)}
+                        onMoveDown={() => moveProject(index, index + 1)}
+                        onDuplicate={() => duplicateProject(index)}
+                      />
                       <button
-                        className="deleteButton"
+                        className="rounded-md bg-gray-200/50 p-1 transition-all hover:bg-gray-300/50"
                         onClick={() => {
                           updateCv("projects", [
                             ...cv.projects.slice(0, index),

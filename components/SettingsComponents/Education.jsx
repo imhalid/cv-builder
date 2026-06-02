@@ -4,10 +4,28 @@ import { RiCloseFill } from "react-icons/ri";
 import { HiChevronRight } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import AddButton from "../UI Component/AddButton";
+import ItemActions from "../UI Component/ItemActions";
 
 const Education = () => {
   const { cv, updateCv, addEducation } = useContext(CvContext);
   const [isOpen, setIsOpen] = useState(false);
+  const moveEducation = (from, to) => {
+    const education = [...cv.education];
+    const [item] = education.splice(from, 1);
+    education.splice(to, 0, item);
+    updateCv("education", education);
+  };
+  const duplicateEducation = (index) => {
+    const education = cv.education[index];
+    updateCv("education", [
+      ...cv.education.slice(0, index + 1),
+      {
+        ...education,
+        title: education.title ? `${education.title} Copy` : "",
+      },
+      ...cv.education.slice(index + 1),
+    ]);
+  };
 
   return (
     <AnimatePresence>
@@ -56,9 +74,16 @@ const Education = () => {
                   className="flex first:mt-3  mb-4 flex-col"
                 >
                   <div className="bg-gradient-to-tr from-transparent to-gray-100 rounded-xl border px-2 py-1">
-                    <div className="relative ">
+                    <div className="flex items-start justify-between gap-3 pt-2">
+                      <ItemActions
+                        index={index}
+                        total={cv.education.length}
+                        onMoveUp={() => moveEducation(index, index - 1)}
+                        onMoveDown={() => moveEducation(index, index + 1)}
+                        onDuplicate={() => duplicateEducation(index)}
+                      />
                       <button
-                        className="deleteButton"
+                        className="rounded-md bg-gray-200/50 p-1 transition-all hover:bg-gray-300/50"
                         onClick={() => {
                           updateCv("education", [
                             ...cv.education.slice(0, index),

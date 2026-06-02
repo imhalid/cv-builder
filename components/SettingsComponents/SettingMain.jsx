@@ -17,23 +17,37 @@ const SettingMain = () => {
   const fileInputRef = useRef(null);
   const themeColors = ["#5B21B6", "#E11D48", "#0F766E", "#2563EB", "#111827"];
   const requiredFields = [
-    cv.name,
-    cv.jobTitle,
-    cv.location,
-    cv.about,
-    cv.email,
-    cv.projects?.some((project) => project.title && project.summary),
-    cv.experiences?.some(
-      (experience) =>
-        experience.title && experience.company && experience.summary
-    ),
-    cv.education?.some((education) => education.title && education.school),
-    cv.toolsAndTechSkills?.length,
-    cv.industryKnowledge?.length,
+    { label: "Name", done: cv.name },
+    { label: "Job title", done: cv.jobTitle },
+    { label: "Location", done: cv.location },
+    { label: "About", done: cv.about },
+    { label: "Email", done: cv.email },
+    {
+      label: "Project",
+      done: cv.projects?.some((project) => project.title && project.summary),
+    },
+    {
+      label: "Experience",
+      done: cv.experiences?.some(
+        (experience) =>
+          experience.title && experience.company && experience.summary
+      ),
+    },
+    {
+      label: "Education",
+      done: cv.education?.some((education) => education.title && education.school),
+    },
+    { label: "Tools", done: cv.toolsAndTechSkills?.length },
+    { label: "Knowledge", done: cv.industryKnowledge?.length },
   ];
   const completionScore = Math.round(
-    (requiredFields.filter(Boolean).length / requiredFields.length) * 100
+    (requiredFields.filter((field) => field.done).length /
+      requiredFields.length) *
+      100
   );
+  const missingFields = requiredFields
+    .filter((field) => !field.done)
+    .map((field) => field.label);
 
   return (
     <AnimatePresence>
@@ -59,6 +73,22 @@ const SettingMain = () => {
               />
             </div>
             <div className="mt-2 text-xs text-gray-500">{saveStatus}</div>
+            {missingFields.length ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {missingFields.slice(0, 5).map((field) => (
+                  <span
+                    key={field}
+                    className="rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700"
+                  >
+                    {field}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-3 rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700">
+                Ready
+              </div>
+            )}
           </div>
           <div className="bg-sky-50 border-2 border-sky-700/50 px-2 mt-4 mb-2 pt-4 py-2 rounded-xl">
             <h1 className="text-sky-900 text-xl font-bold">Before using</h1>
