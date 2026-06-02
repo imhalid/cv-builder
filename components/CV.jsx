@@ -141,7 +141,7 @@ const CV = () => {
               {/* HEADER END */}
             </section>
             {/* ABOUT TEXT START  */}
-            {item.about ? (
+            {item.about && item.displayAboutSection !== false ? (
               <section id="about">
                 <div
                   className="bg-gray-100/50 border p-3 rounded-lg mt-6"
@@ -155,8 +155,11 @@ const CV = () => {
             ) : null}
             {/* ABOUT TEXT END */}
             {/* SKILLS AND PROJECTS START */}
+            {(item.displaySkillsSection !== false ||
+              item.displayProjectsSection !== false) && (
             <section id="skills_and_projects" className="flex mt-6">
               {/* SKILLS START */}
+              {item.displaySkillsSection !== false ? (
               <section id="skills" className="w-1/2">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Skills
@@ -181,8 +184,10 @@ const CV = () => {
                   <p className={paragraphSize}>{item.languages.join(", ")}</p>
                 </div>
               </section>
+              ) : null}
               {/* SKILLS END */}
               {/* PROJECTS START */}
+              {item.displayProjectsSection !== false ? (
               <section id="projects" className="w-1/2">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Projects
@@ -203,10 +208,13 @@ const CV = () => {
                   );
                 })}
               </section>
+              ) : null}
               {/* PROJECTS END */}
             </section>
+            )}
             {/* SKILLS AND PROJECTS END */}
             {/* EXPERIENCE START */}
+            {item.displayExperienceSection !== false ? (
             <section className="mt-6">
               <h3 className={titles} style={{ color: item.activeColor }}>
                 Experience
@@ -247,6 +255,7 @@ const CV = () => {
                 })
                 .reverse()}
             </section>
+            ) : null}
             {/* EXPERIENCE END */}
           </div>
         );

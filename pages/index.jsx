@@ -17,10 +17,31 @@ import LS from "../utils/browser.utils";
 export default function Home() {
   const [cv, setCv] = useState(cvData);
   const [scale, setScale] = useState(1);
+  const [saveStatus, setSaveStatus] = useState("Saved");
+  const saveStatusTimeout = useRef();
+
+  const persistCv = (nextCv) => {
+    setCv(nextCv);
+    setSaveStatus("Saving...");
+    LS.set({ key: "cv", payload: nextCv });
+    clearTimeout(saveStatusTimeout.current);
+    saveStatusTimeout.current = setTimeout(() => {
+      setSaveStatus("Saved");
+    }, 500);
+  };
+
+  const createFileName = (suffix = "cv") => {
+    const date = new Date().toISOString().slice(0, 10);
+    const name = (cv.name || "cv")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    return `${name || "cv"}-${suffix}-${date}`;
+  };
 
   const setCV = () => {
-    setCv(cvData);
-    LS.set({ key: "cv", payload: cvData });
+    persistCv(cvData);
   };
 
   const setEmptyCv = () => {
@@ -75,25 +96,24 @@ export default function Home() {
       displayLinkedIn: false,
       displayInstagram: false,
       displayFacebook: false,
+      displayAboutSection: true,
+      displaySkillsSection: true,
+      displayEducationSection: true,
+      displayProjectsSection: true,
+      displayExperienceSection: true,
       activeColor: "#5B21B6",
     };
-    setCv(emptyCv);
-    LS.set({ key: "cv", payload: emptyCv });
+    persistCv(emptyCv);
   };
 
   const exportCvData = () => {
-    const fileName = `${cv.name || "cv"}-data.json`
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
     const blob = new Blob([JSON.stringify(cv, null, 2)], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${fileName || "cv-data"}.json`;
+    link.download = `${createFileName("data")}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -107,8 +127,7 @@ export default function Home() {
       try {
         const importedCv = JSON.parse(event.target.result);
         const nextCv = { ...cvData, ...importedCv };
-        setCv(nextCv);
-        LS.set({ key: "cv", payload: nextCv });
+        persistCv(nextCv);
       } catch {
         alert("CV data file could not be imported.");
       } finally {
@@ -126,8 +145,7 @@ export default function Home() {
 
   const updateCv = (key, value) => {
     const newCv = { ...cv, [key]: value };
-    setCv(newCv);
-    LS.set({ key: "cv", payload: newCv });
+    persistCv(newCv);
   };
 
   //addTag to array, if same tag is already in array, remove it
@@ -138,41 +156,35 @@ export default function Home() {
         return newCv[key].indexOf(item) === index;
       });
       newCv[key] = unique;
-      setCv(newCv);
-      LS.set({ key: "cv", payload: newCv });
+      persistCv(newCv);
       e.target.value = "";
     }
 
     if (e.key === "Backspace" && e.target.value === "") {
       const newCv = { ...cv, [key]: cv[key].slice(0, -1) };
-      setCv(newCv);
-      LS.set({ key: "cv", payload: newCv });
+      persistCv(newCv);
     }
   };
 
   //when click on delete button, remove the tag from the array
   const removeTag = (key, value) => {
     const newCv = { ...cv, [key]: cv[key].filter((tag) => tag !== value) };
-    setCv(newCv);
-    LS.set({ key: "cv", payload: newCv });
+    persistCv(newCv);
   };
 
   const addExperience = (experience) => {
     const newCv = { ...cv, experiences: [...cv.experiences, experience] };
-    setCv(newCv);
-    LS.set({ key: "cv", payload: newCv });
+    persistCv(newCv);
   };
 
   const addProject = (project) => {
     const newCv = { ...cv, projects: [...cv.projects, project] };
-    setCv(newCv);
-    LS.set({ key: "cv", payload: newCv });
+    persistCv(newCv);
   };
 
   const addEducation = (education) => {
     const newCv = { ...cv, education: [...cv.education, education] };
-    setCv(newCv);
-    LS.set({ key: "cv", payload: newCv });
+    persistCv(newCv);
   };
 
   //when dag and drop or click and upload image in the settings page, update the cv image, and save it in the local storage
@@ -214,6 +226,8 @@ export default function Home() {
     if (cvLocal) {
       setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
     }
+
+    return () => clearTimeout(saveStatusTimeout.current);
   }, []);
 
   const handlePrint = useReactToPrint({
@@ -222,7 +236,7 @@ export default function Home() {
     pageStyle:
       "body { transform-origin: top left; margin: auto; transform: scale(1); -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
 
-    documentTitle: cv.name,
+    documentTitle: createFileName("resume"),
     onAfterPrint: () => console.log("printed"),
   });
 
@@ -263,6 +277,7 @@ export default function Home() {
       <CvContext.Provider
         value={{
           cv,
+          saveStatus,
           uploadImage,
           updateCv,
           addProject,

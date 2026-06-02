@@ -124,6 +124,7 @@ const CV3 = () => {
                 </div>
               </section>
               {/* SOCIAL END */}
+              {item.displaySkillsSection !== false ? (
               <section id="skills_and_projects" className="flex mt-3">
                 {/* SKILLS START */}
                 <section id="skills" className="">
@@ -148,7 +149,9 @@ const CV3 = () => {
                 </section>
                 {/* SKILLS END */}
               </section>
+              ) : null}
               {/* EDUCATION */}
+              {item.displayEducationSection !== false ? (
               <section id="education" className="mt-5">
                 <h4 className="text-sm mb-1">Education</h4>
 
@@ -169,6 +172,7 @@ const CV3 = () => {
                 })}
                 <p className={paragraphSize}>{}</p>
               </section>
+              ) : null}
             </div>
           );
         })}
@@ -178,6 +182,7 @@ const CV3 = () => {
           return (
             <div key={index}>
               {/* ABOUT TEXT START  */}
+              {item.displayAboutSection !== false ? (
               <section id="about">
                 <h1
                   className="text-3xl font-semibold"
@@ -195,9 +200,11 @@ const CV3 = () => {
                   {item.about}
                 </ReactMarkdown>
               </section>
+              ) : null}
 
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
+              {item.displayExperienceSection !== false ? (
               <section className="mt-6 relative">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Experience
@@ -230,8 +237,10 @@ const CV3 = () => {
                   );
                 })}
               </section>
+              ) : null}
               {/* EXPERIENCE END */}
               {/* PROJECTS START */}
+              {item.displayProjectsSection !== false ? (
               <section id="projects" className="relative">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Projects
@@ -253,6 +262,7 @@ const CV3 = () => {
                   );
                 })}
               </section>
+              ) : null}
               {/* PROJECTS END */}
             </div>
           );

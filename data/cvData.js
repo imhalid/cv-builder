@@ -94,6 +94,11 @@ export const cvData = {
   displayFacebook: false,
   displayGithub: true,
   displayTwitter: true,
+  displayAboutSection: true,
+  displaySkillsSection: true,
+  displayEducationSection: true,
+  displayProjectsSection: true,
+  displayExperienceSection: true,
   activeColor: "#5B21B6",
 };
 

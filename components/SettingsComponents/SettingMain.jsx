@@ -9,10 +9,11 @@ import GithubBtn from "../UI Component/GithubBtn";
 import SetEmpty from "../UI Component/SetEmpty";
 import SetSample from "../UI Component/SetSample";
 import TemplateSwitcher from "../UI Component/TemplateSwitcher";
+import CheckBox from "../UI Component/Checkbox";
 
 const SettingMain = () => {
-  const { cv, updateCv } = useContext(CvContext);
-  const { exportCvData, importCvData } = useContext(CvContext);
+  const { cv, updateCv, saveStatus, exportCvData, importCvData } =
+    useContext(CvContext);
   const fileInputRef = useRef(null);
   const themeColors = ["#5B21B6", "#E11D48", "#0F766E", "#2563EB", "#111827"];
   const requiredFields = [
@@ -57,6 +58,7 @@ const SettingMain = () => {
                 }}
               />
             </div>
+            <div className="mt-2 text-xs text-gray-500">{saveStatus}</div>
           </div>
           <div className="bg-sky-50 border-2 border-sky-700/50 px-2 mt-4 mb-2 pt-4 py-2 rounded-xl">
             <h1 className="text-sky-900 text-xl font-bold">Before using</h1>
@@ -122,6 +124,36 @@ const SettingMain = () => {
               <TemplateSwitcher value={1} />
               <TemplateSwitcher value={2} />
               <TemplateSwitcher value={3} />
+            </div>
+          </div>
+          <div className="mt-5">
+            <h1 className="text-xl font-bold">Sections</h1>
+            <div className="mt-1 flex flex-wrap">
+              <CheckBox
+                title="About"
+                value={cv.displayAboutSection !== false}
+                keyChange="displayAboutSection"
+              />
+              <CheckBox
+                title="Skills"
+                value={cv.displaySkillsSection !== false}
+                keyChange="displaySkillsSection"
+              />
+              <CheckBox
+                title="Education"
+                value={cv.displayEducationSection !== false}
+                keyChange="displayEducationSection"
+              />
+              <CheckBox
+                title="Projects"
+                value={cv.displayProjectsSection !== false}
+                keyChange="displayProjectsSection"
+              />
+              <CheckBox
+                title="Experience"
+                value={cv.displayExperienceSection !== false}
+                keyChange="displayExperienceSection"
+              />
             </div>
           </div>
           <div className="mt-5">

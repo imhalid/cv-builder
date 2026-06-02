@@ -131,6 +131,7 @@ const CV2 = () => {
               </section>
               {/* SOCIAL END */}
               {/* SKILLS START */}
+              {item.displaySkillsSection !== false ? (
               <section id="skills_and_projects" className="flex mt-3">
                 <section id="skills" className="">
                   <div className="mt-3">
@@ -153,8 +154,10 @@ const CV2 = () => {
                   </div>
                 </section>
               </section>
+              ) : null}
               {/* SKILLS END */}
               {/* EDUCATION */}
+              {item.displayEducationSection !== false ? (
               <section id="education" className="mt-5">
                 <h4 className="text-sm mb-1">Education</h4>
 
@@ -176,6 +179,7 @@ const CV2 = () => {
 
                 <p className={paragraphSize}>{}</p>
               </section>
+              ) : null}
             </div>
           );
         })}
@@ -189,7 +193,7 @@ const CV2 = () => {
                 style={{ borderColor: `${item.activeColor}80` }}
               />
               {/* ABOUT TEXT START  */}
-              {item.about ? (
+              {item.about && item.displayAboutSection !== false ? (
                 <section id="about">
                   <div className="relative">
                     {item.displayImage ? (
@@ -216,6 +220,7 @@ const CV2 = () => {
               ) : null}
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
+              {item.displayExperienceSection !== false ? (
               <section className="mt-6 relative">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Experience
@@ -262,8 +267,10 @@ const CV2 = () => {
                   );
                 })}
               </section>
+              ) : null}
               {/* EXPERIENCE END */}
               {/* PROJECTS START */}
+              {item.displayProjectsSection !== false ? (
               <section id="projects" className="relative">
                 <h3 className={titles} style={{ color: item.activeColor }}>
                   Projects
@@ -298,6 +305,7 @@ const CV2 = () => {
                   );
                 })}
               </section>
+              ) : null}
               {/* PROJECTS END */}
             </div>
           );
