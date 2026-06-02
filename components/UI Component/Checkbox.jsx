@@ -8,7 +8,7 @@ const CheckBox = ({ title, value, keyChange }) => {
       <input
         id={title}
         type="checkbox"
-        defaultChecked={value}
+        checked={Boolean(value)}
         onChange={(e) => updateCv(keyChange, e.target.checked)}
       />
       <label

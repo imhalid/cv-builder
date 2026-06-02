@@ -31,6 +31,9 @@ export default function Home() {
       location: "",
       email: "",
       linkedin: "",
+      linkedIn: "",
+      instagram: "",
+      facebook: "",
       twitter: "",
       github: "",
       website: "",
@@ -69,6 +72,9 @@ export default function Home() {
       displayWebSite: false,
       displayGithub: false,
       displayTwitter: false,
+      displayLinkedIn: false,
+      displayInstagram: false,
+      displayFacebook: false,
       activeColor: "#5B21B6",
     };
     setCv(emptyCv);
@@ -235,9 +241,9 @@ export default function Home() {
           addEducation,
         }}
       >
-        <main className="flex m-auto md:w-auto w-fit flex-col-reverse justify-center items-center md:relative md:items-stretch  md:h-screen">
-          <div className="m-auto md:w-fit md:h-fit relative md:absolute  md:left-[26.5rem] md:right-0 md:bottom-0 md:flex md:top-0 ">
-            <div>
+        <main className="flex min-h-screen w-full flex-col-reverse items-center justify-center overflow-x-hidden bg-slate-100 md:relative md:h-screen md:items-stretch">
+          <div className="relative mx-auto my-6 w-full overflow-x-auto px-4 md:absolute md:bottom-0 md:left-[26.5rem] md:right-0 md:top-0 md:my-auto md:flex md:h-fit md:w-fit md:px-0">
+            <div className="mx-auto w-fit">
               <section
                 ref={componentRef}
                 className="bg-white md:rounded-md transition-all  p-8 h-[840px] w-[594px] md:w-[594px] md:h-[840px] "
@@ -251,8 +257,8 @@ export default function Home() {
           </div>
           <PageButtons />
 
-          <div className="flex align-middle h-full">
-            <section className="settings rounded-2xl w-full overflow-auto">
+          <div className="flex h-full w-full align-middle md:w-auto">
+            <section className="settings w-full overflow-auto rounded-2xl">
               <Settings />
             </section>
             <div className="md:meshGradient left-0 bg-slate-300 h-full w-full md:opacity-20 fixed md:absolute -z-10  md:h-screen"></div>

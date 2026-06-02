@@ -14,11 +14,8 @@ const SettingMain = () => {
         <h1 className="text-2xl font-bold">CV Builder</h1>
         <div className="mt-5">
           <p>
-            Hi guys, I designed this project for everyone to use and I still
-            continue to design it. I will add more features and template designs
-            soon. Please send me feedback if you like it. <br />
-            <br /> To be more supportive, you can buy me a coffee so I can work
-            harder.
+            Build a clean CV, switch templates, preview changes live, and export
+            when it is ready.
           </p>
           <div className="bg-sky-50 border-2 border-sky-700/50 px-2 mt-4 mb-2 pt-4 py-2 rounded-xl">
             <h1 className="text-sky-900 text-xl font-bold">Before using</h1>
@@ -31,10 +28,6 @@ const SettingMain = () => {
               </li>
               <li>
                 ● <strong>Contact me</strong> if you encounter any problems.
-              </li>
-              <li>
-                ● Sometimes checkboxes don't work as they should.
-                <strong> Just click twice for it to work properly.</strong>
               </li>
             </ol>
           </div>

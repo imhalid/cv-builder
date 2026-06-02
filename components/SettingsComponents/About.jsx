@@ -194,7 +194,7 @@ const About = () => {
               {cv.displayLinkedIn ? (
                 <Inputs
                   title="LinkedIn"
-                  value={cv.LinkedIn}
+                  value={cv.linkedIn}
                   placeholder="Only Username"
                   keyChange="linkedIn"
                 />
@@ -202,7 +202,7 @@ const About = () => {
               {cv.displayInstagram ? (
                 <Inputs
                   title="Instagram"
-                  value={cv.Instagram}
+                  value={cv.instagram}
                   placeholder="Only Username"
                   keyChange="instagram"
                 />
@@ -210,7 +210,7 @@ const About = () => {
               {cv.displayFacebook ? (
                 <Inputs
                   title="Facebook"
-                  value={cv.Facebook}
+                  value={cv.facebook}
                   placeholder="Only Username"
                   keyChange="facebook"
                 />

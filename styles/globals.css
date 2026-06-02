@@ -148,7 +148,7 @@
 }
 
 .cardStyle {
-  @apply flex flex-col mb-10 rounded-3xl bg-[#FAFBFC] shadow z-10 p-5 relative;
+  @apply flex flex-col mb-6 rounded-xl bg-[#FAFBFC] shadow z-10 p-5 relative sm:mb-10;
 }
 
 .inputStyle {
