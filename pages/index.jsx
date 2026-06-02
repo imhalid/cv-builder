@@ -168,7 +168,7 @@ export default function Home() {
   useEffect(() => {
     //create cvLocal in localStorage if it doesn't exist
     const cvLocal = LS.get("cv");
-    if (cvLocal) {
+    if (cvLocal && typeof cvLocal === "object") {
       setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
     }
   }, []);
