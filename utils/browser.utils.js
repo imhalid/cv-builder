@@ -23,7 +23,10 @@ class LS {
 
     try {
       return JSON.parse(value);
-    } catch {
+    } catch (error) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("Failed to parse localStorage value", error);
+      }
       return null;
     }
   }
