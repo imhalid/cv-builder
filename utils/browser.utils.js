@@ -25,7 +25,7 @@ class LS {
       return JSON.parse(value);
     } catch (error) {
       if (process.env.NODE_ENV !== "production") {
-        console.warn("Failed to parse localStorage value", error);
+        console.warn(`Failed to parse localStorage value for key '${key}'`, error);
       }
       return null;
     }
