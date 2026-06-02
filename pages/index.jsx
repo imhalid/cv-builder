@@ -81,6 +81,43 @@ export default function Home() {
     LS.set({ key: "cv", payload: emptyCv });
   };
 
+  const exportCvData = () => {
+    const fileName = `${cv.name || "cv"}-data.json`
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    const blob = new Blob([JSON.stringify(cv, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${fileName || "cv-data"}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const importCvData = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const importedCv = JSON.parse(event.target.result);
+        const nextCv = { ...cvData, ...importedCv };
+        setCv(nextCv);
+        LS.set({ key: "cv", payload: nextCv });
+      } catch {
+        alert("CV data file could not be imported.");
+      } finally {
+        e.target.value = "";
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const [template, setTemplate] = useState(1);
 
   const selectTemplate = (e) => {
@@ -239,6 +276,8 @@ export default function Home() {
           ifScaleUpOrDown,
           selectTemplate,
           addEducation,
+          exportCvData,
+          importCvData,
         }}
       >
         <main className="flex min-h-screen w-full flex-col-reverse items-center justify-center overflow-x-hidden bg-slate-100 md:relative md:h-screen md:items-stretch">

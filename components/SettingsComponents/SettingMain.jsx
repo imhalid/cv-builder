@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CvContext } from "../../hooks/CvContext";
+import { FiDownload, FiUpload } from "react-icons/fi";
 
 import ContactBtn from "../UI Component/ContactBtn";
 import CoffeBtn from "../UI Component/CoffeBtn";
@@ -11,6 +12,8 @@ import TemplateSwitcher from "../UI Component/TemplateSwitcher";
 
 const SettingMain = () => {
   const { cv, updateCv } = useContext(CvContext);
+  const { exportCvData, importCvData } = useContext(CvContext);
+  const fileInputRef = useRef(null);
   const themeColors = ["#5B21B6", "#E11D48", "#0F766E", "#2563EB", "#111827"];
 
   return (
@@ -50,6 +53,31 @@ const SettingMain = () => {
             <ContactBtn />
 
             <GithubBtn />
+          </div>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              className="resetButton flex h-10 items-center justify-center gap-2 bg-slate-700"
+              onClick={exportCvData}
+            >
+              <FiDownload />
+              Export
+            </button>
+            <button
+              type="button"
+              className="resetButton flex h-10 items-center justify-center gap-2 bg-slate-700"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <FiUpload />
+              Import
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json"
+              className="hidden"
+              onChange={importCvData}
+            />
           </div>
           <div className="mt-2">
             <CoffeBtn />
