@@ -1,4 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useContext } from "react";
+import { CvContext } from "../../hooks/CvContext";
 
 import ContactBtn from "../UI Component/ContactBtn";
 import CoffeBtn from "../UI Component/CoffeBtn";
@@ -8,6 +10,9 @@ import SetSample from "../UI Component/SetSample";
 import TemplateSwitcher from "../UI Component/TemplateSwitcher";
 
 const SettingMain = () => {
+  const { cv, updateCv } = useContext(CvContext);
+  const themeColors = ["#5B21B6", "#E11D48", "#0F766E", "#2563EB", "#111827"];
+
   return (
     <AnimatePresence>
       <motion.div layout className="cardStyle">
@@ -56,6 +61,34 @@ const SettingMain = () => {
               <TemplateSwitcher value={1} />
               <TemplateSwitcher value={2} />
               <TemplateSwitcher value={3} />
+            </div>
+          </div>
+          <div className="mt-5">
+            <h1 className="text-xl font-bold">Theme</h1>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              {themeColors.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  aria-label={`Use ${color} theme`}
+                  className="h-9 w-9 rounded-full border-2 border-white shadow ring-offset-2 transition-all hover:scale-105"
+                  style={{
+                    backgroundColor: color,
+                    boxShadow:
+                      cv.activeColor === color
+                        ? `0 0 0 3px ${color}55`
+                        : undefined,
+                  }}
+                  onClick={() => updateCv("activeColor", color)}
+                />
+              ))}
+              <input
+                type="color"
+                aria-label="Custom theme color"
+                className="h-9 w-12 cursor-pointer rounded-lg border border-gray-200 bg-white p-1"
+                value={cv.activeColor}
+                onChange={(e) => updateCv("activeColor", e.target.value)}
+              />
             </div>
           </div>
         </div>

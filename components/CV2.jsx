@@ -23,10 +23,13 @@ const CV2 = () => {
   return (
     <div className="w-full h-full flex" id="cv">
       <div className="relative  pr-5 flex flex-col mr-2 h-full w-[30%]">
-        <div className="border-l h-[840px] -top-8 right-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
             <div key={index}>
+              <div
+                className="border-l h-[840px] -top-8 right-0 absolute"
+                style={{ borderColor: `${item.activeColor}80` }}
+              />
               <div className="space-y-1">
                 <h1 className="text-3xl font-semibold w-10/12">{item.name}</h1>
                 <h4 className=" text-gray-400 text-sm font-medium">
@@ -178,10 +181,13 @@ const CV2 = () => {
         })}
       </div>
       <div className="relative flex-1 h-full pl-6 ml-2">
-        <div className="border-l h-[840px] -top-8 left-0 border-black/30 absolute" />
         {[cv.cv].map((item, index) => {
           return (
             <div key={index}>
+              <div
+                className="border-l h-[840px] -top-8 left-0 absolute"
+                style={{ borderColor: `${item.activeColor}80` }}
+              />
               {/* ABOUT TEXT START  */}
               {item.about ? (
                 <section id="about">
@@ -211,16 +217,27 @@ const CV2 = () => {
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
               <section className="mt-6 relative">
-                <h3 className={titles}>Experience</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Experience
+                </h3>
                 <div className="absolute -left-[29px] top-[7px]">
-                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
-                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
+                  <div
+                    className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white"
+                    style={{ backgroundColor: item.activeColor }}
+                  />
+                  <div
+                    className="absolute rounded-sm rotate-0 h-3 w-3"
+                    style={{ backgroundColor: item.activeColor }}
+                  />
                 </div>
 
                 {item.experiences.map((experience, index) => {
                   return (
                     <div className="relative " key={index}>
-                      <div className="absolute ring-4 ring-white -left-[24px]  h-[93%] top-1 rounded-md px-[1px] bg-black " />
+                      <div
+                        className="absolute ring-4 ring-white -left-[24px] h-[93%] top-1 rounded-md px-[1px]"
+                        style={{ backgroundColor: item.activeColor }}
+                      />
                       <div className="flex mt-3 flex-col  justify-between">
                         <h4 className="font-medium  text-md">
                           {experience.title}
@@ -248,15 +265,26 @@ const CV2 = () => {
               {/* EXPERIENCE END */}
               {/* PROJECTS START */}
               <section id="projects" className="relative">
-                <h3 className={titles}>Projects</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Projects
+                </h3>
                 <div className="absolute -left-[29px] top-[7px]">
-                  <div className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white bg-black " />
-                  <div className="absolute rounded-sm rotate-0 h-3 w-3  bg-black " />
+                  <div
+                    className=" absolute rounded-sm rotate-45 h-3 w-3 ring-4 ring-white"
+                    style={{ backgroundColor: item.activeColor }}
+                  />
+                  <div
+                    className="absolute rounded-sm rotate-0 h-3 w-3"
+                    style={{ backgroundColor: item.activeColor }}
+                  />
                 </div>
                 {item.projects.map((project, index) => {
                   return (
                     <div key={index} className="mt-2 relative">
-                      <div className="absolute border ring-4 ring-white border-black  -left-[25px]  h-[50px] top-1 rounded-md px-[1px] bg-white " />
+                      <div
+                        className="absolute border ring-4 ring-white -left-[25px] h-[50px] top-1 rounded-md px-[1px] bg-white"
+                        style={{ borderColor: item.activeColor }}
+                      />
                       <h4 className="font-medium text-md">
                         <a href={project.link} target="_blank" rel="noreferrer">
                           {project.title}

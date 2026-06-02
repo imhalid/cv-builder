@@ -179,7 +179,12 @@ const CV3 = () => {
             <div key={index}>
               {/* ABOUT TEXT START  */}
               <section id="about">
-                <h1 className="text-3xl font-semibold">{item.name}</h1>
+                <h1
+                  className="text-3xl font-semibold"
+                  style={{ color: item.activeColor }}
+                >
+                  {item.name}
+                </h1>
                 <h4 className=" text-gray-400 pb-1 text-sm font-medium">
                   {item.jobTitle}
                   {item.location ? " - " : null}
@@ -194,7 +199,9 @@ const CV3 = () => {
               {/* ABOUT TEXT END */}
               {/* EXPERIENCE START */}
               <section className="mt-6 relative">
-                <h3 className={titles}>Experience</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Experience
+                </h3>
 
                 {item.experiences.map((experience, index) => {
                   return (
@@ -226,7 +233,9 @@ const CV3 = () => {
               {/* EXPERIENCE END */}
               {/* PROJECTS START */}
               <section id="projects" className="relative">
-                <h3 className={titles}>Projects</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Projects
+                </h3>
 
                 {item.projects.map((project, index) => {
                   return (

@@ -20,7 +20,7 @@ import { websiteLinkCreator, resolvedWebsiteLink } from "../utils/link.utils";
 const CV = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
-  const titles = "text-sm font-medium uppercase text-rose-400";
+  const titles = "text-sm font-medium uppercase";
   const paragraphSize = "text-[0.705rem] mt-1 text-gray-700 ";
   const jobSize = "text-[0.775rem] text-gray-500 ";
 
@@ -143,7 +143,10 @@ const CV = () => {
             {/* ABOUT TEXT START  */}
             {item.about ? (
               <section id="about">
-                <div className="bg-gray-100/50 border p-3 rounded-lg mt-6">
+                <div
+                  className="bg-gray-100/50 border p-3 rounded-lg mt-6"
+                  style={{ borderColor: `${item.activeColor}55` }}
+                >
                   <ReactMarkdown className={paragraphSize}>
                     {item.about}
                   </ReactMarkdown>
@@ -155,7 +158,9 @@ const CV = () => {
             <section id="skills_and_projects" className="flex mt-6">
               {/* SKILLS START */}
               <section id="skills" className="w-1/2">
-                <h3 className={titles}>Skills</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Skills
+                </h3>
 
                 <div className="mt-2">
                   <h4 className="font-medium text-md">{item.skillTitle1}</h4>
@@ -179,7 +184,9 @@ const CV = () => {
               {/* SKILLS END */}
               {/* PROJECTS START */}
               <section id="projects" className="w-1/2">
-                <h3 className={titles}>Projects</h3>
+                <h3 className={titles} style={{ color: item.activeColor }}>
+                  Projects
+                </h3>
                 {item.projects.map((project, index) => {
                   return (
                     <div key={index} className="mt-2">
@@ -201,7 +208,9 @@ const CV = () => {
             {/* SKILLS AND PROJECTS END */}
             {/* EXPERIENCE START */}
             <section className="mt-6">
-              <h3 className={titles}>Experience</h3>
+              <h3 className={titles} style={{ color: item.activeColor }}>
+                Experience
+              </h3>
               {item.experiences
                 .map((experience, index) => {
                   return (
