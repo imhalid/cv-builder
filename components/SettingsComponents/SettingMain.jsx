@@ -15,6 +15,24 @@ const SettingMain = () => {
   const { exportCvData, importCvData } = useContext(CvContext);
   const fileInputRef = useRef(null);
   const themeColors = ["#5B21B6", "#E11D48", "#0F766E", "#2563EB", "#111827"];
+  const requiredFields = [
+    cv.name,
+    cv.jobTitle,
+    cv.location,
+    cv.about,
+    cv.email,
+    cv.projects?.some((project) => project.title && project.summary),
+    cv.experiences?.some(
+      (experience) =>
+        experience.title && experience.company && experience.summary
+    ),
+    cv.education?.some((education) => education.title && education.school),
+    cv.toolsAndTechSkills?.length,
+    cv.industryKnowledge?.length,
+  ];
+  const completionScore = Math.round(
+    (requiredFields.filter(Boolean).length / requiredFields.length) * 100
+  );
 
   return (
     <AnimatePresence>
@@ -25,6 +43,21 @@ const SettingMain = () => {
             Build a clean CV, switch templates, preview changes live, and export
             when it is ready.
           </p>
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-3">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-600">
+              <span>CV completeness</span>
+              <span>{completionScore}%</span>
+            </div>
+            <div className="mt-2 h-2 overflow-hidden rounded-full bg-gray-200">
+              <div
+                className="h-full rounded-full transition-all"
+                style={{
+                  width: `${completionScore}%`,
+                  backgroundColor: cv.activeColor,
+                }}
+              />
+            </div>
+          </div>
           <div className="bg-sky-50 border-2 border-sky-700/50 px-2 mt-4 mb-2 pt-4 py-2 rounded-xl">
             <h1 className="text-sky-900 text-xl font-bold">Before using</h1>
             <ol className="list-none mt-2 text-sky-900 space-y-2">
