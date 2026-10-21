@@ -1,22 +1,16 @@
-import { URL_REGEX } from "../constants/regex.constants";
+import { URL_REGEX } from "../constants/regex.constants.js";
 
 export const websiteLinkCreator = (url) => {
-  let parsedURL = "";
-  if (url.startsWith("http") && url.match(URL_REGEX)) {
-    return url;
-  }
-  const withHTTP = url.startsWith("http://") || url.startsWith("https://");
-  const withWWW = url.startsWith("www.");
-  if (!withHTTP && withWWW) return parsedURL.concat("https://", url);
-  if (!withHTTP && !withWWW) return parsedURL.concat("https://", url);
-  return "Invalid Link";
+  const trimmed = url.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
 };
 
 export const resolvedWebsiteLink = (link) => {
-  let url;
-  if (link.match(URL_REGEX)) {
-    url = new URL(link);
-    return url.hostname;
+  try {
+    if (link.match(URL_REGEX)) return new URL(link).hostname;
+  } catch {
+    // fall through while the user is still typing an incomplete address
   }
   return "Invalid Link";
 };

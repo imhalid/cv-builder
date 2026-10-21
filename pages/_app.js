@@ -1,20 +1,25 @@
 import Script from "next/script";
 import "../styles/globals.css";
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
+      {GA_ID ? (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-          
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');`}
-      </Script>
+            gtag('config', '${GA_ID}');`}
+          </Script>
+        </>
+      ) : null}
       <Component {...pageProps} />
     </>
   );

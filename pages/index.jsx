@@ -4,16 +4,20 @@ import Settings from "../components/Settings";
 import PageButtons from "../components/PageButtons";
 import { useState, useEffect, useRef } from "react";
 import { CvContext } from "../hooks/CvContext";
-import { cvData } from "../data/cvData";
+import { cvData, emptyCv } from "../data/cvData";
 import { useReactToPrint } from "react-to-print";
 import CV2 from "../components/CV2";
 import CV3 from "../components/CV3";
 import {
-  FILE_NOT_SELECTED,
   FILE_READ_ERROR,
   UNSUPPORTED_FILE_TYPE,
 } from "../constants/message-result.constants";
 import LS from "../utils/browser.utils";
+import { normalizeCv } from "../utils/cv.utils";
+
+const MAX_IMAGE_SIZE = 480;
+const CONFIRM_REPLACE =
+  "This will replace everything you have written and cannot be undone. Continue?";
 export default function Home() {
   const [cv, setCv] = useState(cvData);
   const [scale, setScale] = useState(1);
@@ -23,10 +27,10 @@ export default function Home() {
   const persistCv = (nextCv) => {
     setCv(nextCv);
     setSaveStatus("Saving...");
-    LS.set({ key: "cv", payload: nextCv });
+    const saved = LS.set({ key: "cv", payload: nextCv });
     clearTimeout(saveStatusTimeout.current);
     saveStatusTimeout.current = setTimeout(() => {
-      setSaveStatus("Saved");
+      setSaveStatus(saved ? "Saved" : "Not saved: browser storage is full");
     }, 500);
   };
 
@@ -41,69 +45,11 @@ export default function Home() {
   };
 
   const setCV = () => {
-    persistCv(cvData);
+    if (window.confirm(CONFIRM_REPLACE)) persistCv(cvData);
   };
 
   const setEmptyCv = () => {
-    const emptyCv = {
-      name: "",
-      image: "",
-      jobTitle: "",
-      location: "",
-      email: "",
-      linkedin: "",
-      linkedIn: "",
-      instagram: "",
-      facebook: "",
-      twitter: "",
-      github: "",
-      website: "",
-      about: "",
-      toolsAndTechSkills: [],
-      industryKnowledge: [],
-      languages: [],
-      skillTitle1: "",
-      skillTitle2: "",
-      skillTitle3: "",
-      projects: [
-        {
-          title: "",
-          link: "",
-          summary: "",
-        },
-      ],
-      education: [
-        {
-          title: "",
-          school: "",
-          date: "",
-        },
-      ],
-      experiences: [
-        {
-          title: "",
-          company: "",
-          startDate: "",
-          endDate: "",
-          summary: "",
-        },
-      ],
-      displayImage: false,
-      displayMail: false,
-      displayWebSite: false,
-      displayGithub: false,
-      displayTwitter: false,
-      displayLinkedIn: false,
-      displayInstagram: false,
-      displayFacebook: false,
-      displayAboutSection: true,
-      displaySkillsSection: true,
-      displayEducationSection: true,
-      displayProjectsSection: true,
-      displayExperienceSection: true,
-      activeColor: "#5B21B6",
-    };
-    persistCv(emptyCv);
+    if (window.confirm(CONFIRM_REPLACE)) persistCv(emptyCv);
   };
 
   const exportCvData = () => {
@@ -126,8 +72,14 @@ export default function Home() {
     reader.onload = (event) => {
       try {
         const importedCv = JSON.parse(event.target.result);
-        const nextCv = { ...cvData, ...importedCv };
-        persistCv(nextCv);
+        if (
+          typeof importedCv !== "object" ||
+          !importedCv ||
+          Array.isArray(importedCv)
+        ) {
+          throw new Error("Not a CV data file");
+        }
+        persistCv(normalizeCv(importedCv, cvData));
       } catch {
         alert("CV data file could not be imported.");
       } finally {
@@ -151,11 +103,8 @@ export default function Home() {
   //addTag to array, if same tag is already in array, remove it
   const addTag = (e, key, value) => {
     if (e.key === "Enter" && e.target.value.trim() !== "") {
-      const newCv = { ...cv, [key]: [...cv[key], value] };
-      const unique = newCv[key].filter((item, index) => {
-        return newCv[key].indexOf(item) === index;
-      });
-      newCv[key] = unique;
+      const tags = [...cv[key], value.trim()];
+      const newCv = { ...cv, [key]: [...new Set(tags)] };
       persistCv(newCv);
       e.target.value = "";
     }
@@ -187,26 +136,40 @@ export default function Home() {
     persistCv(newCv);
   };
 
-  //when dag and drop or click and upload image in the settings page, update the cv image, and save it in the local storage
+  // Downscale to keep the data URL small enough for localStorage
   const uploadImage = (e) => {
-    // For XSS attack from HTML injection
-    const allowedFiles = ["image/png", "image/jpg", "image/jpeg"];
-    const file = e.target.files[0];
-    if (!file) {
-      throw new Error(FILE_NOT_SELECTED);
+    const input = e.target;
+    const file = input.files[0];
+    if (!file) return;
+    if (!["image/png", "image/jpeg"].includes(file.type)) {
+      alert(UNSUPPORTED_FILE_TYPE);
+      input.value = "";
+      return;
     }
+
     const reader = new FileReader();
-    const isAllowed = allowedFiles.some((type) => file.type === type);
-    if (!isAllowed) {
-      throw new Error(UNSUPPORTED_FILE_TYPE);
-    }
+    reader.onerror = () => alert(FILE_READ_ERROR);
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onerror = () => alert(FILE_READ_ERROR);
+      img.onload = () => {
+        const ratio = Math.min(
+          1,
+          MAX_IMAGE_SIZE / Math.max(img.width, img.height)
+        );
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * ratio);
+        canvas.height = Math.round(img.height * ratio);
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        updateCv("image", canvas.toDataURL("image/jpeg", 0.85));
+        input.value = "";
+      };
+      img.src = event.target.result;
+    };
     reader.readAsDataURL(file);
-    reader.onerror = (e) => {
-      throw new Error(FILE_READ_ERROR, e);
-    };
-    reader.onload = (e) => {
-      updateCv("image", e.target.result);
-    };
   };
 
   const scaleUp = () => {
@@ -224,7 +187,7 @@ export default function Home() {
     //create cvLocal in localStorage if it doesn't exist
     const cvLocal = LS.get("cv");
     if (cvLocal) {
-      setCv((currentCv) => ({ ...currentCv, ...cvLocal }));
+      setCv(normalizeCv(cvLocal, cvData));
     }
 
     return () => clearTimeout(saveStatusTimeout.current);
@@ -237,16 +200,13 @@ export default function Home() {
       "body { transform-origin: top left; margin: auto; transform: scale(1); -webkit-print-color-adjust: exact !important;  color-adjust: exact !important; print-color-adjust: exact !important; }",
 
     documentTitle: createFileName("resume"),
-    onAfterPrint: () => console.log("printed"),
   });
 
   const ifScaleUpOrDown = () => {
     if (scale > 1 || scale < 1) {
       setScale(1);
     }
-    return setTimeout(() => {
-      handlePrint();
-    }, 100);
+    setTimeout(handlePrint, 100);
   };
 
   const templateSwitch = () => {
@@ -269,7 +229,7 @@ export default function Home() {
       <Head>
         <title>CV Builder</title>
         <meta
-          name="Cv Builder"
+          name="description"
           content="Beautifully designed cv builder where you can see the changes at the same time"
         />
         <link rel="icon" href="/fav.png" />

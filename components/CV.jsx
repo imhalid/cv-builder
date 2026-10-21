@@ -17,6 +17,7 @@ import { TbBrandTwitter } from "react-icons/tb";
 import { useContext } from "react";
 import { CvContext } from "../hooks/CvContext";
 import { websiteLinkCreator, resolvedWebsiteLink } from "../utils/link.utils";
+import { safeLink } from "../utils/cv.utils";
 const CV = () => {
   const items = "flex items-center mr-3 mt-2 ";
   const itemsSVG = "h-4 w-4 text-gray-700 mr-1";
@@ -196,9 +197,13 @@ const CV = () => {
                   return (
                     <div key={index} className="mt-2">
                       <h4 className="font-medium text-md">
-                        <a href={project.link} target="_blank" rel="noreferrer">
+                        <a
+                          href={safeLink(project.link) || undefined}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           {project.title}
-                          {project.link ? (
+                          {safeLink(project.link) ? (
                             <HiExternalLink className="ml-1 inline" />
                           ) : null}
                         </a>

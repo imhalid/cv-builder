@@ -71,7 +71,6 @@ export const cvData = {
       company: "Suriye Gündemi",
       startDate: "2016",
       endDate: "2020",
-      current: true,
       summary: `It is an impartial information sharing platform about Syria. My job task:
        Preparation of up-to-date maps according to the situation in the war zone. 
        Preparing visual infographics about the obtained data and organizing these data. 
@@ -82,7 +81,6 @@ export const cvData = {
       company: "Zore Aksesuar",
       startDate: "2021",
       endDate: "(2 Months)",
-      current: true,
       summary: `In this company that sells accessories for phones and technological products, I prepared the video edits of the new products and mounted them with Final Cut Pro. I shared my social media posts with Facebook Business.`,
     },
   ],
@@ -102,38 +100,42 @@ export const cvData = {
   activeColor: "#5B21B6",
 };
 
-/*
-export const cvDataEmpty = {
+export const emptyCv = {
   name: "",
+  image: "",
   jobTitle: "",
   location: "",
   email: "",
-  linkedin: "",
+  linkedIn: "",
+  instagram: "",
+  facebook: "",
   twitter: "",
   github: "",
   website: "",
-  aboutme: "",
+  about: "",
   toolsAndTechSkills: [],
   industryKnowledge: [],
   languages: [],
-  projects: [
-    {
-      title: "",
-      summary: "",
-    },
+  skillTitle1: "",
+  skillTitle2: "",
+  skillTitle3: "",
+  projects: [{ title: "", link: "", summary: "" }],
+  education: [{ title: "", school: "", startDate: "", endDate: "" }],
+  experiences: [
+    { title: "", company: "", startDate: "", endDate: "", summary: "" },
   ],
-  experience: [
-    {
-      title: "",
-      company: "",
-      from: new Date(),
-      to: new Date(),
-      current: true,
-      summary: "",
-    },
-  ],
-  displayEducation: false,
-  displayProjects: false,
+  displayImage: false,
+  displayMail: false,
+  displayWebSite: false,
+  displayGithub: false,
+  displayTwitter: false,
+  displayLinkedIn: false,
+  displayInstagram: false,
+  displayFacebook: false,
+  displayAboutSection: true,
+  displaySkillsSection: true,
+  displayEducationSection: true,
+  displayProjectsSection: true,
+  displayExperienceSection: true,
   activeColor: "#5B21B6",
 };
-*/

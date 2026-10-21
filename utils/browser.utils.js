@@ -1,29 +1,35 @@
-const isOnBrowser = () => {
-  if (typeof window !== "undefined") {
-    return true;
+const getStorage = () => {
+  try {
+    return typeof window !== "undefined" ? window.localStorage : null;
+  } catch {
+    return null;
   }
 };
 
-class LS {
-  constructor() {
-    if (isOnBrowser()) {
-      this.ls = window.localStorage;
-    } else {
-      console.error("Window is not defined");
-      return;
-    }
-  }
+// Every method fails soft: storage can be missing (SSR, private mode),
+// full (large images) or hold corrupted JSON.
+const LS = {
   get(key) {
-    return JSON.parse(this.ls.getItem(key));
-  }
+    try {
+      return JSON.parse(getStorage()?.getItem(key) ?? "null");
+    } catch {
+      return null;
+    }
+  },
   set({ key, payload }) {
-    this.ls.setItem(key, JSON.stringify(payload));
-  }
+    try {
+      getStorage().setItem(key, JSON.stringify(payload));
+      return true;
+    } catch {
+      return false;
+    }
+  },
   remove(key) {
-    this.ls.removeItem(key);
-  }
+    getStorage()?.removeItem(key);
+  },
   clear() {
-    this.ls.clear();
-  }
-}
-export default new LS();
+    getStorage()?.clear();
+  },
+};
+
+export default LS;
